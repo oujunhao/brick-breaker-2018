@@ -32,7 +32,6 @@ namespace BrickBreaker
                 default:
                     break;
             }
-
         }
 
         public void longPaddle()
