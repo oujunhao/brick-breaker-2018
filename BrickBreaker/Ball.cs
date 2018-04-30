@@ -6,77 +6,89 @@ namespace BrickBreaker
 {
     public class Ball
     {
-        public int x, y, xSpeed, ySpeed, size;
+        public int x, y, size;
+        public double velocity;
+        public Vector vector;
         public Color colour;
 
-        public static Random rand = new Random();
-
-        public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize)
+        public Ball(int _x, int _y, double _velocity, int _ballSize)
         {
             x = _x;
             y = _y;
-            xSpeed = _xSpeed;
-            ySpeed = _ySpeed;
+            velocity = _velocity;
             size = _ballSize;
-               
+            vector = new Vector(-1, -1);
         }
 
-        public void Move()
+        public void Update(Paddle paddle, UserControl UC)
         {
-            x = x + xSpeed;
-            y = y + ySpeed;
+            ChangePosition();
+            ResolveCollisions(paddle, UC);
         }
 
-        public bool BlockCollision(Block b)
+        public void ChangePosition()
         {
-            Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
+            x += Convert.ToInt32(velocity * vector.x);
+            y += Convert.ToInt32(velocity * vector.y);
+        }
+
+        public void ResolveCollisions(Paddle paddle, UserControl UC)
+        {
+            PaddleCollision(paddle);
+            WallCollision(UC);
+        }
+
+        public bool BlockCollision(Block block)
+        {
+            Rectangle blockRec = new Rectangle(block.x, block.y, block.width, block.height);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
             if (blockRec.IntersectsWith(ballRec))
             {
-                if (x <= (b.x + b.width))
-                    xSpeed = Math.Abs(xSpeed);
+                if (blockRec.IntersectsWith(ballRec))
+                {
+                    if (x <= (block.x + block.width))
+                        vector.x = Math.Abs(vector.x);
 
-                if ((x + size) >= b.x)
-                    xSpeed = -Math.Abs(xSpeed);
+                    if ((x + size) >= block.x)
+                        vector.x = -Math.Abs(vector.x);
 
-                if (y <= (b.y + b.height))
-                    ySpeed = -ySpeed;
+                    if (y <= (block.y + block.height))
+                        vector.y = -vector.y;
+                }
             }
 
-            return blockRec.IntersectsWith(ballRec);         
+            return blockRec.IntersectsWith(ballRec);
         }
 
-        public void PaddleCollision(Paddle p, bool pMovingLeft, bool pMovingRight)
+        public void PaddleCollision(Paddle p)
         {
+            if (y + size < p.y + p.height)
+                return; // Ball won't collide with paddle
+
             Rectangle ballRec = new Rectangle(x, y, size, size);
             Rectangle paddleRec = new Rectangle(p.x, p.y, p.width, p.height);
 
             if (ballRec.IntersectsWith(paddleRec))
             {
-                if (y + size >= p.y)
-                {
-                    // If the ball 
-                    if ((x) < p.x && (y + size) > p.y)
-                    {
-                        xSpeed = -Math.Abs(xSpeed);
-                        ySpeed = Math.Abs(ySpeed);
-                    }
-                    else if (x + size > (p.x + p.width) && (y + size) > p.y)
-                    {
-                        xSpeed = Math.Abs(xSpeed);
-                        ySpeed = -Math.Abs(ySpeed);
-                    }
-                    else
-                    {
-                        ySpeed *= -1;
-                    }
-                }
-
-                if (pMovingLeft)
-                    xSpeed = -Math.Abs(xSpeed);
-                else if (pMovingRight)
-                    xSpeed = Math.Abs(xSpeed);
+                //if (y + size >= p.y)
+                //{
+                //    // If the ball 
+                //    if ((x) < p.x && (y + size) > p.y)
+                //    {
+                //        xSpeed = -Math.Abs(xSpeed);
+                //        ySpeed = Math.Abs(ySpeed);
+                //    }
+                //    else if (x + size > (p.x + p.width) && (y + size) > p.y)
+                //    {
+                //        xSpeed = Math.Abs(xSpeed);
+                //        ySpeed = -Math.Abs(ySpeed);
+                //    }
+                //    else
+                //    {
+                //        ySpeed *= -1;
+                //    }
+                //}
             }
         }
 
@@ -85,29 +97,29 @@ namespace BrickBreaker
             // Collision with left wall
             if (x <= 0)
             {
-                xSpeed *= -1;
+                x = Math.Abs(0 - x);
+                vector.Multiply(new Vector(-1, 1));
             }
+
             // Collision with right wall
-            if (x >= (UC.Width - size))
+            int rightBound = (UC.Width - size);
+            if (x >= rightBound)
             {
-                xSpeed *= -1;
+                x = Math.Abs(rightBound - (x - rightBound));
+                vector.Multiply(new Vector(-1, 1));
             }
+
             // Collision with top wall
-            if (y <= 2)
+            if (y <= 0)
             {
-                ySpeed *= -1;
+                y = Math.Abs(0 - y);
+                vector.Multiply(new Vector(1, -1));
             }
         }
 
         public bool BottomCollision(UserControl UC)
         {
-            Boolean didCollide = false;
-
-            if (y >= UC.Height)
-            {
-                didCollide = true;
-            }
-
+            Boolean didCollide = y >= UC.Height;
             return didCollide;
         }
 
