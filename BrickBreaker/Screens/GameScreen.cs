@@ -28,6 +28,7 @@ namespace BrickBreaker
         // Paddle and Ball objects
         Paddle paddle;
         Ball ball;
+        Powerups powerUp;
 
         // list of all blocks
         List<Block> blocks = new List<Block>();
@@ -82,6 +83,8 @@ namespace BrickBreaker
                 Block b1 = new Block(x, 10, 1, Color.White);
                 blocks.Add(b1);
             }
+
+
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -192,6 +195,9 @@ namespace BrickBreaker
                     OnEnd();
                 }
             }
+
+            //Check
+            powerUp.checkCapCollision(paddle.x, paddle.y, paddle.width);
 
             //redraw the screen
             Refresh();

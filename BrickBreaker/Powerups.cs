@@ -3,22 +3,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace BrickBreaker
 {
     public class Powerups
     {
         Random randGen = new Random();
-        public int powerupIndex;
+        int longPaddleGain = 20, capSpeed = 3, capHeight = 10, capWidth = 15;
+        public List<int> powerupIndexList = new List<int>();
+        public static string[] powerupNames = new string[8]
+            {
+                "Long",
+                "Bomb",
+                "Catch",
+                "Flip",
+                "Life",
+                "Laser",
+                "Gun",
+                "Multi"
+            };
+        public List<Point> capsulePositions = new List<Point>();
+        Paddle currentPaddle;
 
-        public Powerups()
+        /// <summary>
+        /// Makes a new capsule appear on screen and adds it to the list of screen capsules 
+        /// </summary>
+        /// <param name="brickPosition">Spawns the capsule at the position of the brick</param>
+        public Powerups(Point brickPosition)
         {
-            powerupIndex = randGen.Next(1, 9);
+            powerupIndexList.Add(randGen.Next(1, 9));
 
-            switch(powerupIndex)
+            capsulePositions.Add(brickPosition);
+            //draw capsule
+            //draw powerupNames[powerupIndexList.Last()];         
+        }
+
+        /// <summary>
+        /// Moves all capsules down
+        /// </summary>
+        public void moveCapsule()
+        {
+            for(int i = 0; i < capsulePositions.Count(); i++)
+            {
+                capsulePositions[i] = new Point(capsulePositions[i].X, capsulePositions[i].Y+capSpeed);
+            }
+        }
+
+        public void capCollision(ref Paddle currentPad)
+        {
+            currentPaddle = currentPad;
+
+            for (int i = 0; i < capsulePositions.Count(); i++)
+            {
+                if (capsulePositions[i].Y + capHeight == currentPaddle.y &&//Check the height
+                    capsulePositions[i].X + capWidth >= currentPaddle.x &&//If the right of cap is greater then left of paddle
+                    capsulePositions[i].X <= currentPaddle.x + currentPaddle.width)//If the left of cap is less then right of paddle
+                {
+                    int capIndex = i;
+                    usePowerUp(capIndex, ref currentPad);
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is called when the capsule comes in contact with the paddle
+        /// </summary>
+        public void usePowerUp(int capIndex, ref Paddle currentPaddle)
+        {
+            switch (powerupIndexList[capIndex])
             {
                 case 1:
-                    longPaddle();               
+                    longPaddle(ref currentPaddle);
                     break;
                 case 2:
                     Bomb();
@@ -29,14 +85,33 @@ namespace BrickBreaker
                 case 4:
                     flipControls();
                     break;
+                case 5:
+                    Life();
+                    break;
+                case 6:
+                    //Laser
+                    break;
+                case 7:
+                    //Gun
+                    break;
+                case 8:
+                    //Multi
+                    break;
                 default:
                     break;
             }
+
+            //Removes the powerup that was just used
+            powerupIndexList.RemoveAt(capIndex);
+
+            //Remove capsule from screen
         }
 
-        public void longPaddle()
+        public void longPaddle(ref Paddle currentPad)
         {
-
+            currentPaddle.x -= longPaddleGain/2;
+            currentPaddle.width += longPaddleGain/2;
+            currentPad = currentPaddle;
         }
 
         public void Bomb()
@@ -52,6 +127,11 @@ namespace BrickBreaker
         public void flipControls()
         {
 
+        }
+
+        public void Life(ref int lives)
+        {
+            lives++;
         }
     }
 }
