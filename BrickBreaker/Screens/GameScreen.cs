@@ -25,9 +25,6 @@ namespace BrickBreaker
         Paddle paddle;
         Ball ball;
 
-        // list of all blocks
-        List<Block> blocks = new List<Block>();
-
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
@@ -40,7 +37,6 @@ namespace BrickBreaker
             InitializeComponent();
             OnStart();
         }
-
 
         public void OnStart()
         {
@@ -67,8 +63,6 @@ namespace BrickBreaker
             int ySpeed = 6;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
-            
-            //TODO: load level
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -146,13 +140,13 @@ namespace BrickBreaker
             ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown);
 
             // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
+            foreach (Block b in Form1.blocks)
             {
                 if (ball.BlockCollision(b))
                 {
-                    blocks.Remove(b);
+                    Form1.blocks.Remove(b);
 
-                    if (blocks.Count == 0)
+                    if (Form1.blocks.Count == 0)
                     {
                         gameTimer.Enabled = false;
 
@@ -202,7 +196,7 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
 
             // Draws blocks
-            foreach (Block b in blocks)
+            foreach (Block b in Form1.blocks)
             {
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
