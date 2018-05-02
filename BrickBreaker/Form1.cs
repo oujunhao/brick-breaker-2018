@@ -47,7 +47,10 @@ namespace BrickBreaker
                     b.hp = Convert.ToInt16(reader.ReadString());
 
                     reader.ReadToNextSibling("colour");
-                    b.colour = reader.ReadString();
+                    b.colour = Convert.ToInt16(reader.ReadString());
+
+                    reader.ReadToNextSibling("power");
+                    b.power = reader.ReadString();
 
                     blocks.Add(b);
                 }

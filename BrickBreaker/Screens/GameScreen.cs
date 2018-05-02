@@ -144,6 +144,8 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
+                    //TODO: add power events
+
                     Form1.blocks.Remove(b);
 
                     if (Form1.blocks.Count == 0)
@@ -198,6 +200,8 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in Form1.blocks)
             {
+                //change colour of brush depending on block 
+                blockBrush.Color = Color.FromArgb(b.colour);
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
