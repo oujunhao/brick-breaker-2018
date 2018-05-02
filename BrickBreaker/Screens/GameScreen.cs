@@ -207,8 +207,6 @@ namespace BrickBreaker
         {
             // End scoring 
             Form1.service.endGame(score);
-            Form1.service.WasPersonalHighscore;
-            Form1.service.WasGlobalHighscore;
 
             // Goes to the game over screen
             Form form = this.FindForm();
