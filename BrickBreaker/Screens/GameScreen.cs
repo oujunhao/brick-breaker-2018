@@ -23,20 +23,23 @@ namespace BrickBreaker
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
 
         // Game values
-        int lives;
+        public static int lives;
 
         // Paddle and Ball objects
         Paddle paddle;
         Ball ball;
-        Powerups powerUp;
 
         // list of all blocks
         List<Block> blocks = new List<Block>();
+
+        //list of all capsules on screen
+        public static List<Powerups> powerUps = new List<Powerups>();
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        SolidBrush capBrush = new SolidBrush(Color.Green);
 
         #endregion
 
@@ -72,7 +75,7 @@ namespace BrickBreaker
             int ySpeed = 6;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
-            
+
             // Creates blocks for generic level
             blocks.Clear();
             int x = 10;
@@ -83,8 +86,6 @@ namespace BrickBreaker
                 Block b1 = new Block(x, 10, 1, Color.White);
                 blocks.Add(b1);
             }
-
-
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -196,8 +197,16 @@ namespace BrickBreaker
                 }
             }
 
-            //Check
-            powerUp.checkCapCollision(paddle.x, paddle.y, paddle.width);
+            if (powerUps.Count() > 0)
+            {
+                
+
+                //Check all capsules for collisions with the paddle
+                powerUps[0].capCollision(ref paddle);
+
+                //Moves all capsules 
+                powerUps[0].moveCapsule();
+            }
 
             //redraw the screen
             Refresh();
@@ -228,6 +237,13 @@ namespace BrickBreaker
 
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
+            //Draws capsules
+            for (int i = 0; i < powerUps.Count; i++)
+            {
+                e.Graphics.FillRectangle(capBrush, Powerups.capsulePositions[i].X,
+                    Powerups.capsulePositions[i].Y, Powerups.capWidth, Powerups.capHeight);
+            }
         }
     }
 }

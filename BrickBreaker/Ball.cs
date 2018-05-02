@@ -42,6 +42,10 @@ namespace BrickBreaker
 
                 if (y <= (b.y + b.height))
                     ySpeed = -ySpeed;
+
+
+                Powerups newPowerUp = new Powerups(ballRec);
+                GameScreen.powerUps.Add(newPowerUp);
             }
 
             return blockRec.IntersectsWith(ballRec);         

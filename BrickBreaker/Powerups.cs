@@ -10,7 +10,8 @@ namespace BrickBreaker
     public class Powerups
     {
         Random randGen = new Random();
-        int longPaddleGain = 20, capSpeed = 3, capHeight = 10, capWidth = 15;
+        int longPaddleGain = 20, capSpeed = 1;
+        public static int capHeight = 10, capWidth = 15;
         public List<int> powerupIndexList = new List<int>();
         public static string[] powerupNames = new string[8]
             {
@@ -23,18 +24,26 @@ namespace BrickBreaker
                 "Gun",
                 "Multi"
             };
-        public List<Point> capsulePositions = new List<Point>();
+        public static List<Point> capsulePositions = new List<Point>();
         Paddle currentPaddle;
 
         /// <summary>
         /// Makes a new capsule appear on screen and adds it to the list of screen capsules 
         /// </summary>
         /// <param name="brickPosition">Spawns the capsule at the position of the brick</param>
-        public Powerups(Point brickPosition)
+        public Powerups(Rectangle brickPosition)
         {
-            powerupIndexList.Add(randGen.Next(1, 9));
 
-            capsulePositions.Add(brickPosition);
+            //Random rand = new Random();
+            //int randCheck = rand.Next(1, 11);
+            //if(randCheck == 1)
+            //{
+
+            powerupIndexList.Add(randGen.Next(1, 9));
+            capsulePositions.Add(new Point(brickPosition.X, brickPosition.Y));
+
+            //}
+
             //draw capsule
             //draw powerupNames[powerupIndexList.Last()];         
         }
@@ -50,13 +59,17 @@ namespace BrickBreaker
             }
         }
 
+        /// <summary>
+        /// Checks if there is a collision between any of the capsules on screen and the paddle
+        /// </summary>
+        /// <param name="currentPad"> The paddle</param>
         public void capCollision(ref Paddle currentPad)
         {
             currentPaddle = currentPad;
 
             for (int i = 0; i < capsulePositions.Count(); i++)
             {
-                if (capsulePositions[i].Y + capHeight == currentPaddle.y &&//Check the height
+                if (capsulePositions[i].Y + capHeight >= currentPaddle.y &&//Check the height
                     capsulePositions[i].X + capWidth >= currentPaddle.x &&//If the right of cap is greater then left of paddle
                     capsulePositions[i].X <= currentPaddle.x + currentPaddle.width)//If the left of cap is less then right of paddle
                 {
@@ -129,9 +142,9 @@ namespace BrickBreaker
 
         }
 
-        public void Life(ref int lives)
+        public void Life()
         {
-            lives++;
+            GameScreen.lives++;
         }
     }
 }
