@@ -89,23 +89,7 @@ namespace BrickBreaker
                         vector = new Vector(Math.Cos(DegtoRad(angle * angleMultiplier)), Math.Sin(DegtoRad(angle * angleMultiplier)));
                     }
                 }
-
-                //if (y + size >= p.y)
-                //{
-                //    // If the ball 
-                //    if ((x) < p.x && (y + size) > p.y)
-                //    {
-                //        vector = new Vector(-0.707, -0.0707);
-                //    }
-                //    else if (x + size > (p.x + p.width) && (y + size) > p.y)
-                //    {
-                //        vector = new Vector(0.707, 0.0707);
-                //    }
-                //    else
-                //    {
-                //        //velocity *= -1;
-                //    }
-                //}
+                //comment
             }
         }
 
