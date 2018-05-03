@@ -32,7 +32,7 @@ namespace BrickBreaker
         public void GetLevels()
         {
             //TODO: add doc name
-            XmlReader reader = XmlReader.Create();
+            XmlReader reader = XmlReader.Create("test.xml");
 
             while(reader.Read())
             {
@@ -46,8 +46,14 @@ namespace BrickBreaker
                     reader.ReadToNextSibling("hp");
                     b.hp = Convert.ToInt16(reader.ReadString());
 
-                    reader.ReadToNextSibling("colour");
-                    b.colour = Convert.ToInt16(reader.ReadString());
+                    reader.ReadToNextSibling("r");
+                    b.r = Convert.ToInt16(reader.ReadString());
+
+                    reader.ReadToNextSibling("g");
+                    b.g = Convert.ToInt16(reader.ReadString());
+
+                    reader.ReadToNextSibling("b");
+                    b.b = Convert.ToInt16(reader.ReadString());
 
                     reader.ReadToNextSibling("power");
                     b.power = reader.ReadString();

@@ -12,12 +12,12 @@ namespace BrickBreaker
         public int width = 50;
         public int height = 25;
 
-        public int x, y, hp, colour;
+        public int x, y, hp, r, g, b;
         public string power;
 
         public Block()
         {
-            x = y = hp = colour = 0;
+            x = y = hp = r = g = b = 0;
             power = "";
         }
     }

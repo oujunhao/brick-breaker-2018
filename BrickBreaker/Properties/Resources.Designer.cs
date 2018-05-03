@@ -19,7 +19,7 @@ namespace BrickBreaker.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,6 +57,39 @@ namespace BrickBreaker.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;game&gt;
+        ///  &lt;level&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;30&lt;/x&gt;
+        ///      &lt;y&gt;20&lt;/y&gt;
+        ///      &lt;hp&gt;5&lt;/hp&gt;
+        ///      &lt;r&gt;100&lt;/r&gt;
+        ///      &lt;g&gt;47&lt;/g&gt;
+        ///      &lt;b&gt;150&lt;/b&gt;
+        ///      &lt;power&gt;yeah&lt;/power&gt;
+        ///    &lt;/brick&gt;
+        ///  &lt;/level&gt;
+        ///  &lt;level&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;50&lt;/x&gt;
+        ///      &lt;y&gt;20&lt;/y&gt;
+        ///      &lt;hp&gt;5&lt;/hp&gt;
+        ///      &lt;r&gt;150&lt;/r&gt;
+        ///      &lt;g&gt;87&lt;/g&gt;
+        ///      &lt;b&gt;150&lt;/b&gt;
+        ///      &lt;power&gt;yeah&lt;/power&gt;
+        ///    &lt;/brick&gt;
+        ///  &lt;/level&gt;
+        ///&lt;/game&gt;.
+        /// </summary>
+        internal static string test {
+            get {
+                return ResourceManager.GetString("test", resourceCulture);
             }
         }
     }
