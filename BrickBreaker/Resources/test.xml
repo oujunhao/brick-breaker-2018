@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<game>
+  <level>
+    <brick>
+      <x>30</x>
+      <y>20</y>
+      <hp>5</hp>
+      <r>100</r>
+      <g>47</g>
+      <b>150</b>
+      <power>yeah</power>
+    </brick>
+  </level>
+  <level>
+    <brick>
+      <x>50</x>
+      <y>20</y>
+      <hp>5</hp>
+      <r>150</r>
+      <g>87</g>
+      <b>150</b>
+      <power>yeah</power>
+    </brick>
+  </level>
+</game>

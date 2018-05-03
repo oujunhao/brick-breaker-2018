@@ -1,8 +1,4 @@
-﻿/*  Created by: Steven HL
- *  Project: Brick Breaker
- *  Date: Tuesday, April 4th
- */ 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -31,9 +27,6 @@ namespace BrickBreaker
         Paddle paddle;
         Ball ball;
 
-        // list of all blocks
-        List<Block> blocks = new List<Block>();
-
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
@@ -46,7 +39,6 @@ namespace BrickBreaker
             InitializeComponent();
             OnStart();
         }
-
 
         public void OnStart()
         {
@@ -77,17 +69,6 @@ namespace BrickBreaker
             int ySpeed = 6;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
-            
-            // Creates blocks for generic level
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -165,22 +146,7 @@ namespace BrickBreaker
             ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown);
 
             // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
-            {
-                if (ball.BlockCollision(b))
-                {
-                    blocks.Remove(b);
-
-                    if (blocks.Count == 0)
-                    {
-                        gameTimer.Enabled = false;
-
-                        OnEnd();
-                    }
-
-                    break;
-                }
-            }
+            BlockCollision();
 
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
@@ -224,13 +190,42 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
 
             // Draws blocks
-            foreach (Block b in blocks)
+            foreach (Block b in Form1.blocks)
             {
+                //change colour of brush depending on block 
+                blockBrush.Color = Color.FromArgb(b.r, b.g, b.b);
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+        }
+
+        public void BlockCollision()
+        {
+            foreach (Block b in Form1.blocks)
+            {
+                if (ball.BlockCollision(b))
+                {
+                    if (b.hp > 0)
+                    {
+                        b.hp--;
+                    }
+                    else if (b.hp == 0)
+                    {
+                        Form1.blocks.Remove(b);
+                        break;
+                    }
+
+                    if (Form1.blocks.Count == 0)
+                    {
+                        gameTimer.Enabled = false;
+                        OnEnd();
+                    }
+
+                    break;
+                }
+            }
         }
     }
 }
