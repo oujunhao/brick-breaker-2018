@@ -28,47 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.onePlayerButton = new System.Windows.Forms.Button();
             this.twoPlayerButton = new System.Windows.Forms.Button();
             this.brickBreakerTitleLable = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
             this.highscoresButton = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // onePlayerButton
             // 
+            this.onePlayerButton.AutoSize = true;
             this.onePlayerButton.BackColor = System.Drawing.Color.Transparent;
             this.onePlayerButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.onePlayerButton.FlatAppearance.BorderSize = 0;
             this.onePlayerButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.onePlayerButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.onePlayerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.onePlayerButton.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.onePlayerButton.Font = new System.Drawing.Font("Roboto Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.onePlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.onePlayerButton.Location = new System.Drawing.Point(291, 216);
+            this.onePlayerButton.Location = new System.Drawing.Point(283, 269);
             this.onePlayerButton.Name = "onePlayerButton";
-            this.onePlayerButton.Size = new System.Drawing.Size(181, 51);
+            this.onePlayerButton.Size = new System.Drawing.Size(231, 51);
             this.onePlayerButton.TabIndex = 0;
-            this.onePlayerButton.Text = "1 Player";
+            this.onePlayerButton.Text = "1  P L A Y E R";
             this.onePlayerButton.UseVisualStyleBackColor = false;
             this.onePlayerButton.Click += new System.EventHandler(this.playButton_Click);
             // 
             // twoPlayerButton
             // 
+            this.twoPlayerButton.AutoSize = true;
             this.twoPlayerButton.BackColor = System.Drawing.Color.Transparent;
             this.twoPlayerButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.twoPlayerButton.FlatAppearance.BorderSize = 0;
             this.twoPlayerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.twoPlayerButton.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.twoPlayerButton.Font = new System.Drawing.Font("Roboto Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.twoPlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.twoPlayerButton.Location = new System.Drawing.Point(291, 273);
+            this.twoPlayerButton.Location = new System.Drawing.Point(283, 336);
             this.twoPlayerButton.Name = "twoPlayerButton";
-            this.twoPlayerButton.Size = new System.Drawing.Size(181, 46);
+            this.twoPlayerButton.Size = new System.Drawing.Size(231, 48);
             this.twoPlayerButton.TabIndex = 1;
-            this.twoPlayerButton.Text = "2 Player";
+            this.twoPlayerButton.Text = "2  P L A Y E R";
             this.twoPlayerButton.UseVisualStyleBackColor = false;
             this.twoPlayerButton.Click += new System.EventHandler(this.twoPlayerButton_Click);
             // 
@@ -80,49 +84,58 @@
             this.brickBreakerTitleLable.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.brickBreakerTitleLable.Location = new System.Drawing.Point(229, 127);
             this.brickBreakerTitleLable.Name = "brickBreakerTitleLable";
-            this.brickBreakerTitleLable.Size = new System.Drawing.Size(336, 86);
+            this.brickBreakerTitleLable.Size = new System.Drawing.Size(0, 86);
             this.brickBreakerTitleLable.TabIndex = 2;
-            this.brickBreakerTitleLable.Text = "Brick Breaker";
             // 
             // exitButton
             // 
+            this.exitButton.AutoSize = true;
             this.exitButton.BackColor = System.Drawing.Color.Transparent;
             this.exitButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.exitButton.FlatAppearance.BorderSize = 0;
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.Font = new System.Drawing.Font("Roboto Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.exitButton.Location = new System.Drawing.Point(291, 379);
+            this.exitButton.Location = new System.Drawing.Point(292, 468);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(181, 46);
+            this.exitButton.Size = new System.Drawing.Size(181, 48);
             this.exitButton.TabIndex = 3;
-            this.exitButton.Text = "Exit";
+            this.exitButton.Text = "E X I T";
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
             // 
             // highscoresButton
             // 
+            this.highscoresButton.AutoSize = true;
             this.highscoresButton.BackColor = System.Drawing.Color.Transparent;
             this.highscoresButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.highscoresButton.FlatAppearance.BorderSize = 0;
             this.highscoresButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.highscoresButton.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highscoresButton.Font = new System.Drawing.Font("Roboto Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highscoresButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.highscoresButton.Location = new System.Drawing.Point(278, 327);
+            this.highscoresButton.Location = new System.Drawing.Point(245, 400);
             this.highscoresButton.Name = "highscoresButton";
-            this.highscoresButton.Size = new System.Drawing.Size(210, 46);
+            this.highscoresButton.Size = new System.Drawing.Size(314, 48);
             this.highscoresButton.TabIndex = 4;
-            this.highscoresButton.Text = "Highscores";
+            this.highscoresButton.Text = "H I G H S C O R E S";
             this.highscoresButton.UseVisualStyleBackColor = false;
             this.highscoresButton.Click += new System.EventHandler(this.highscoresButton_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(101, 56);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 40);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(600, 221);
+            this.pictureBox1.Size = new System.Drawing.Size(797, 223);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
@@ -130,13 +143,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(63)))), ((int)(((byte)(105)))));
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.highscoresButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.brickBreakerTitleLable);
             this.Controls.Add(this.twoPlayerButton);
             this.Controls.Add(this.onePlayerButton);
-            this.Controls.Add(this.pictureBox1);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(800, 550);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -152,6 +165,7 @@
         private System.Windows.Forms.Label brickBreakerTitleLable;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button highscoresButton;
+        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
