@@ -10,6 +10,7 @@ namespace BrickBreaker
         public double velocity;
         public Vector vector;
         public Color colour;
+        public int bound = 70;
 
         public const int angleMultiplier = 5;
 
@@ -85,11 +86,11 @@ namespace BrickBreaker
 
                     if (!tooMuchLeft && !tooMuchRight)
                     {
-                        int angle = (x + (1 / 2 * size)) - (paddle.x + (1 / 2 * paddle.width));
-                        vector = new Vector(Math.Cos(DegtoRad(angle * angleMultiplier)), Math.Sin(DegtoRad(angle * angleMultiplier)));
+                        int offset = (x + (size)) - paddle.x;
+                        int angle = Map(offset, 90+bound, 90-bound, paddle.width+size);
+                        vector = new Vector(Math.Cos(DegtoRad(angle)), -Math.Sin(DegtoRad(angle)));
                     }
                 }
-                //comment
             }
         }
 
@@ -126,6 +127,10 @@ namespace BrickBreaker
         public double DegtoRad(int angle )
         {
             return angle * (Math.PI / 180);
+        }
+        public static int Map(int offset, int largestAngle, int smallestAngle, int paddleW)
+        {
+            return Convert.ToInt32( ( ( (smallestAngle - largestAngle) / paddleW) * offset) + largestAngle);
         }
     }
 }
