@@ -21,9 +21,10 @@ namespace BrickBreaker
 
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
+        public static bool flipControls;
 
         // Game values
-        public static int lives;
+        public static int lives, screenWidth, screenHeight;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -34,6 +35,17 @@ namespace BrickBreaker
 
         //list of all capsules on screen
         public static List<Powerups> powerUps = new List<Powerups>();
+        public static string[] powerupNames = new string[8]
+            {
+                "Long",
+                "Bomb",
+                "Catch",
+                "Flip",
+                "Life",
+                "Laser",
+                "Gun",
+                "Multi"
+            };
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
@@ -53,7 +65,10 @@ namespace BrickBreaker
         public void OnStart()
         {
             //set life counter
-            lives = 3;
+            lives = 30;
+
+            screenWidth = this.Width;
+            screenHeight = this.Height;
 
             //set all button presses to false.
             leftArrowDown = downArrowDown = rightArrowDown = upArrowDown = false;
@@ -97,16 +112,30 @@ namespace BrickBreaker
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    leftArrowDown = true;
+                    if (flipControls)
+                    {
+                        rightArrowDown = true;
+                    }
+                    else
+                    {
+                        leftArrowDown = true;
+                    }
                     break;
                 case Keys.Down:
                     downArrowDown = true;
                     break;
                 case Keys.Right:
-                    rightArrowDown = true;
+                    if (flipControls)
+                    {
+                        leftArrowDown = true;
+                    }
+                    else
+                    {
+                        rightArrowDown = true;
+                    }
                     break;
                 case Keys.Up:
-                    upArrowDown = true;
+                    upArrowDown = true;                  
                     break;
                 case Keys.Space:
                     spaceDown = true;
@@ -122,13 +151,27 @@ namespace BrickBreaker
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    leftArrowDown = false;
+                    if(flipControls)
+                    {
+                        rightArrowDown = false;
+                    }
+                    else
+                    {
+                        leftArrowDown = false;
+                    }                   
                     break;
                 case Keys.Down:
                     downArrowDown = false;
                     break;
                 case Keys.Right:
-                    rightArrowDown = false;
+                    if (flipControls)
+                    {
+                        leftArrowDown = false;
+                    }
+                    else
+                    {
+                        rightArrowDown = false;
+                    }
                     break;
                 case Keys.Up:
                     upArrowDown = false;
@@ -197,15 +240,16 @@ namespace BrickBreaker
                 }
             }
 
-            if (powerUps.Count() > 0)
+            //Move each capsule and 
+            for(int i = 0; i < powerUps.Count; i++)
             {
-                
+                powerUps[i].moveCapsule();
+                powerUps[i].checkCapCollision(ref paddle);
 
-                //Check all capsules for collisions with the paddle
-                powerUps[0].capCollision(ref paddle);
-
-                //Moves all capsules 
-                powerUps[0].moveCapsule();
+                if (powerUps.Count > 0)
+                {
+                    powerUps[i].checkCapOffScreen();
+                }
             }
 
             //redraw the screen
@@ -229,6 +273,8 @@ namespace BrickBreaker
             // Draws paddle
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
 
+            //e.Graphics.DrawLine(Pens.Red, paddle.x + paddle.width / 2, paddle.y, paddle.x + paddle.width / 2, paddle.y + paddle.height);
+
             // Draws blocks
             foreach (Block b in blocks)
             {
@@ -239,10 +285,9 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
             //Draws capsules
-            for (int i = 0; i < powerUps.Count; i++)
+            foreach(Powerups p in powerUps)
             {
-                e.Graphics.FillRectangle(capBrush, Powerups.capsulePositions[i].X,
-                    Powerups.capsulePositions[i].Y, Powerups.capWidth, Powerups.capHeight);
+                e.Graphics.FillRectangle(Brushes.Green, p.x, p.y, p.CAP_WIDTH, p.CAP_HEIGHT);
             }
         }
     }

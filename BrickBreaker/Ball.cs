@@ -44,8 +44,12 @@ namespace BrickBreaker
                     ySpeed = -ySpeed;
 
 
-                Powerups newPowerUp = new Powerups(ballRec);
-                GameScreen.powerUps.Add(newPowerUp);
+                //int randCheck = rand.Next(1, 11);
+                //if (randCheck == 1)
+                //{
+                    Powerups newPowerUp = new Powerups(ballRec);
+                    GameScreen.powerUps.Add(newPowerUp);
+                //}               
             }
 
             return blockRec.IntersectsWith(ballRec);         
@@ -114,6 +118,5 @@ namespace BrickBreaker
 
             return didCollide;
         }
-
     }
 }

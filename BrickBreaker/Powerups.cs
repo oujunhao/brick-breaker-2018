@@ -9,23 +9,17 @@ namespace BrickBreaker
 {
     public class Powerups
     {
+        //Constants
         Random randGen = new Random();
-        int longPaddleGain = 20, capSpeed = 1;
-        public static int capHeight = 10, capWidth = 15;
-        public List<int> powerupIndexList = new List<int>();
-        public static string[] powerupNames = new string[8]
-            {
-                "Long",
-                "Bomb",
-                "Catch",
-                "Flip",
-                "Life",
-                "Laser",
-                "Gun",
-                "Multi"
-            };
-        public static List<Point> capsulePositions = new List<Point>();
-        Paddle currentPaddle;
+        const int LONG_PADDLE_GAIN = 20, CAP_SPEED = 1;
+        public int CAP_HEIGHT = 25, CAP_WIDTH = 45;
+
+        //Varriables
+        public string capType;
+        public int x = 0, y = 0;
+
+        //Paddle sent from the game screen
+        Paddle paddle;
 
         /// <summary>
         /// Makes a new capsule appear on screen and adds it to the list of screen capsules 
@@ -33,19 +27,10 @@ namespace BrickBreaker
         /// <param name="brickPosition">Spawns the capsule at the position of the brick</param>
         public Powerups(Rectangle brickPosition)
         {
+            capType = GameScreen.powerupNames[randGen.Next(0, 8)];
 
-            //Random rand = new Random();
-            //int randCheck = rand.Next(1, 11);
-            //if(randCheck == 1)
-            //{
-
-            powerupIndexList.Add(randGen.Next(1, 9));
-            capsulePositions.Add(new Point(brickPosition.X, brickPosition.Y));
-
-            //}
-
-            //draw capsule
-            //draw powerupNames[powerupIndexList.Last()];         
+            x = brickPosition.X;
+            y = brickPosition.Y;        
         }
 
         /// <summary>
@@ -53,9 +38,17 @@ namespace BrickBreaker
         /// </summary>
         public void moveCapsule()
         {
-            for(int i = 0; i < capsulePositions.Count(); i++)
+            y += CAP_SPEED;
+        }
+
+        /// <summary>
+        /// Checks to see if the capsule is moving off the screen and removes it
+        /// </summary>
+        public void checkCapOffScreen()
+        {
+            if(y + CAP_HEIGHT == GameScreen.screenHeight)
             {
-                capsulePositions[i] = new Point(capsulePositions[i].X, capsulePositions[i].Y+capSpeed);
+                resetPowerupsList();
             }
         }
 
@@ -63,68 +56,103 @@ namespace BrickBreaker
         /// Checks if there is a collision between any of the capsules on screen and the paddle
         /// </summary>
         /// <param name="currentPad"> The paddle</param>
-        public void capCollision(ref Paddle currentPad)
+        public void checkCapCollision(ref Paddle currentPad)
         {
-            currentPaddle = currentPad;
+            paddle = currentPad;
 
-            for (int i = 0; i < capsulePositions.Count(); i++)
+            if(y + CAP_HEIGHT >= paddle.y &&
+                y <= paddle.y + paddle.height &&
+                x + CAP_WIDTH >= paddle.x &&
+                x <= paddle.x + paddle.width)
             {
-                if (capsulePositions[i].Y + capHeight >= currentPaddle.y &&//Check the height
-                    capsulePositions[i].X + capWidth >= currentPaddle.x &&//If the right of cap is greater then left of paddle
-                    capsulePositions[i].X <= currentPaddle.x + currentPaddle.width)//If the left of cap is less then right of paddle
+                usePowerUp(ref currentPad);
+                resetPowerupsList();
+            }
+        }
+
+        /// <summary>
+        /// Removes current capsule, and fixes list so there are no holes
+        /// </summary>
+        public void resetPowerupsList()
+        {
+            //This is the index of the current powerup in the list of powerups
+            int capIndex = 0;
+
+            foreach (Powerups p in GameScreen.powerUps)
+            {
+                //Finds the index based on the positions of all powerups
+                if (p.x == x && p.y == y)
                 {
-                    int capIndex = i;
-                    usePowerUp(capIndex, ref currentPad);
+                    capIndex = GameScreen.powerUps.IndexOf(p);
                 }
             }
+
+            //GameScreen.powerUps.RemoveAt(capIndex);
+
+            //Starting at the current powerup shift all powerups below it on the list up one such that the current
+            //powerup is removed (this will mean the final power up will be a duplicate of the second last one)
+            for(int i = capIndex; i < GameScreen.powerUps.Count-1; i++)
+            {
+                GameScreen.powerUps[i] = GameScreen.powerUps[i + 1];
+            }
+
+            //Remove the last (duplicate) powerup on the list
+            GameScreen.powerUps.RemoveAt(GameScreen.powerUps.Count - 1);
         }
 
         /// <summary>
         /// This is called when the capsule comes in contact with the paddle
         /// </summary>
-        public void usePowerUp(int capIndex, ref Paddle currentPaddle)
+        public void usePowerUp(ref Paddle currentPaddle)
         {
-            switch (powerupIndexList[capIndex])
+            switch (capType)
             {
-                case 1:
+                case "Long":
                     longPaddle(ref currentPaddle);
                     break;
-                case 2:
+                case "Bomb":
                     Bomb();
                     break;
-                case 3:
+                case "Catch":
                     Catch();
                     break;
-                case 4:
+                case "Flip":
                     flipControls();
                     break;
-                case 5:
+                case "Life":
                     Life();
                     break;
-                case 6:
-                    //Laser
+                case "Laser":
+                    Laser();
                     break;
-                case 7:
-                    //Gun
+                case "Gun":
+                    Laser();
                     break;
-                case 8:
-                    //Multi
+                case "Multi":
+                    Multi();
                     break;
                 default:
                     break;
             }
-
-            //Removes the powerup that was just used
-            powerupIndexList.RemoveAt(capIndex);
-
-            //Remove capsule from screen
         }
 
         public void longPaddle(ref Paddle currentPad)
         {
-            currentPaddle.x -= longPaddleGain/2;
-            currentPaddle.width += longPaddleGain/2;
-            currentPad = currentPaddle;
+            if (paddle.x - LONG_PADDLE_GAIN / 2 < 0)
+            {
+                paddle.x = 0;
+            }
+            else if (paddle.x + paddle.width + LONG_PADDLE_GAIN/2 > GameScreen.screenWidth)
+            {
+                paddle.x = GameScreen.screenWidth - (paddle.width + LONG_PADDLE_GAIN);
+            }
+            else
+            {
+                paddle.x -= LONG_PADDLE_GAIN / 2;               
+            }
+
+            paddle.width += LONG_PADDLE_GAIN;
+            currentPad = paddle;
         }
 
         public void Bomb()
@@ -139,12 +167,34 @@ namespace BrickBreaker
 
         public void flipControls()
         {
-
+            if(GameScreen.flipControls)
+            {
+                GameScreen.flipControls = false;
+            }
+            else
+            {
+                GameScreen.flipControls = true;
+            }
         }
 
         public void Life()
         {
             GameScreen.lives++;
+        }
+
+        public void Laser()
+        {
+
+        }
+
+        public void Gun()
+        {
+
+        }
+
+        public void Multi()
+        {
+
         }
     }
 }
