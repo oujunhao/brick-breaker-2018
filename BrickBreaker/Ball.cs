@@ -44,12 +44,29 @@ namespace BrickBreaker
                     ySpeed = -ySpeed;
 
 
-                //int randCheck = rand.Next(1, 11);
-                //if (randCheck == 1)
-                //{
-                    Powerups newPowerUp = new Powerups(ballRec);
-                    GameScreen.powerUps.Add(newPowerUp);
-                //}               
+                int randCheck = rand.Next(1, 11);
+                if (randCheck == 1)
+                {
+                Powerups newPowerUp = new Powerups(ballRec);
+                GameScreen.powerUps.Add(newPowerUp);
+                }
+
+                if (GameScreen.bomb)
+                {
+                    foreach (Block block in GameScreen.blocks)
+                    {
+                        if(block.x == b.x + b.width + GameScreen.blockSpacing && block.y == b.y || //Block to the right
+                           block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y || //Block to the left
+                           block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
+                           block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
+                        {
+                            block.hp--;
+                        }
+                    }
+                    GameScreen.bomb = false;
+                    GameScreen.ballBrush.Color = Color.White;
+                }
+
             }
 
             return blockRec.IntersectsWith(ballRec);         
@@ -62,6 +79,11 @@ namespace BrickBreaker
 
             if (ballRec.IntersectsWith(paddleRec))
             {
+                if(GameScreen.catchBall)
+                {
+
+                }
+
                 if (y + size >= p.y)
                 {
                     // If the ball 

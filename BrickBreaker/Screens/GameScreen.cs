@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -20,18 +21,20 @@ namespace BrickBreaker
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
-        public static bool flipControls;
+        public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
+        public static bool flipControls, catchBall, bomb;
 
         // Game values
-        public static int lives, screenWidth, screenHeight;
+        public static int lives, screenWidth, screenHeight, blockSpacing = 7;
+        public static int paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20;
 
         // Paddle and Ball objects
         Paddle paddle;
         Ball ball;
+        GraphicsPath capShape;
 
         // list of all blocks
-        List<Block> blocks = new List<Block>();
+        public static List<Block> blocks = new List<Block>();
 
         //list of all capsules on screen
         public static List<Powerups> powerUps = new List<Powerups>();
@@ -46,10 +49,12 @@ namespace BrickBreaker
                 "Gun",
                 "Multi"
             };
+        PointF catchPaddlePoint, catchMovePoint;
+        int catchRadious = 100, catchDegree = 90;
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
-        SolidBrush ballBrush = new SolidBrush(Color.White);
+        public static SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
         SolidBrush capBrush = new SolidBrush(Color.Green);
 
@@ -67,6 +72,9 @@ namespace BrickBreaker
             //set life counter
             lives = 30;
 
+            removePastPowerups();
+            powerUps.Clear();
+
             screenWidth = this.Width;
             screenHeight = this.Height;
 
@@ -74,12 +82,12 @@ namespace BrickBreaker
             leftArrowDown = downArrowDown = rightArrowDown = upArrowDown = false;
 
             // setup starting paddle values and create paddle object
-            int paddleWidth = 80;
+  
             int paddleHeight = 20;
-            int paddleX = ((this.Width / 2) - (paddleWidth / 2));
+            int paddleX = ((this.Width / 2) - (paddleStartWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleSpeed = 8;
-            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
+            paddle = new Paddle(paddleX, paddleY, paddleStartWidth, paddleHeight, paddleSpeed, Color.White);
 
             // setup starting ball values
             int ballX = ((this.Width / 2) - 10);
@@ -97,10 +105,13 @@ namespace BrickBreaker
 
             while (blocks.Count < 12)
             {
-                x += 57;
+                
                 Block b1 = new Block(x, 10, 1, Color.White);
+                x += b1.width + blockSpacing;
                 blocks.Add(b1);
             }
+
+            catchPaddlePoint = new PointF(paddle.x + paddle.width / 2, paddle.y);
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -112,26 +123,42 @@ namespace BrickBreaker
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    if (flipControls)
+                    if (catchBall)
                     {
-                        rightArrowDown = true;
+                        if(catchDegree < 150)
+                        catchDegree +=5;
                     }
                     else
                     {
-                        leftArrowDown = true;
+                        if (flipControls)
+                        {
+                            rightArrowDown = true;
+                        }
+                        else
+                        {
+                            leftArrowDown = true;
+                        }
                     }
                     break;
                 case Keys.Down:
                     downArrowDown = true;
                     break;
                 case Keys.Right:
-                    if (flipControls)
+                    if (catchBall)
                     {
-                        leftArrowDown = true;
+                        if(catchDegree > 30)
+                        catchDegree -=5;
                     }
                     else
                     {
-                        rightArrowDown = true;
+                        if (flipControls)
+                        {
+                            leftArrowDown = true;
+                        }
+                        else
+                        {
+                            rightArrowDown = true;
+                        }
                     }
                     break;
                 case Keys.Up:
@@ -139,6 +166,14 @@ namespace BrickBreaker
                     break;
                 case Keys.Space:
                     spaceDown = true;
+                    if(catchBall)
+                    {
+                        //shoot
+                    }
+
+                    break;
+                case Keys.Escape:
+                    Application.Exit();
                     break;
                 default:
                     break;
@@ -184,6 +219,20 @@ namespace BrickBreaker
             }
         }
 
+        public void findCatchPoints()
+        {
+            //this will removed so that the line will come from the ball
+
+            catchPaddlePoint = new PointF(paddle.x + paddle.width / 2, paddle.y);
+
+            double rad = catchDegree * (Math.PI / 180);
+
+            catchMovePoint = new PointF(
+                Convert.ToInt32(catchPaddlePoint.X + (Math.Cos(rad)) * catchRadious),
+                Convert.ToInt32(catchPaddlePoint.Y - (Math.Sin(rad) * catchRadious))
+                );
+        }
+
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // Move the paddle
@@ -210,23 +259,28 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    blocks.Remove(b);
-
-                    if (blocks.Count == 0)
-                    {
-                        gameTimer.Enabled = false;
-
-                        OnEnd();
-                    }
-
+                    b.hp--;
                     break;
                 }
+            }
+
+            //Removes all blocks from the block list with an hp of 0
+            blocks.RemoveAll(b => b.hp == 0);
+
+            if (blocks.Count == 0)
+            {
+                gameTimer.Enabled = false;
+
+                OnEnd();
             }
 
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
             {
                 lives--;
+
+                removePastPowerups();
+                paddle.width = paddleStartWidth;
 
                 // Moves the ball back to origin
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
@@ -237,6 +291,31 @@ namespace BrickBreaker
                     gameTimer.Enabled = false;
 
                     OnEnd();
+                }
+            }
+
+            if (catchBall)
+            {
+                findCatchPoints();
+            }
+
+            if(bomb)
+            {
+                if(bombFlipCounter == bombFlipFrequency)
+                {
+                    bombFlipCounter = 0;
+                    if(ballBrush.Color == Color.White)
+                    {
+                        ballBrush.Color = Color.FromArgb(255, 0, 102);
+                    }
+                    else
+                    {
+                        ballBrush.Color = Color.White;
+                    }
+                }
+                else
+                {
+                    bombFlipCounter++;
                 }
             }
 
@@ -254,6 +333,14 @@ namespace BrickBreaker
 
             //redraw the screen
             Refresh();
+        }
+
+        public static void removePastPowerups()
+        {
+            catchBall = false;
+            flipControls = false;
+            bomb = false;
+            ballBrush.Color = Color.White;
         }
 
         public void OnEnd()
@@ -274,6 +361,11 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
 
             //e.Graphics.DrawLine(Pens.Red, paddle.x + paddle.width / 2, paddle.y, paddle.x + paddle.width / 2, paddle.y + paddle.height);
+
+            if (catchBall)
+            {
+                e.Graphics.DrawLine(Pens.White, catchPaddlePoint, catchMovePoint);
+            }
 
             // Draws blocks
             foreach (Block b in blocks)

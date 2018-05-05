@@ -28,6 +28,7 @@ namespace BrickBreaker
         public Powerups(Rectangle brickPosition)
         {
             capType = GameScreen.powerupNames[randGen.Next(0, 8)];
+            //capType = "Bomb";
 
             x = brickPosition.X;
             y = brickPosition.Y;        
@@ -65,6 +66,9 @@ namespace BrickBreaker
                 x + CAP_WIDTH >= paddle.x &&
                 x <= paddle.x + paddle.width)
             {
+                GameScreen.removePastPowerups();
+                paddle.width = GameScreen.paddleStartWidth;
+
                 usePowerUp(ref currentPad);
                 resetPowerupsList();
             }
@@ -157,12 +161,12 @@ namespace BrickBreaker
 
         public void Bomb()
         {
-
+            GameScreen.bomb = true;
         }
         
         public void Catch()
         {
-
+            GameScreen.catchBall = true;
         }
 
         public void flipControls()
