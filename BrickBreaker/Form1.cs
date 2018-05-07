@@ -36,13 +36,13 @@ namespace BrickBreaker
 
         public void GetLevels()
         {
-            //TODO: add doc name
-            XmlReader reader = XmlReader.Create("test.xml");
+            XmlReader reader = XmlReader.Create("Resources/BBLevels.xml");
 
             while(reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Text)
                 {
+                    reader.ReadToFollowing("x");
                     b.x = Convert.ToInt16(reader.ReadString());
 
                     reader.ReadToNextSibling("y");
