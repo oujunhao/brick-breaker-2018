@@ -18,6 +18,8 @@ namespace BrickBreaker
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
 
+        // Scoring 
+        int score;
         // Game values
         int lives;
 
@@ -44,6 +46,10 @@ namespace BrickBreaker
 
         public void OnStart()
         {
+            //Scoring 
+            Form1.service.startGame();
+            score = 0;
+
             //set life counter
             lives = 3;
 
@@ -187,6 +193,11 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            // End scoring 
+            Form1.service.endGame(score);
+            Form1.service.WasPersonalHighscore;
+            Form1.service.WasGlobalHighscore;
+
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
