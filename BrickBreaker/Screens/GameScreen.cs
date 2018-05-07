@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker
 {
@@ -18,7 +19,7 @@ namespace BrickBreaker
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
 
-        // Scoring 
+        // Scoring
         int score;
         // Game values
         int lives;
@@ -42,8 +43,10 @@ namespace BrickBreaker
 
         public void OnStart()
         {
-            //Scoring 
-            Form1.service.startGame();
+            // Load level
+            GetLevels();
+            //Scoring
+            //Form1.service.startGame();
             score = 0;
 
             //set life counter
@@ -57,18 +60,30 @@ namespace BrickBreaker
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
-            int paddleSpeed = 8;
-            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
+            int paddleMaxSpeed = 10;
+            int paddleAccel = 2;
+            double paddleFriction = 0.7;
+            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
 
             // setup starting ball values
             int ballX = ((this.Width / 2) - 10);
             int ballY = (this.Height - paddle.height) - 80;
 
             // Creates a new ball
-            int xSpeed = 6;
-            int ySpeed = 6;
+            double ballVelocity = 6;
             int ballSize = 20;
-            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
+            ball = new Ball(ballX, ballY, ballVelocity, ballSize);
+
+            // Creates blocks for generic level
+            blocks.Clear();
+            int x = 10;
+
+            while (blocks.Count < 12)
+            {
+                x += 57;
+                Block b1 = new Block(x, 10, 1, Color.White);
+                blocks.Add(b1);
+            }
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -127,23 +142,13 @@ namespace BrickBreaker
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // Move the paddle
-            if (leftArrowDown && paddle.x > 0)
-            {
-                paddle.Move("left");
-            }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width))
-            {
-                paddle.Move("right");
-            }
+            if (leftArrowDown) paddle.Accel("x", -1);
+            if (rightArrowDown) paddle.Accel("x", 1);
+            paddle.Move();
+            paddle.WallCollision(this);
 
             // Moves ball
-            ball.Move();
-
-            // Check for collision with top and side walls
-            ball.WallCollision(this);
-
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown);
+            ball.Update(paddle, this);
 
             // Check if ball has collided with any blocks
             BlockCollision();
@@ -153,9 +158,10 @@ namespace BrickBreaker
             {
                 lives--;
 
-                // Moves the ball back to origin
+                // Moves the ball back to middle of paddle
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
+                ball.vector = new Vector(-1, -1);
 
                 if (lives == 0)
                 {
@@ -171,8 +177,8 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
-            // End scoring 
-            Form1.service.endGame(score);
+            // End scoring
+            //            Form1.service.endGame(score);
 
             // Goes to the game over screen
             Form form = this.FindForm();
@@ -192,13 +198,43 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in Form1.blocks)
             {
-                //change colour of brush depending on block 
-                blockBrush.Color = Color.FromArgb(b.r, b.g, b.b);
+                //change colour of brush depending on block
+                blockBrush.Color = b.colour;
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
             // Draws balls
-            e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+        }
+
+        public void GetLevels()
+        {
+            using (XmlReader reader = XmlReader.Create("BBLevels.xml"))
+            {
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.Text)
+                    {
+                        Block b = new Block();
+
+                        b.x = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("y");
+                        b.y = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("hp");
+                        b.hp = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("colour");
+                        b.colour = Color.FromName(reader.ReadString());
+
+                        reader.ReadToNextSibling("power");
+                        b.power = reader.ReadString();
+
+                        Form1.blocks.Add(b);
+                    }
+                }
+            }
         }
 
         public void BlockCollision()
