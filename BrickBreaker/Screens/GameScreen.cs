@@ -20,7 +20,7 @@ namespace BrickBreaker
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
+        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown, escDown;
 
         // Game values
         int lives;
@@ -107,6 +107,9 @@ namespace BrickBreaker
                 case Keys.Space:
                     spaceDown = true;
                     break;
+                case Keys.Escape:
+                    escDown = true;
+                    break;
                 default:
                     break;
             }
@@ -131,6 +134,9 @@ namespace BrickBreaker
                     break;
                 case Keys.Space:
                     spaceDown = false;
+                    break;
+                case Keys.Escape:
+                    escDown = false;
                     break;
                 default:
                     break;
@@ -192,21 +198,40 @@ namespace BrickBreaker
                     OnEnd();
                 }
             }
-
+            if (escDown)
+            {
+                escDown = false;
+                gameTimer.Stop();
+                //Form f = this.FindForm();
+                PauseForm pf = new PauseForm(gameTimer);
+                pf.Location = new Point((this.Width - pf.Width) / 2, (this.Height - pf.Height) / 2);
+                pf.Show();
+                return;
+                //contLabel.Visible = true;
+                //quitLabel.Visible = true;
+                //yesButton.Visible = true;
+                //noButton.Visible = true;
+                //pauseScreen();
+            }
             //redraw the screen
             Refresh();
         }
 
+        //go to game over screen
         public void OnEnd()
-        {
-            // Goes to the game over screen
-            Form form = this.FindForm();
-            MenuScreen ps = new MenuScreen();
+        {   
+            // instance of game over
+            GameOver go = new GameOver();
 
-            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+            //close game screen
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
 
-            form.Controls.Add(ps);
-            form.Controls.Remove(this);
+            // centre screen
+            go.Location = new Point((f.Width - go.Width) / 2, (f.Height - go.Height) / 2);
+
+            //open game over
+            f.Controls.Add(go);
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
