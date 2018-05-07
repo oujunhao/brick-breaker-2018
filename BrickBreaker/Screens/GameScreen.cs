@@ -1,8 +1,4 @@
-﻿/*  Created by: Steven HL
- *  Project: Brick Breaker
- *  Date: Tuesday, April 4th
- */ 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -65,19 +61,20 @@ namespace BrickBreaker
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
-            int paddleSpeed = 8;
-            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
+            int paddleMaxSpeed = 10;
+            int paddleAccel = 2;
+            double paddleFriction = 0.7;
+            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
 
             // setup starting ball values
             int ballX = ((this.Width / 2) - 10);
             int ballY = (this.Height - paddle.height) - 80;
 
             // Creates a new ball
-            int xSpeed = 6;
-            int ySpeed = 6;
+            double ballVelocity = 6;
             int ballSize = 20;
-            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
-            
+            ball = new Ball(ballX, ballY, ballVelocity, ballSize);
+
             // Creates blocks for generic level
             blocks.Clear();
             int x = 10;
@@ -146,23 +143,13 @@ namespace BrickBreaker
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // Move the paddle
-            if (leftArrowDown && paddle.x > 0)
-            {
-                paddle.Move("left");
-            }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width))
-            {
-                paddle.Move("right");
-            }
+            if (leftArrowDown) paddle.Accel("x", -1);
+            if (rightArrowDown) paddle.Accel("x", 1);
+            paddle.Move();
+            paddle.WallCollision(this);
 
             // Moves ball
-            ball.Move();
-
-            // Check for collision with top and side walls
-            ball.WallCollision(this);
-
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown);
+            ball.Update(paddle, this);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
@@ -187,9 +174,10 @@ namespace BrickBreaker
             {
                 lives--;
 
-                // Moves the ball back to origin
+                // Moves the ball back to middle of paddle
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
+                ball.vector = new Vector(-1, -1);
 
                 if (lives == 0)
                 {
@@ -232,7 +220,7 @@ namespace BrickBreaker
             }
 
             // Draws balls
-            e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
         }
     }
 }
