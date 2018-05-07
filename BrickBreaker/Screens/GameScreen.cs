@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker
 {
@@ -42,8 +43,10 @@ namespace BrickBreaker
 
         public void OnStart()
         {
+            // Load level
+            GetLevels();
             //Scoring 
-            Form1.service.startGame();
+            //Form1.service.startGame();
             score = 0;
 
             //set life counter
@@ -172,7 +175,7 @@ namespace BrickBreaker
         public void OnEnd()
         {
             // End scoring 
-            Form1.service.endGame(score);
+            //            Form1.service.endGame(score);
 
             // Goes to the game over screen
             Form form = this.FindForm();
@@ -193,12 +196,42 @@ namespace BrickBreaker
             foreach (Block b in Form1.blocks)
             {
                 //change colour of brush depending on block 
-                blockBrush.Color = Color.FromArgb(b.r, b.g, b.b);
+                blockBrush.Color = b.colour;
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+        }
+
+        public void GetLevels()
+        {
+            using (XmlReader reader = XmlReader.Create("BBLevels.xml"))
+            {
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.Text)
+                    {
+                        Block b = new Block();
+
+                        b.x = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("y");
+                        b.y = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("hp");
+                        b.hp = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("colour");
+                        b.colour = Color.FromName(reader.ReadString());
+
+                        reader.ReadToNextSibling("power");
+                        b.power = reader.ReadString();
+
+                        Form1.blocks.Add(b);
+                    }
+                }
+            }
         }
 
         public void BlockCollision()

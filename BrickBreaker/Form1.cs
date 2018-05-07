@@ -18,54 +18,18 @@ namespace BrickBreaker
     {
         //create list to hold blocks and new block 
         public static List<Block> blocks = new List<Block>();
-        Block b = new Block();
         const string gameToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnYW1lSWQiOiI1YWU3NDlmMGMzMWFkMTU4MDhiNzM2YmYiLCJjYXJkSWQiOiIxIiwiaWF0IjoxNTI1MTA3MjYxfQ.SIWHqfZYSzfnLxOKtw0bLf4wYPEGsi_LAE4aP_J7Ke8";
         public static Service service = new Service(Environment.GetCommandLineArgs(), gameToken);
 
         public Form1()
         {
             InitializeComponent();
-            GetLevels();
 
             //start the program centred on the Menu Screen
             MenuScreen ms = new MenuScreen();
             this.Controls.Add(ms);
 
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
-        }
-
-        public void GetLevels()
-        {
-            //TODO: add doc name
-            XmlReader reader = XmlReader.Create("test.xml");
-
-            while(reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Text)
-                {
-                    b.x = Convert.ToInt16(reader.ReadString());
-
-                    reader.ReadToNextSibling("y");
-                    b.y = Convert.ToInt16(reader.ReadString());
-
-                    reader.ReadToNextSibling("hp");
-                    b.hp = Convert.ToInt16(reader.ReadString());
-
-                    reader.ReadToNextSibling("r");
-                    b.r = Convert.ToInt16(reader.ReadString());
-
-                    reader.ReadToNextSibling("g");
-                    b.g = Convert.ToInt16(reader.ReadString());
-
-                    reader.ReadToNextSibling("b");
-                    b.b = Convert.ToInt16(reader.ReadString());
-
-                    reader.ReadToNextSibling("power");
-                    b.power = reader.ReadString();
-
-                    blocks.Add(b);
-                }
-            }
         }
     }
 }

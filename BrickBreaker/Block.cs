@@ -12,12 +12,15 @@ namespace BrickBreaker
         public int width = 50;
         public int height = 25;
 
-        public int x, y, hp, r, g, b;
+        public Color colour;
+
+        public int x, y, hp;
         public string power;
 
         public Block()
         {
-            x = y = hp = r = g = b = 0;
+            x = y = hp = 0;
+            colour = Color.Pink;
             power = "";
         }
     }
