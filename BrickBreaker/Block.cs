@@ -23,5 +23,20 @@ namespace BrickBreaker
             colour = Color.Pink;
             power = "";
         }
+
+        public int right
+        {
+            get
+            {
+                return x + width;
+            }
+        }
+        public int bottom
+        {
+            get
+            {
+                return y + height;
+            }
+        }
     }
 }

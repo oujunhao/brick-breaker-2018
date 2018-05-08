@@ -61,8 +61,8 @@ namespace BrickBreaker
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleMaxSpeed = 10;
-            int paddleAccel = 2;
-            double paddleFriction = 0.7;
+            int paddleAccel = 3;
+            double paddleFriction = 1.2;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
 
             // setup starting ball values
@@ -70,20 +70,9 @@ namespace BrickBreaker
             int ballY = (this.Height - paddle.height) - 80;
 
             // Creates a new ball
-            double ballVelocity = 6;
+            double ballVelocity = 7;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, ballVelocity, ballSize);
-
-            // Creates blocks for generic level
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -161,7 +150,6 @@ namespace BrickBreaker
                 // Moves the ball back to middle of paddle
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
-                ball.vector = new Vector(-1, -1);
 
                 if (lives == 0)
                 {
