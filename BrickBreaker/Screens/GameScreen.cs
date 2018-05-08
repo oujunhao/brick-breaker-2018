@@ -20,7 +20,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
 
         // Scoring
-        int score;
+        public static int score;
         // Game values
         int lives;
 
@@ -46,7 +46,7 @@ namespace BrickBreaker
             // Load level
             GetLevels();
             //Scoring
-            //Form1.service.startGame();
+            Form1.service.startGame();
             score = 0;
 
             //set life counter
@@ -166,7 +166,13 @@ namespace BrickBreaker
         public void OnEnd()
         {
             // End scoring
-            //            Form1.service.endGame(score);
+            Form1.service.endGame(score);
+
+            // goes to the HS Screen 
+            //Form form = this.FindForm();
+            //HighscoreScreen hs = new HighscoreScreen();
+            //form.Controls.Add(hs);
+            //form.Controls.Remove(this);
 
             // Goes to the game over screen
             Form form = this.FindForm();

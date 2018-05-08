@@ -64,6 +64,9 @@ namespace BrickBreaker
 
             if (blockRec.IntersectsWith(ballRec))
             {
+                // scoring 
+                GameScreen.score += 10;
+
                 if (x <= block.right)
                     vector.x = Math.Abs(vector.x);
 
