@@ -64,6 +64,29 @@ namespace BrickBreaker
 
             if (blockRec.IntersectsWith(ballRec))
             {
+                //int randCheck = rand.Next(1, 11);
+                //if (randCheck == 1)
+                //{
+                Powerups newPowerUp = new Powerups(ballRec);
+                GameScreen.powerUps.Add(newPowerUp);
+                //}
+
+                if (GameScreen.bomb)
+                {
+                    foreach (Block block in GameScreen.blocks)
+                    {
+                        if(block.x == b.x + b.width + GameScreen.blockSpacing && block.y == b.y || //Block to the right
+                           block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y || //Block to the left
+                           block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
+                           block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
+                        {
+                            block.hp--;
+                        }
+                    }
+                    GameScreen.bomb = false;
+                    GameScreen.ballBrush.Color = Color.White;
+                }
+              
                 if (x <= block.right)
                     vector.x = Math.Abs(vector.x);
 
@@ -91,7 +114,16 @@ namespace BrickBreaker
 
             if (ballRec.IntersectsWith(paddleRec))
             {
+                if(GameScreen.catchBall)
+                {
+                    //ball x vector = 0
+                    //ball y vector = 0
+                    //GameScreen.catchPaddlePoint.X = x + size / 2;
+                    //GameScreen.catchPaddlePoint.Y = y + size / 2;
+                }
+
                 if (this.bottom >= paddle.y) //Is the ball below the level of the paddle
+
                 {
                     bool tooMuchRight = (x > paddle.right);
                     bool tooMuchLeft = (this.right < paddle.x);
@@ -136,6 +168,7 @@ namespace BrickBreaker
             Boolean didCollide = y >= UC.Height;
             return didCollide;
         }
+
         public double DegtoRad(int angle)
         {
             return angle * (Math.PI / 180);
