@@ -1,8 +1,4 @@
-﻿/*  Created by: Steven HL
- *  Project: Brick Breaker
- *  Date: Tuesday, April 4th
- */ 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -13,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker
 {
@@ -24,6 +21,8 @@ namespace BrickBreaker
         public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
         public static bool flipControls, catchBall, bomb;
 
+        // Scoring
+        int score;
         // Game values
         public static int lives, screenWidth, screenHeight, blockSpacing = 3, bonus = 1;
         public static int paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20;
@@ -68,9 +67,14 @@ namespace BrickBreaker
             OnStart();
         }
 
-
         public void OnStart()
         {
+            // Load level
+            GetLevels();
+            //Scoring
+            //Form1.service.startGame();
+            score = 0;
+
             //set life counter
             lives = 30;
 
@@ -88,30 +92,19 @@ namespace BrickBreaker
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleStartWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
-            int paddleSpeed = 8;
-            paddle = new Paddle(paddleX, paddleY, paddleStartWidth, paddleHeight, paddleSpeed, Color.White);
+            int paddleMaxSpeed = 10;
+            int paddleAccel = 3;
+            double paddleFriction = 1.2;
+            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
 
             // setup starting ball values
             int ballX = ((this.Width / 2) - 10);
             int ballY = (this.Height - paddle.height) - 80;
 
             // Creates a new ball
-            int xSpeed = 6;
-            int ySpeed = 6;
+            double ballVelocity = 7;
             int ballSize = 20;
-            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
-
-            // Creates blocks for generic level
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                
-                Block b1 = new Block(x, 10, 1, Color.White);
-                x += b1.width + blockSpacing;
-                blocks.Add(b1);
-            }
+            ball = new Ball(ballX, ballY, ballVelocity, ballSize);
 
             catchPaddlePoint = new PointF(paddle.x + paddle.width / 2, paddle.y);
 
@@ -238,49 +231,22 @@ namespace BrickBreaker
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // Move the paddle
-            if (leftArrowDown && paddle.x > 0)
-            {
-                paddle.Move("left");
-            }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width))
-            {
-                paddle.Move("right");
-            }
+            if (leftArrowDown) paddle.Accel("x", -1);
+            if (rightArrowDown) paddle.Accel("x", 1);
+            paddle.Move();
+            paddle.WallCollision(this);
 
             // Moves ball
-            ball.Move();
-
-            // Check for collision with top and side walls
-            ball.WallCollision(this);
-
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle, leftArrowDown, rightArrowDown);
+            ball.Update(paddle, this);
 
             // Check if ball has collided with any blocks
-            foreach (Block b in blocks)
-            {
-                if (ball.BlockCollision(b))
-                {
-                    b.hp--;
-                    break;
-                }
-            }
+            BlockCollision();
 
-            //Removes all blocks from the block list with an hp of 0
-            blocks.RemoveAll(b => b.hp == 0);
-
-            if (blocks.Count == 0)
-            {
-                gameTimer.Enabled = false;
-
-                OnEnd();
-            }
 
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
             {
                 lives--;
-
                 removePastPowerups();
                 paddle.width = paddleStartWidth;
 
@@ -369,6 +335,9 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            // End scoring
+            //            Form1.service.endGame(score);
+
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
@@ -390,13 +359,13 @@ namespace BrickBreaker
             }
 
             // Draws blocks
-            foreach (Block b in blocks)
+            foreach (Block b in Form1.blocks)
             {
+                //change colour of brush depending on block
+                blockBrush.Color = b.colour;
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
-            // Draws balls
-            e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
             //Draws capsules
             //foreach(Powerups p in powerUps)
@@ -409,6 +378,65 @@ namespace BrickBreaker
                 e.Graphics.FillRegion(Brushes.Green, capRegion);
             }
 
+            // Draws balls
+            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+        }
+
+        public void GetLevels()
+        {
+            using (XmlReader reader = XmlReader.Create("BBLevels.xml"))
+            {
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.Text)
+                    {
+                        Block b = new Block();
+
+                        b.x = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("y");
+                        b.y = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("hp");
+                        b.hp = Convert.ToInt16(reader.ReadString());
+
+                        reader.ReadToNextSibling("colour");
+                        b.colour = Color.FromName(reader.ReadString());
+
+                        reader.ReadToNextSibling("power");
+                        b.power = reader.ReadString();
+
+                        Form1.blocks.Add(b);
+                    }
+                }
+            }
+        }
+
+        public void BlockCollision()
+        {
+            foreach (Block b in Form1.blocks)
+            {
+                if (ball.BlockCollision(b))
+                {
+                    if (b.hp > 0)
+                    {
+                        b.hp--;
+                    }
+                    else if (b.hp == 0)
+                    {
+                        Form1.blocks.Remove(b);
+                        break;
+                    }
+
+                    if (Form1.blocks.Count == 0)
+                    {
+                        gameTimer.Enabled = false;
+                        OnEnd();
+                    }
+
+                    break;
+                }
+            }
         }
     }
 }
