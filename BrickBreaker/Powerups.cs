@@ -12,7 +12,7 @@ namespace BrickBreaker
         //Constants
         Random randGen = new Random();
         const int LONG_PADDLE_GAIN = 20, CAP_SPEED = 1;
-        public int CAP_HEIGHT = 25, CAP_WIDTH = 45;
+        public int CAP_HEIGHT = 30, CAP_WIDTH = 60;
 
         //Varriables
         public string capType;
@@ -27,7 +27,7 @@ namespace BrickBreaker
         /// <param name="brickPosition">Spawns the capsule at the position of the brick</param>
         public Powerups(Rectangle brickPosition)
         {
-            capType = GameScreen.powerupNames[randGen.Next(0, 8)];
+            capType = GameScreen.powerupNames[randGen.Next(0, 9)];
             //capType = "Bomb";
 
             x = brickPosition.X;
@@ -135,6 +135,9 @@ namespace BrickBreaker
                 case "Multi":
                     Multi();
                     break;
+                case "Bonus":
+                    Bonus();
+                    break;
                 default:
                     break;
             }
@@ -157,6 +160,11 @@ namespace BrickBreaker
 
             paddle.width += LONG_PADDLE_GAIN;
             currentPad = paddle;
+        }
+
+        public void Bonus()
+        {
+            GameScreen.bonus++;
         }
 
         public void Bomb()

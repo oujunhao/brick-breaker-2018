@@ -25,20 +25,21 @@ namespace BrickBreaker
         public static bool flipControls, catchBall, bomb;
 
         // Game values
-        public static int lives, screenWidth, screenHeight, blockSpacing = 7;
+        public static int lives, screenWidth, screenHeight, blockSpacing = 3, bonus = 1;
         public static int paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20;
 
         // Paddle and Ball objects
         Paddle paddle;
         Ball ball;
-        GraphicsPath capShape;
+        List<Region> capRegions = new List<Region>();
+       // GraphicsPath capShape;
 
         // list of all blocks
         public static List<Block> blocks = new List<Block>();
 
         //list of all capsules on screen
         public static List<Powerups> powerUps = new List<Powerups>();
-        public static string[] powerupNames = new string[8]
+        public static string[] powerupNames = new string[9]
             {
                 "Long",
                 "Bomb",
@@ -47,9 +48,10 @@ namespace BrickBreaker
                 "Life",
                 "Laser",
                 "Gun",
-                "Multi"
+                "Multi",
+                "Bonus"
             };
-        PointF catchPaddlePoint, catchMovePoint;
+        public static PointF catchPaddlePoint, catchMovePoint;
         int catchRadious = 100, catchDegree = 90;
 
         // Brushes
@@ -169,8 +171,8 @@ namespace BrickBreaker
                     if(catchBall)
                     {
                         //shoot
+                        //use deflection physics with current catchDegree
                     }
-
                     break;
                 case Keys.Escape:
                     Application.Exit();
@@ -331,8 +333,30 @@ namespace BrickBreaker
                 }
             }
 
+            UpdateRegions();
+
             //redraw the screen
             Refresh();
+        }
+
+        public void UpdateRegions()
+        {
+            int cornerCutSquare = 30;
+            capRegions.Clear();
+            foreach (Powerups p in powerUps)
+            {
+                //Rectangle rect = new Rectangle(p.x, p.y, p.CAP_WIDTH, p.CAP_HEIGHT);
+                GraphicsPath drawPath = new GraphicsPath();
+                drawPath.AddArc(p.x, p.y, cornerCutSquare, cornerCutSquare, 90, 90);//top left
+                drawPath.AddArc(p.x, p.y + p.CAP_HEIGHT - cornerCutSquare,
+                    cornerCutSquare, cornerCutSquare, 180, 90);//bottom left
+                drawPath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare, p.y + p.CAP_HEIGHT - cornerCutSquare,
+                    cornerCutSquare, cornerCutSquare, 270, 90);//bottom right
+                drawPath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare, p.y,
+                    cornerCutSquare, cornerCutSquare, 0, 90);//top right
+
+                capRegions.Add(new Region(drawPath));
+            }
         }
 
         public static void removePastPowerups()
@@ -360,8 +384,6 @@ namespace BrickBreaker
             // Draws paddle
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
 
-            //e.Graphics.DrawLine(Pens.Red, paddle.x + paddle.width / 2, paddle.y, paddle.x + paddle.width / 2, paddle.y + paddle.height);
-
             if (catchBall)
             {
                 e.Graphics.DrawLine(Pens.White, catchPaddlePoint, catchMovePoint);
@@ -377,10 +399,16 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
             //Draws capsules
-            foreach(Powerups p in powerUps)
+            //foreach(Powerups p in powerUps)
+            //{
+            //    e.Graphics.FillRectangle(Brushes.Green, p.x, p.y, p.CAP_WIDTH, p.CAP_HEIGHT);
+            //}
+
+            foreach (Region capRegion in capRegions)
             {
-                e.Graphics.FillRectangle(Brushes.Green, p.x, p.y, p.CAP_WIDTH, p.CAP_HEIGHT);
+                e.Graphics.FillRegion(Brushes.Green, capRegion);
             }
+
         }
     }
 }

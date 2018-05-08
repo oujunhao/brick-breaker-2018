@@ -44,12 +44,12 @@ namespace BrickBreaker
                     ySpeed = -ySpeed;
 
 
-                int randCheck = rand.Next(1, 11);
-                if (randCheck == 1)
-                {
+                //int randCheck = rand.Next(1, 11);
+                //if (randCheck == 1)
+                //{
                 Powerups newPowerUp = new Powerups(ballRec);
                 GameScreen.powerUps.Add(newPowerUp);
-                }
+                //}
 
                 if (GameScreen.bomb)
                 {
@@ -81,7 +81,10 @@ namespace BrickBreaker
             {
                 if(GameScreen.catchBall)
                 {
-
+                    //ball x vector = 0
+                    //ball y vector = 0
+                    //GameScreen.catchPaddlePoint.X = x + size / 2;
+                    //GameScreen.catchPaddlePoint.Y = y + size / 2;
                 }
 
                 if (y + size >= p.y)
