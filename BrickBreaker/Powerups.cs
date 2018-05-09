@@ -11,7 +11,7 @@ namespace BrickBreaker
     {
         //Constants
         Random randGen = new Random();
-        const int LONG_PADDLE_GAIN = 20, CAP_SPEED = 1;
+        const int LONG_PADDLE_GAIN = 40, CAP_SPEED = 1;
         public int CAP_HEIGHT = 30, CAP_WIDTH = 60;
 
         //Varriables
@@ -27,8 +27,8 @@ namespace BrickBreaker
         /// <param name="brickPosition">Spawns the capsule at the position of the brick</param>
         public Powerups(Rectangle brickPosition)
         {
-            capType = GameScreen.powerupNames[randGen.Next(0, 9)];
-            //capType = "Bomb";
+            //capType = GameScreen.powerupNames[randGen.Next(0, 9)];
+            capType = "Catch";
 
             x = brickPosition.X;
             y = brickPosition.Y;        

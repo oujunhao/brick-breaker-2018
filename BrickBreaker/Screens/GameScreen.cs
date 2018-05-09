@@ -58,7 +58,7 @@ namespace BrickBreaker
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         public static SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
-        SolidBrush capBrush = new SolidBrush(Color.Green);
+        SolidBrush capBrush = new SolidBrush(Color.FromArgb(255, 0, 102));
 
         #endregion
 
@@ -345,7 +345,6 @@ namespace BrickBreaker
             capRegions.Clear();
             foreach (Powerups p in powerUps)
             {
-                //Rectangle rect = new Rectangle(p.x, p.y, p.CAP_WIDTH, p.CAP_HEIGHT);
                 GraphicsPath drawPath = new GraphicsPath();
                 drawPath.AddArc(p.x, p.y, cornerCutSquare, cornerCutSquare, 90, 90);//top left
                 drawPath.AddArc(p.x, p.y + p.CAP_HEIGHT - cornerCutSquare,
@@ -398,17 +397,10 @@ namespace BrickBreaker
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
-            //Draws capsules
-            //foreach(Powerups p in powerUps)
-            //{
-            //    e.Graphics.FillRectangle(Brushes.Green, p.x, p.y, p.CAP_WIDTH, p.CAP_HEIGHT);
-            //}
-
             foreach (Region capRegion in capRegions)
             {
-                e.Graphics.FillRegion(Brushes.Green, capRegion);
+                e.Graphics.FillRegion(capBrush, capRegion);
             }
-
         }
     }
 }
