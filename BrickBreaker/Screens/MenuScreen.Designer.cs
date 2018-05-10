@@ -30,6 +30,7 @@
         {
             this.playButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
+            this.highscoreButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // playButton
@@ -40,10 +41,9 @@
             this.playButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playButton.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.Location = new System.Drawing.Point(310, 297);
-            this.playButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.playButton.Location = new System.Drawing.Point(207, 193);
             this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(272, 120);
+            this.playButton.Size = new System.Drawing.Size(181, 78);
             this.playButton.TabIndex = 0;
             this.playButton.Text = "Play";
             this.playButton.UseVisualStyleBackColor = false;
@@ -55,25 +55,38 @@
             this.exitButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitButton.Location = new System.Drawing.Point(310, 429);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.exitButton.Location = new System.Drawing.Point(207, 279);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(272, 120);
+            this.exitButton.Size = new System.Drawing.Size(181, 78);
             this.exitButton.TabIndex = 1;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // highscoreButton
+            // 
+            this.highscoreButton.BackColor = System.Drawing.Color.White;
+            this.highscoreButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.highscoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.highscoreButton.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highscoreButton.Location = new System.Drawing.Point(207, 363);
+            this.highscoreButton.Name = "highscoreButton";
+            this.highscoreButton.Size = new System.Drawing.Size(181, 78);
+            this.highscoreButton.TabIndex = 2;
+            this.highscoreButton.Text = "Highscores";
+            this.highscoreButton.UseVisualStyleBackColor = false;
+            this.highscoreButton.Click += new System.EventHandler(this.highscoreButton_Click);
+            // 
             // MenuScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.highscoreButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.playButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MenuScreen";
-            this.Size = new System.Drawing.Size(1200, 846);
+            this.Size = new System.Drawing.Size(800, 550);
             this.ResumeLayout(false);
 
         }
@@ -82,5 +95,6 @@
 
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button highscoreButton;
     }
 }

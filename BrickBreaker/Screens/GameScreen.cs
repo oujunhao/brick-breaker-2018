@@ -168,12 +168,6 @@ namespace BrickBreaker
             // End scoring
             Form1.service.endGame(score);
 
-            // goes to the HS Screen 
-            //Form form = this.FindForm();
-            //HighscoreScreen hs = new HighscoreScreen();
-            //form.Controls.Add(hs);
-            //form.Controls.Remove(this);
-
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
