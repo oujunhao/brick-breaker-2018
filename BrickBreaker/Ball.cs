@@ -24,6 +24,12 @@ namespace BrickBreaker
 
         }
 
+        public void setAngle(int newAngle)
+        {
+            vector = new Vector(Math.Cos(DegtoRad(newAngle)), -Math.Sin(DegtoRad(newAngle)));
+
+        }
+
         public int right
         {
             get
@@ -65,16 +71,21 @@ namespace BrickBreaker
             if (blockRec.IntersectsWith(ballRec))
             {
                 if (x <= block.right)
-                    vector.x = Math.Abs(vector.x);
+                  // vector.x = Math.Abs(vector.x);
 
-                if (this.right >= block.x)
-                    vector.x = -Math.Abs(vector.x);
+                if (this.right > block.x)
+                   //vector.x = -Math.Abs(vector.x);
 
-                if (y <= block.bottom)
+                if (y < block.bottom)
+                {
                     vector.y *= -1;
+                   // vector.x *=  1;
+                }
+                
+
                 // Test which vector(s) we need to flip
-                bool flipX = (this.right >= block.x || this.x <= block.right);
-                bool flipY = (this.y <= block.bottom || this.bottom >= block.y);
+                //bool flipX = (this.right >= block.x || this.x <= block.right);
+                //bool flipY = (this.y <= block.bottom || this.bottom >= block.y);
 
                 //if (flipX)
                 //    vector.x *= -1;
@@ -100,7 +111,7 @@ namespace BrickBreaker
                     {
                         int offset = (x - (size / 2)) - paddle.x;
                         int angle = Map(offset, 110, 30, paddle.width);
-                        vector = new Vector(Math.Cos(DegtoRad(angle)), -Math.Sin(DegtoRad(angle)));
+                        setAngle(angle);
                     }
                 }
             }
