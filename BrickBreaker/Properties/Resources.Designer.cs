@@ -60,6 +60,16 @@ namespace BrickBreaker.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Ball {
+            get {
+                return ResourceManager.GetStream("Ball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;game&gt;
         ///  &lt;!-- LEVEL ONE --&gt;
@@ -87,9 +97,162 @@ namespace BrickBreaker.Properties {
         ///    &lt;/brick&gt;
         ///    &lt;brick&gt;
         ///      &lt;x&gt;238 [rest of string was truncated]&quot;;.
+        /// </summary>
         internal static string BBLevels {
             get {
                 return ResourceManager.GetString("BBLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;game&gt;
+        ///  &lt;!-- LEVEL ONE --&gt;
+        ///  &lt;level&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;10&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///      &lt;colour&gt;Red&lt;/colour&gt;
+        ///      &lt;power&gt;false&lt;/power&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;67&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///      &lt;colour&gt;Red&lt;/colour&gt;
+        ///      &lt;power&gt;false&lt;/power&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;124&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///      &lt;colour&gt;Red&lt;/colour&gt;
+        ///      &lt;power&gt;false&lt;/power&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;238 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string BBLevels1 {
+            get {
+                return ResourceManager.GetString("BBLevels1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Bomb {
+            get {
+                return ResourceManager.GetStream("Bomb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Brick {
+            get {
+                return ResourceManager.GetStream("Brick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream End {
+            get {
+                return ResourceManager.GetStream("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Exit {
+            get {
+                return ResourceManager.GetStream("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Expand {
+            get {
+                return ResourceManager.GetStream("Expand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Gunshot {
+            get {
+                return ResourceManager.GetStream("Gunshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Laser {
+            get {
+                return ResourceManager.GetStream("Laser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Paddle {
+            get {
+                return ResourceManager.GetStream("Paddle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Pause {
+            get {
+                return ResourceManager.GetStream("Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Play {
+            get {
+                return ResourceManager.GetStream("Play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Powerup {
+            get {
+                return ResourceManager.GetStream("Powerup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Wall {
+            get {
+                return ResourceManager.GetStream("Wall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Win {
+            get {
+                return ResourceManager.GetStream("Win", resourceCulture);
             }
         }
     }

@@ -74,17 +74,6 @@ namespace BrickBreaker
             int ballSize = 20;
             ball = new Ball(ballX, ballY, ballVelocity, ballSize);
 
-            // Creates blocks for generic level
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
-            }
-
             // start the game engine loop
             gameTimer.Enabled = true;
         }

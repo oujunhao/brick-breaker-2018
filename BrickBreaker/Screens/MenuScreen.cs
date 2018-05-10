@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace BrickBreaker
 {
@@ -19,11 +20,21 @@ namespace BrickBreaker
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            //Click when player hits exit
+            var dingPlayer = new System.Windows.Media.MediaPlayer();
+            dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Exit.wav"));
+            dingPlayer.Play();
+
             Application.Exit();
         }
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            //Click when player hits play
+            var dingPlayer = new System.Windows.Media.MediaPlayer();
+            dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Play.wav"));
+            dingPlayer.Play();
+
             // Goes to the game screen
             GameScreen gs = new GameScreen();
             Form form = this.FindForm();

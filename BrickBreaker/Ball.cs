@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Media;
 
 namespace BrickBreaker
 {
@@ -51,6 +52,13 @@ namespace BrickBreaker
             {
                 if (blockRec.IntersectsWith(ballRec))
                 {
+                    //Ball hits Brick
+                    var dingPlayer = new System.Windows.Media.MediaPlayer();
+                    dingPlayer.Open(new Uri(Application.StartupPath + "/Resources/brick.wav"));
+                    dingPlayer.Play();
+                    System.Threading.Thread.Sleep(5);
+                    dingPlayer.Stop();
+
                     if (x <= (block.x + block.width))
                         vector.x = Math.Abs(vector.x);
 
@@ -72,8 +80,16 @@ namespace BrickBreaker
 
             if (ballRec.IntersectsWith(paddleRec))
             {
+
                 if ((y + size) > paddle.y) //Is the ball below the level of the paddle
                 {
+                    //Ball hits paddle
+                    var dingPlayer = new System.Windows.Media.MediaPlayer();
+                    dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Paddle.wav"));
+                    dingPlayer.Play();
+                    System.Threading.Thread.Sleep(5);
+                    dingPlayer.Stop();
+
                     bool tooMuchRight = true;
                     bool tooMuchLeft = true;
 
@@ -96,11 +112,19 @@ namespace BrickBreaker
 
         public void WallCollision(UserControl UC)
         {
+
             // Collision with left wall
             if (x <= 0)
             {
                 x = Math.Abs(0 - x);
                 vector.Multiply(new Vector(-1, 1));
+
+                //Ball hits wall
+                var dingPlayer = new System.Windows.Media.MediaPlayer();
+                dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
+                dingPlayer.Play();
+                System.Threading.Thread.Sleep(5);
+                dingPlayer.Stop();
             }
 
             // Collision with right wall
@@ -109,6 +133,13 @@ namespace BrickBreaker
             {
                 x = Math.Abs(rightBound - (x - rightBound));
                 vector.Multiply(new Vector(-1, 1));
+
+                //Ball hits wall
+                var dingPlayer = new System.Windows.Media.MediaPlayer();
+                dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
+                dingPlayer.Play();
+                System.Threading.Thread.Sleep(5);
+                dingPlayer.Stop();
             }
 
             // Collision with top wall
@@ -116,6 +147,13 @@ namespace BrickBreaker
             {
                 y = Math.Abs(0 - y);
                 vector.Multiply(new Vector(1, -1));
+
+                //Ball hits wall
+                var dingPlayer = new System.Windows.Media.MediaPlayer();
+                dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
+                dingPlayer.Play();
+                System.Threading.Thread.Sleep(5);
+                dingPlayer.Stop();
             }
         }
 
