@@ -19,9 +19,7 @@ namespace BrickBreaker
 
         public Block()
         {
-            x = y = hp = 0;
             colour = Color.Pink;
-            power = "";
         }
 
         public int right

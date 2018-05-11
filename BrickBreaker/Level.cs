@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BrickBreaker
 {
-    class Level
+    public class Level
     {
+        public List<Block> blocks = new List<Block>();
     }
 }
