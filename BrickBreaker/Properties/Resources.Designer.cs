@@ -60,6 +60,7 @@ namespace BrickBreaker.Properties {
             }
         }
         
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;game&gt;
         ///  &lt;!-- LEVEL ONE --&gt;
@@ -87,6 +88,7 @@ namespace BrickBreaker.Properties {
         ///    &lt;/brick&gt;
         ///    &lt;brick&gt;
         ///      &lt;x&gt;238 [rest of string was truncated]&quot;;.
+        /// </summary>
         internal static string BBLevels {
             get {
                 return ResourceManager.GetString("BBLevels", resourceCulture);

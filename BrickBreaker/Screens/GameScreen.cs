@@ -19,7 +19,7 @@ namespace BrickBreaker
 
         //player1 button control keys - DO NOT CHANGE
         public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
-        public static bool flipControls, catchBall, bomb;
+        public static bool flipControls, catchBall, catchBallShoot, bomb;
 
         // Scoring
         int score;
@@ -31,6 +31,7 @@ namespace BrickBreaker
         Paddle paddle;
         Ball ball;
         List<Region> capRegions = new List<Region>();
+        List<Region> capOutlines = new List<Region>();
        // GraphicsPath capShape;
 
         // list of all blocks
@@ -51,14 +52,29 @@ namespace BrickBreaker
                 "Bonus"
             };
         public static PointF catchPaddlePoint, catchMovePoint;
-        int catchRadious = 100, catchDegree = 90;
+        int catchRadious = 100, catchDegree = 30;
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         public static SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
         SolidBrush capBrush = new SolidBrush(Color.FromArgb(255, 0, 102));
+        SolidBrush capOutlineBrush = new SolidBrush(Color.FromArgb(43, 134, 194));
 
+        Color[] blockColors = new [] {
+            Color.FromArgb(43, 134, 194),//1 HP
+            Color.FromArgb(37, 117, 170),//2 HP            
+            Color.FromArgb(31, 96, 139),//3 HP            
+            Color.FromArgb(19, 60, 86),//4 HP
+            Color.FromArgb(12, 39, 56)//5 HP          
+            };
+        Color[] blockBoarders = new [] {
+            Color.FromArgb(49, 152, 220),//1 HP
+            Color.FromArgb(31, 98, 142),//2 HP            
+            Color.FromArgb(26, 80, 116),//3 HP            
+            Color.FromArgb(23, 71, 102),//4 HP
+            Color.FromArgb(17, 54, 78)//5 HP          
+            };
         #endregion
 
         public GameScreen()
@@ -93,6 +109,7 @@ namespace BrickBreaker
             int paddleX = ((this.Width / 2) - (paddleStartWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleMaxSpeed = 10;
+            int paddleWidth = 80;
             int paddleAccel = 3;
             double paddleFriction = 1.2;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
@@ -106,7 +123,9 @@ namespace BrickBreaker
             int ballSize = 20;
             ball = new Ball(ballX, ballY, ballVelocity, ballSize);
 
-            catchPaddlePoint = new PointF(paddle.x + paddle.width / 2, paddle.y);
+            catchPaddlePoint = new PointF(ball.x + ball.size/2, ball.y + ball.size / 2);
+            //catchBall = true;
+            //catchBallShoot = true;
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -118,10 +137,10 @@ namespace BrickBreaker
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    if (catchBall)
+                    if (catchBallShoot)
                     {
                         if(catchDegree < 150)
-                        catchDegree +=5;
+                        catchDegree +=24;
                     }
                     else
                     {
@@ -139,10 +158,10 @@ namespace BrickBreaker
                     downArrowDown = true;
                     break;
                 case Keys.Right:
-                    if (catchBall)
+                    if (catchBallShoot)
                     {
                         if(catchDegree > 30)
-                        catchDegree -=5;
+                        catchDegree -=24;
                     }
                     else
                     {
@@ -161,10 +180,11 @@ namespace BrickBreaker
                     break;
                 case Keys.Space:
                     spaceDown = true;
-                    if(catchBall)
+                    if(catchBallShoot)
                     {
-                        //shoot
-                        //use deflection physics with current catchDegree
+                        ball.angle = catchDegree;
+                        ball.setAngle(catchDegree);
+                        catchBallShoot = false;
                     }
                     break;
                 case Keys.Escape:
@@ -216,10 +236,6 @@ namespace BrickBreaker
 
         public void findCatchPoints()
         {
-            //this will removed so that the line will come from the ball
-
-            catchPaddlePoint = new PointF(paddle.x + paddle.width / 2, paddle.y);
-
             double rad = catchDegree * (Math.PI / 180);
 
             catchMovePoint = new PointF(
@@ -262,7 +278,7 @@ namespace BrickBreaker
                 }
             }
 
-            if (catchBall)
+            if (catchBallShoot)
             {
                 findCatchPoints();
             }
@@ -300,6 +316,7 @@ namespace BrickBreaker
             }
 
             UpdateRegions();
+            UpdateBlockColors();
 
             //redraw the screen
             Refresh();
@@ -309,8 +326,10 @@ namespace BrickBreaker
         {
             int cornerCutSquare = 30;
             capRegions.Clear();
+            capOutlines.Clear();
             foreach (Powerups p in powerUps)
             {
+                cornerCutSquare = 30;
                 GraphicsPath drawPath = new GraphicsPath();
                 drawPath.AddArc(p.x, p.y, cornerCutSquare, cornerCutSquare, 90, 90);//top left
                 drawPath.AddArc(p.x, p.y + p.CAP_HEIGHT - cornerCutSquare,
@@ -320,7 +339,19 @@ namespace BrickBreaker
                 drawPath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare, p.y,
                     cornerCutSquare, cornerCutSquare, 0, 90);//top right
 
+                cornerCutSquare = 26;
+                GraphicsPath outLinePath = new GraphicsPath();
+                outLinePath.AddArc(p.x+3, p.y, cornerCutSquare, cornerCutSquare, 90, 90);//top left
+                outLinePath.AddArc(p.x+3, p.y + p.CAP_HEIGHT - cornerCutSquare,
+                    cornerCutSquare, cornerCutSquare, 180, 90);//bottom left
+                outLinePath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare - 3, p.y + p.CAP_HEIGHT - cornerCutSquare,
+                    cornerCutSquare, cornerCutSquare, 270, 90);//bottom right
+                outLinePath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare - 3, p.y,
+                    cornerCutSquare, cornerCutSquare, 0, 90);//top right
+
                 capRegions.Add(new Region(drawPath));
+                capOutlines.Add(new Region(outLinePath));
+
             }
         }
 
@@ -352,7 +383,7 @@ namespace BrickBreaker
             // Draws paddle
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
 
-            if (catchBall)
+            if (catchBallShoot)
             {
                 e.Graphics.DrawLine(Pens.White, catchPaddlePoint, catchMovePoint);
             }
@@ -365,10 +396,14 @@ namespace BrickBreaker
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
-
             foreach (Region capRegion in capRegions)
             {
                 e.Graphics.FillRegion(capBrush, capRegion);
+            }
+
+            foreach (Region outlineRegion in capOutlines)
+            {
+                e.Graphics.FillRegion(capOutlineBrush, outlineRegion);
             }
 
             // Draws balls
@@ -405,15 +440,27 @@ namespace BrickBreaker
             }
         }
 
+        public void UpdateBlockColors()
+        {
+            foreach (Block b in Form1.blocks)
+            {
+                if(b.hp != 0 && b.hp != 100)
+                {
+                    b.colour = blockColors[b.hp - 1];
+                }
+            }
+        }
+
         public void BlockCollision()
         {
             foreach (Block b in Form1.blocks)
             {
                 if (ball.BlockCollision(b))
                 {
-                    if (b.hp > 0)
+                    if (b.hp > 0 && b.hp != 100)
                     {
                         b.hp--;
+                        UpdateBlockColors();
                     }
                     else if (b.hp == 0)
                     {

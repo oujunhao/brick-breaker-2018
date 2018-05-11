@@ -130,7 +130,7 @@ namespace BrickBreaker
                     Laser();
                     break;
                 case "Gun":
-                    Laser();
+                    Gun();
                     break;
                 case "Multi":
                     Multi();
