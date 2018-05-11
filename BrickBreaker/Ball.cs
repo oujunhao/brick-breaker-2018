@@ -10,7 +10,7 @@ namespace BrickBreaker
         public double velocity;
         public Vector vector;
         public Color colour;
-        public int bound = 70;
+        public int bound = 60;
 
         public const int angleMultiplier = 5;
 
@@ -20,8 +20,23 @@ namespace BrickBreaker
             y = _y;
             velocity = _velocity;
             size = _ballSize;
-            vector = new Vector(-Math.Cos(DegtoRad(30)), Math.Sin(DegtoRad(-30)));
+            vector = new Vector(Math.Cos(DegtoRad(30)), -Math.Sin(DegtoRad(30)));
 
+        }
+
+        public int right
+        {
+            get
+            {
+                return x + size;
+            }
+        }
+        public int bottom
+        {
+            get
+            {
+                return y + size;
+            }
         }
 
         public void Update(Paddle paddle, UserControl UC)
@@ -49,19 +64,46 @@ namespace BrickBreaker
 
             if (blockRec.IntersectsWith(ballRec))
             {
-                if (blockRec.IntersectsWith(ballRec))
+                //int randCheck = rand.Next(1, 11);
+                //if (randCheck == 1)
+                //{
+                Powerups newPowerUp = new Powerups(ballRec);
+                GameScreen.powerUps.Add(newPowerUp);
+                //}
+
+                if (GameScreen.bomb)
                 {
-                    if (x <= (block.x + block.width))
-                        vector.x = Math.Abs(vector.x);
-
-                    if ((x + size) >= block.x)
-                        vector.x = -Math.Abs(vector.x);
-
-                    if (y <= (block.y + block.height))
-                        vector.y = -vector.y;
+                    foreach (Block block in GameScreen.blocks)
+                    {
+                        if(block.x == b.x + b.width + GameScreen.blockSpacing && block.y == b.y || //Block to the right
+                           block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y || //Block to the left
+                           block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
+                           block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
+                        {
+                            block.hp--;
+                        }
+                    }
+                    GameScreen.bomb = false;
+                    GameScreen.ballBrush.Color = Color.White;
                 }
-            }
+              
+                if (x <= block.right)
+                    vector.x = Math.Abs(vector.x);
 
+                if (this.right >= block.x)
+                    vector.x = -Math.Abs(vector.x);
+
+                if (y <= block.bottom)
+                    vector.y *= -1;
+                // Test which vector(s) we need to flip
+                bool flipX = (this.right >= block.x || this.x <= block.right);
+                bool flipY = (this.y <= block.bottom || this.bottom >= block.y);
+
+                //if (flipX)
+                //    vector.x *= -1;
+                //else if (flipY)
+                //    vector.y *= -1;
+            }
             return blockRec.IntersectsWith(ballRec);
         }
 
@@ -72,22 +114,24 @@ namespace BrickBreaker
 
             if (ballRec.IntersectsWith(paddleRec))
             {
-                if ((y + size) > paddle.y) //Is the ball below the level of the paddle
+                if(GameScreen.catchBall)
                 {
-                    bool tooMuchRight = true;
-                    bool tooMuchLeft = true;
+                    //ball x vector = 0
+                    //ball y vector = 0
+                    //GameScreen.catchPaddlePoint.X = x + size / 2;
+                    //GameScreen.catchPaddlePoint.Y = y + size / 2;
+                }
 
-                    if (x < paddle.x + paddle.width)
-                        tooMuchRight = false;
-                   
-                    if ((x + size) > paddle.x) 
-                        tooMuchLeft = false;
+                if (this.bottom >= paddle.y) //Is the ball below the level of the paddle
 
+                {
+                    bool tooMuchRight = (x > paddle.right);
+                    bool tooMuchLeft = (this.right < paddle.x);
 
                     if (!tooMuchLeft && !tooMuchRight)
                     {
-                        int offset = (x + (size)) - paddle.x;
-                        int angle = Map(offset, 90+bound, 90-bound, paddle.width+size);
+                        int offset = (x - (size / 2)) - paddle.x;
+                        int angle = Map(offset, 110, 30, paddle.width);
                         vector = new Vector(Math.Cos(DegtoRad(angle)), -Math.Sin(DegtoRad(angle)));
                     }
                 }
@@ -124,13 +168,14 @@ namespace BrickBreaker
             Boolean didCollide = y >= UC.Height;
             return didCollide;
         }
-        public double DegtoRad(int angle )
+
+        public double DegtoRad(int angle)
         {
             return angle * (Math.PI / 180);
         }
         public static int Map(int offset, int largestAngle, int smallestAngle, int paddleW)
         {
-            return Convert.ToInt32( ( ( (smallestAngle - largestAngle) / paddleW) * offset) + largestAngle);
+            return Convert.ToInt32((((smallestAngle - largestAngle) / paddleW) * offset) + largestAngle);
         }
     }
 }

@@ -9,16 +9,34 @@ namespace BrickBreaker
 {
     public class Block
     {
-        public int width = 50;
+        public int width = 70;
         public int height = 25;
 
-        public int x, y, hp, r, g, b;
+        public Color colour;
+
+        public int x, y, hp;
         public string power;
 
         public Block()
         {
-            x = y = hp = r = g = b = 0;
+            x = y = hp = 0;
+            colour = Color.Pink;
             power = "";
+        }
+
+        public int right
+        {
+            get
+            {
+                return x + width;
+            }
+        }
+        public int bottom
+        {
+            get
+            {
+                return y + height;
+            }
         }
     }
 }
