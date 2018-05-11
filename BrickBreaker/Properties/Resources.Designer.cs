@@ -19,7 +19,7 @@ namespace BrickBreaker.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,6 +57,39 @@ namespace BrickBreaker.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;game&gt;
+        ///  &lt;!-- LEVEL ONE --&gt;
+        ///  &lt;level&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;10&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///      &lt;colour&gt;Red&lt;/colour&gt;
+        ///      &lt;power&gt;false&lt;/power&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;67&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///      &lt;colour&gt;Red&lt;/colour&gt;
+        ///      &lt;power&gt;false&lt;/power&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;124&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///      &lt;colour&gt;Red&lt;/colour&gt;
+        ///      &lt;power&gt;false&lt;/power&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;238 [rest of string was truncated]&quot;;.
+        internal static string BBLevels {
+            get {
+                return ResourceManager.GetString("BBLevels", resourceCulture);
             }
         }
     }

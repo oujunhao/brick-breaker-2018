@@ -12,19 +12,13 @@ namespace BrickBreaker
         public int width = 50;
         public int height = 25;
 
-        public int x;
-        public int y; 
-        public int hp;
-        public Color colour;
+        public int x, y, hp, r, g, b;
+        public string power;
 
-        public static Random rand = new Random();
-
-        public Block(int _x, int _y, int _hp, Color _colour)
+        public Block()
         {
-            x = _x;
-            y = _y;
-            hp = _hp;
-            colour = _colour;
+            x = y = hp = r = g = b = 0;
+            power = "";
         }
     }
 }
