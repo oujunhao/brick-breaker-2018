@@ -19,24 +19,25 @@ namespace BrickBreaker.Screens
 
         private void HighscoreScreen_Load(object sender, EventArgs e)
         {
-            IList<GameSystemServices.Highscore> highscoreList = Form1.service.getHighscores(limit: 10);
+            hsmenuButton.ForeColor = Color.Black;
+            hsexitButton.ForeColor = Color.Black;
 
-            titleBox.Dock = DockStyle.Fill;
-            hsLabel.Dock = DockStyle.Fill;
+            IList<GameSystemServices.Highscore> highscoreList = Form1.service.getHighscores();
 
             foreach (GameSystemServices.Highscore hs in highscoreList)
             {
-                
-         
+                hsLabel.Text += hs.Rank + " " + hs.Name + " " + hs.Score + "\n\n";
             }
         }
-
-        private void hsExitLabel_Click(object sender, EventArgs e)
+        #region label controls
+       
+        private void hsexitButton_Click(object sender, EventArgs e)
         {
+
             Application.Exit();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void hsmenuButton_Click(object sender, EventArgs e)
         {
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
@@ -46,25 +47,6 @@ namespace BrickBreaker.Screens
             form.Controls.Add(ps);
             form.Controls.Remove(this);
         }
-
-        private void hsExitLabel_Enter(object sender, EventArgs e)
-        {
-            ForeColor = Color.FromArgb(255, 0, 102);
-        }
-
-        private void hsmenuLabel_Enter(object sender, EventArgs e)
-        {
-            ForeColor = Color.FromArgb(255, 0, 102);
-        }
-
-        private void hsmenuLabel_Leave(object sender, EventArgs e)
-        {
-            ForeColor = Color.Black;
-        }
-
-        private void hsExitLabel_Leave(object sender, EventArgs e)
-        {
-            ForeColor = Color.Black;
-        }
+        #endregion
     }
 }
