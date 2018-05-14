@@ -17,7 +17,6 @@ namespace BrickBreaker
         public PauseForm(Timer _timer)
         {
             InitializeComponent();
-
             timer = _timer;
         }
 
@@ -26,25 +25,36 @@ namespace BrickBreaker
             switch (e.KeyCode)
             {
                 case Keys.Escape:
-                    timer.Start();
-                    Close();    
-                    break;
-                case Keys.Space:
                     Application.Exit();
                     break;
             }
         }
-         
+
         private void PauseForm_Load(object sender, EventArgs e)
         {
+            // instance of game over
+            MenuScreen ms = new MenuScreen();
+
+            //close game screen
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+
+
             this.WindowState = FormWindowState.Normal;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
         }
 
-        //private void PauseForm_Load_1(object sender, EventArgs e)
-        //{
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            //exit the game
+            Application.Exit();
+        }
 
-        //}
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+                timer.Start();
+            //Form f = this.FindForm();
+            //f.Controls.Remove(this);
+        } 
     }
 }

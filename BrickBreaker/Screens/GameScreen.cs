@@ -198,20 +198,17 @@ namespace BrickBreaker
                     OnEnd();
                 }
             }
-            if (escDown)
+            if (escDown == true)
             {
-                escDown = false;
                 gameTimer.Stop();
-                //Form f = this.FindForm();
+                Form f = this.FindForm();
                 PauseForm pf = new PauseForm(gameTimer);
+                pf.TopLevel = false;
+                f.Controls.Add(pf);
                 pf.Location = new Point((this.Width - pf.Width) / 2, (this.Height - pf.Height) / 2);
                 pf.Show();
+                //escDown = false;
                 return;
-                //contLabel.Visible = true;
-                //quitLabel.Visible = true;
-                //yesButton.Visible = true;
-                //noButton.Visible = true;
-                //pauseScreen();
             }
             //redraw the screen
             Refresh();

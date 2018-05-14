@@ -78,6 +78,7 @@
             this.highScoreButton.TabIndex = 7;
             this.highScoreButton.Text = "High Score";
             this.highScoreButton.UseVisualStyleBackColor = true;
+            this.highScoreButton.Click += new System.EventHandler(this.highScoreButton_Click);
             this.highScoreButton.Enter += new System.EventHandler(this.highScoreButton_Enter);
             // 
             // GameOver
