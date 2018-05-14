@@ -141,6 +141,45 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Win.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ball_Bounce-Popup_Pixels-172648817.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Basketball Buzzer-SoundBible.com-1863250611.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Beep Ping-SoundBible.com-217088958.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bounce-SoundBible.com-12678623.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fuzzy Beep-SoundBible.com-1580329899.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laser_Cannon-Mike_Koenig-797224747.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laser-SoundBible.com-602495617.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mario_Jumping-Mike_Koenig-989896458.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Metroid_Door-Brandino480-995195341.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Silencer-SoundBible.com-1632156458.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sword Swing-SoundBible.com-639083727.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stephan_schutze-anvil_impact_1x-894647867.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

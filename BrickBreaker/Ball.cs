@@ -56,8 +56,6 @@ namespace BrickBreaker
                     var dingPlayer = new System.Windows.Media.MediaPlayer();
                     dingPlayer.Open(new Uri(Application.StartupPath + "/Resources/brick.wav"));
                     dingPlayer.Play();
-                    System.Threading.Thread.Sleep(5);
-                    dingPlayer.Stop();
 
                     if (x <= (block.x + block.width))
                         vector.x = Math.Abs(vector.x);
@@ -87,8 +85,6 @@ namespace BrickBreaker
                     var dingPlayer = new System.Windows.Media.MediaPlayer();
                     dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Paddle.wav"));
                     dingPlayer.Play();
-                    System.Threading.Thread.Sleep(5);
-                    dingPlayer.Stop();
 
                     bool tooMuchRight = true;
                     bool tooMuchLeft = true;
@@ -123,8 +119,7 @@ namespace BrickBreaker
                 var dingPlayer = new System.Windows.Media.MediaPlayer();
                 dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
                 dingPlayer.Play();
-                System.Threading.Thread.Sleep(5);
-                dingPlayer.Stop();
+               
             }
 
             // Collision with right wall
@@ -138,8 +133,7 @@ namespace BrickBreaker
                 var dingPlayer = new System.Windows.Media.MediaPlayer();
                 dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
                 dingPlayer.Play();
-                System.Threading.Thread.Sleep(5);
-                dingPlayer.Stop();
+               
             }
 
             // Collision with top wall
@@ -152,8 +146,7 @@ namespace BrickBreaker
                 var dingPlayer = new System.Windows.Media.MediaPlayer();
                 dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
                 dingPlayer.Play();
-                System.Threading.Thread.Sleep(5);
-                dingPlayer.Stop();
+                
             }
         }
 

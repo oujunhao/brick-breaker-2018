@@ -21,10 +21,10 @@ namespace BrickBreaker
         private void exitButton_Click(object sender, EventArgs e)
         {
             //Click when player hits exit
-            var dingPlayer = new System.Windows.Media.MediaPlayer();
-            dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Exit.wav"));
-            dingPlayer.Play();
-
+            SoundPlayer player = new SoundPlayer(Properties.Resources.Exit);
+            player.Play();
+            System.Threading.Thread.Sleep(500);
+         
             Application.Exit();
         }
 
@@ -32,8 +32,11 @@ namespace BrickBreaker
         {
             //Click when player hits play
             var dingPlayer = new System.Windows.Media.MediaPlayer();
-            dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Play.wav"));
-            dingPlayer.Play();
+            //dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Play.wav"));
+            //dingPlayer.Play();
+            SoundPlayer player = new SoundPlayer(Properties.Resources.Play);
+            player.Play();
+            System.Threading.Thread.Sleep(800);
 
             // Goes to the game screen
             GameScreen gs = new GameScreen();
