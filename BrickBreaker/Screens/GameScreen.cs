@@ -387,7 +387,6 @@ namespace BrickBreaker
         {
             using (XmlReader reader = XmlReader.Create("BBLevels.xml"))
             {
-
                 int levelIndex = 0;
                 levels.Add(new Level());
                 reader.ReadToFollowing("level");
@@ -406,7 +405,7 @@ namespace BrickBreaker
                             b.y = Convert.ToInt16(reader.ReadString());
 
                             reader.ReadToNextSibling("hp");
-                            b.hp = Convert.ToInt16(reader.ReadString());
+                            b.hp = Convert.ToInt32(reader.ReadString());
 
                             reader.ReadToNextSibling("power");
                             b.power = reader.ReadString();
@@ -437,18 +436,19 @@ namespace BrickBreaker
                     else if (b.hp == 0)
                     {
                         levels[currentLevel].blocks.Remove(b);
+
+                        if (levels[currentLevel].blocks.Count < 1)
+                        {
+                            currentLevel++;
+
+                            if (currentLevel == levels.Count - 1)
+                            {
+                                gameTimer.Enabled = false;
+                                OnEnd();
+                            }
+                        }
                         break;
                     }
-
-                    if (levels[currentLevel].blocks.Count == 0)
-                    {
-                        currentLevel++;
-                        
-                        //gameTimer.Enabled = false;
-                        //OnEnd();
-                    }
-
-                    break;
                 }
             }
         }
