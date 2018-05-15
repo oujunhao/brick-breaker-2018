@@ -175,6 +175,11 @@ namespace BrickBreaker
             }
         }
 
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
         {
             //player 1 button releases
