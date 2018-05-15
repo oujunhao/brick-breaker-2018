@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Xml;
+using System.Threading;
 
 namespace BrickBreaker
 {
@@ -88,7 +89,6 @@ namespace BrickBreaker
             leftArrowDown = downArrowDown = rightArrowDown = upArrowDown = false;
 
             // setup starting paddle values and create paddle object
-
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleStartWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
@@ -440,6 +440,19 @@ namespace BrickBreaker
                         if (levels[currentLevel].blocks.Count < 1)
                         {
                             currentLevel++;
+                            //reset positions of ball and paddle
+                            ball.x = ((this.Width / 2) - 10);
+                            ball.y = (this.Height - paddle.height) - 80;
+                            paddle.x = ((this.Width / 2) - (paddleStartWidth / 2));
+                            paddle.y = (this.Height - 20) - 60;
+                            this.Refresh();
+                            //display new level message
+                            Font f = new Font("Arial", 40, FontStyle.Bold);
+                            SolidBrush p = new SolidBrush(Color.DeepPink);
+                            Graphics a = this.CreateGraphics();
+                            a.DrawString("Level " + (currentLevel + 1), f, p, 300, 240);
+                            Thread.Sleep(2000);
+                            this.Refresh();
 
                             if (currentLevel == levels.Count - 1)
                             {
