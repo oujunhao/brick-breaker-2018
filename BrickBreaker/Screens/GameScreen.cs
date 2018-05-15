@@ -47,7 +47,8 @@ namespace BrickBreaker
         public void OnStart()
         {
             //Scoring 
-            Form1.service.startGame();
+            // THIS DOESN"T WORK AND I DON"T KNOW WHY
+            //Form1.service.startGame();
             score = 0;
 
             //set life counter
@@ -113,6 +114,11 @@ namespace BrickBreaker
                 default:
                     break;
             }
+        }
+
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
@@ -195,8 +201,8 @@ namespace BrickBreaker
         {
             // End scoring 
             Form1.service.endGame(score);
-            Form1.service.WasPersonalHighscore;
-            Form1.service.WasGlobalHighscore;
+            //Form1.service.WasPersonalHighscore();
+            //Form1.service.WasGlobalHighscore;
 
             // Goes to the game over screen
             Form form = this.FindForm();
