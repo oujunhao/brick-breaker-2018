@@ -21,7 +21,6 @@ namespace BrickBreaker
             velocity = _velocity;
             size = _ballSize;
             vector = new Vector(Math.Cos(DegtoRad(30)), -Math.Sin(DegtoRad(30)));
-
         }
 
         public int right
@@ -69,13 +68,13 @@ namespace BrickBreaker
 
             if (blockRec.IntersectsWith(ballRec))
             {
-                Random rand = new Random();
-                int randCheck = rand.Next(1, 11);
-                if (randCheck == 1)
-                {
-                Powerups newPowerUp = new Powerups(ballRec);
-                GameScreen.powerUps.Add(newPowerUp);
-                }
+                //Random rand = new Random();
+                //int randCheck = rand.Next(1, 5);
+                //if (randCheck == 1 && block.hp != 100)
+                //{
+                    Powerups newPowerUp = new Powerups(ballRec);
+                    GameScreen.powerUps.Add(newPowerUp);
+                //}
 
                 if (GameScreen.bomb)
                 {
@@ -86,9 +85,10 @@ namespace BrickBreaker
                            block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
                            block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
                         {
-                            block.hp--;
+                            b.hp--;
                         }
                     }
+                    block.hp = 0;
                     GameScreen.bomb = false;
                     GameScreen.ballBrush.Color = Color.White;
                 }
@@ -126,11 +126,10 @@ namespace BrickBreaker
                 {
                     vector.x = 0;
                     vector.y = 0;
-                    //ball x vector = 0
-                    //ball y vector = 0
                     GameScreen.catchBallShoot = true;
                     GameScreen.catchPaddlePoint.X = x + size / 2;
                     GameScreen.catchPaddlePoint.Y = y + size / 2;
+                    paddle.velocity = 0;
                 }
                 else
                 {

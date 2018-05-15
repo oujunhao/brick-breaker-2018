@@ -19,20 +19,18 @@ namespace BrickBreaker
 
         //player1 button control keys - DO NOT CHANGE
         public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
-        public static bool flipControls, catchBall, catchBallShoot, bomb;
+        public static bool flipControls, catchBall, catchBallShoot, bomb, startShoot, laser, gunShot, gunPaddle;
 
         // Scoring
-        int score;
+        public static int score;
         // Game values
         public static int lives, screenWidth, screenHeight, blockSpacing = 3, bonus = 1;
-        public static int paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20;
+        public static int paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20, gunHeight = 10, gunWidth = 2, gunCount = 0;
 
         // Paddle and Ball objects
         Paddle paddle;
-        Ball ball;
-        List<Region> capRegions = new List<Region>();
-        List<Region> capOutlines = new List<Region>();
-       // GraphicsPath capShape;
+        public static Ball ball;
+        public static Random randGen = new Random();
 
         // list of all blocks
         public static List<Block> blocks = new List<Block>();
@@ -52,28 +50,41 @@ namespace BrickBreaker
                 "Bonus"
             };
         public static PointF catchPaddlePoint, catchMovePoint;
-        int catchRadious = 100, catchDegree = 30;
+        public static int catchRadious = 100, catchDegree = 30;
+
+        public static List<Rectangle> lasers = new List<Rectangle>();
+        public static Rectangle gun = new Rectangle();
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
         public static SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
         SolidBrush capBrush = new SolidBrush(Color.FromArgb(255, 0, 102));
-        SolidBrush capOutlineBrush = new SolidBrush(Color.FromArgb(43, 134, 194));
 
-        Color[] blockColors = new [] {
+        Color[] blockColors = new[] {
             Color.FromArgb(43, 134, 194),//1 HP
             Color.FromArgb(37, 117, 170),//2 HP            
             Color.FromArgb(31, 96, 139),//3 HP            
             Color.FromArgb(19, 60, 86),//4 HP
             Color.FromArgb(12, 39, 56)//5 HP          
             };
-        Color[] blockBoarders = new [] {
+        Color[] blockBoarders = new[] {
             Color.FromArgb(49, 152, 220),//1 HP
             Color.FromArgb(31, 98, 142),//2 HP            
             Color.FromArgb(26, 80, 116),//3 HP            
             Color.FromArgb(23, 71, 102),//4 HP
             Color.FromArgb(17, 54, 78)//5 HP          
+            };
+        public static Color[] powerupColors = new[] {
+            Color.Aqua, 
+            Color.Crimson, 
+            Color.ForestGreen, 
+            Color.Navy, 
+            Color.Gold, 
+            Color.Pink, 
+            Color.DarkOrchid, 
+            Color.OrangeRed, 
+            Color.SteelBlue
             };
         #endregion
 
@@ -119,13 +130,18 @@ namespace BrickBreaker
             int ballY = (this.Height - paddle.height) - 80;
 
             // Creates a new ball
-            double ballVelocity = 7;
+            double ballVelocity = 0;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, ballVelocity, ballSize);
 
+            foreach(Block b in Form1.blocks)
+            {
+                UpdateBlockColors(b);
+            }
+
             catchPaddlePoint = new PointF(ball.x + ball.size/2, ball.y + ball.size / 2);
-            //catchBall = true;
-            //catchBallShoot = true;
+            catchBallShoot = true;
+            startShoot = true;
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -180,11 +196,26 @@ namespace BrickBreaker
                     break;
                 case Keys.Space:
                     spaceDown = true;
-                    if(catchBallShoot)
+                    if(startShoot)
+                    {
+                        ball.velocity = 7;
+                        startShoot = false;
+                    }
+                    if (catchBallShoot)
                     {
                         ball.angle = catchDegree;
                         ball.setAngle(catchDegree);
                         catchBallShoot = false;
+                    }
+                    if(laser)
+                    {
+                        AddLaserShots();
+                    }
+                    if(gunPaddle && gunCount < 3 && gunShot == false)
+                    {
+                        setGun();
+                        gunShot = true;
+                        gunCount++;
                     }
                     break;
                 case Keys.Escape:
@@ -193,6 +224,20 @@ namespace BrickBreaker
                 default:
                     break;
             }
+        }
+
+        public void AddLaserShots()
+        {
+            if (lasers.Count < 3)
+            {
+                lasers.Add(new Rectangle(paddle.x + paddle.width * 1 / 4, paddle.y, 5, paddle.height*2));
+                lasers.Add(new Rectangle(paddle.x + paddle.width * 3 / 4, paddle.y, 5, paddle.height*2));
+            }
+        }
+
+        public void setGun()
+        {
+            gun = new Rectangle(paddle.x + paddle.width / 2, paddle.y, gunWidth, gunHeight);
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
@@ -246,18 +291,20 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            // Move the paddle
-            if (leftArrowDown) paddle.Accel("x", -1);
-            if (rightArrowDown) paddle.Accel("x", 1);
-            paddle.Move();
-            paddle.WallCollision(this);
+            if (catchBallShoot == false)
+            {
+                // Move the paddle
+                if (leftArrowDown) paddle.Accel("x", -1);
+                if (rightArrowDown) paddle.Accel("x", 1);
+                paddle.Move();
+                paddle.WallCollision(this);
+            }
 
             // Moves ball
             ball.Update(paddle, this);
 
             // Check if ball has collided with any blocks
             BlockCollision();
-
 
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
@@ -267,9 +314,15 @@ namespace BrickBreaker
                 paddle.width = paddleStartWidth;
 
                 // Moves the ball back to origin
+                paddle.x = (this.Width / 2 - paddle.width / 2);
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 85;
-
+                ball.y = (this.Height - paddle.height) - 80;
+                ball.velocity = 0;
+                catchPaddlePoint = new PointF(ball.x + ball.size / 2, ball.y + ball.size / 2);
+                findCatchPoints();
+                startShoot = true;
+                catchBallShoot = true;
+                
                 if (lives == 0)
                 {
                     gameTimer.Enabled = false;
@@ -283,14 +336,50 @@ namespace BrickBreaker
                 findCatchPoints();
             }
 
-            if(bomb)
+            for(int i = 0; i < lasers.Count; i++)
+            {
+                lasers[i] = new Rectangle(lasers[i].X, lasers[i].Y-7, lasers[i].Width, lasers[i].Height);
+                LaserBlockCheck(lasers[i], i);
+            }
+
+            if (gunShot)
+            {
+                for (int i = 0; i < Form1.blocks.Count(); i++)
+                {
+                    Rectangle block = new Rectangle(Form1.blocks[i].x, Form1.blocks[i].y,
+                        Form1.blocks[i].width, Form1.blocks[i].height);
+
+                    if (gun.IntersectsWith(block))
+                    {
+                        Form1.blocks.RemoveAt(i);
+                        setGun();
+                        gunShot = false;
+                    }
+                }
+
+                if (gun.Y + gun.Height <= 0)
+                {
+                    setGun();
+                    gunShot = false;
+                }
+
+                if (gunShot)
+                {
+                    gun = new Rectangle(gun.X, gun.Y - 8, gunWidth, gunHeight);                  
+                }               
+            }
+
+            //Removes all blocks from the block list with an hp of 0 after laser
+            Form1.blocks.RemoveAll(b => b.hp == 0);
+
+            if (bomb)
             {
                 if(bombFlipCounter == bombFlipFrequency)
                 {
                     bombFlipCounter = 0;
                     if(ballBrush.Color == Color.White)
                     {
-                        ballBrush.Color = Color.FromArgb(255, 0, 102);
+                        ballBrush.Color = capBrush.Color;
                     }
                     else
                     {
@@ -315,52 +404,36 @@ namespace BrickBreaker
                 }
             }
 
-            UpdateRegions();
-            UpdateBlockColors();
-
             //redraw the screen
             Refresh();
-        }
-
-        public void UpdateRegions()
-        {
-            int cornerCutSquare = 30;
-            capRegions.Clear();
-            capOutlines.Clear();
-            foreach (Powerups p in powerUps)
-            {
-                cornerCutSquare = 30;
-                GraphicsPath drawPath = new GraphicsPath();
-                drawPath.AddArc(p.x, p.y, cornerCutSquare, cornerCutSquare, 90, 90);//top left
-                drawPath.AddArc(p.x, p.y + p.CAP_HEIGHT - cornerCutSquare,
-                    cornerCutSquare, cornerCutSquare, 180, 90);//bottom left
-                drawPath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare, p.y + p.CAP_HEIGHT - cornerCutSquare,
-                    cornerCutSquare, cornerCutSquare, 270, 90);//bottom right
-                drawPath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare, p.y,
-                    cornerCutSquare, cornerCutSquare, 0, 90);//top right
-
-                cornerCutSquare = 26;
-                GraphicsPath outLinePath = new GraphicsPath();
-                outLinePath.AddArc(p.x+3, p.y, cornerCutSquare, cornerCutSquare, 90, 90);//top left
-                outLinePath.AddArc(p.x+3, p.y + p.CAP_HEIGHT - cornerCutSquare,
-                    cornerCutSquare, cornerCutSquare, 180, 90);//bottom left
-                outLinePath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare - 3, p.y + p.CAP_HEIGHT - cornerCutSquare,
-                    cornerCutSquare, cornerCutSquare, 270, 90);//bottom right
-                outLinePath.AddArc(p.x + p.CAP_WIDTH - cornerCutSquare - 3, p.y,
-                    cornerCutSquare, cornerCutSquare, 0, 90);//top right
-
-                capRegions.Add(new Region(drawPath));
-                capOutlines.Add(new Region(outLinePath));
-
-            }
         }
 
         public static void removePastPowerups()
         {
             catchBall = false;
-            flipControls = false;
-            bomb = false;
+            flipControls = false;         
             ballBrush.Color = Color.White;
+            laser = false;
+            bonus = 1;
+            gunCount = 0;
+            gunPaddle = false;
+        }
+
+        public void LaserBlockCheck(Rectangle laser, int index)
+        {
+            foreach (Block b in Form1.blocks)
+            {
+                if (laser.X >= b.x && laser.X <= b.x + b.width
+                    && laser.Y <= b.y + b.height && b.hp != 100)
+                {
+                    b.hp-= 0.5;
+                    score += 50 * bonus;
+                    lasers.RemoveAt(index);
+                    break;
+                }
+            }
+
+            lasers.RemoveAll(b => b.Y <= 0);
         }
 
         public void OnEnd()
@@ -383,27 +456,39 @@ namespace BrickBreaker
             // Draws paddle
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
 
+            //Draw score
+            e.Graphics.DrawString(score.ToString(), new Font("Calibri", 12), capBrush, 10, this.Height - 20);
+
             if (catchBallShoot)
             {
                 e.Graphics.DrawLine(Pens.White, catchPaddlePoint, catchMovePoint);
             }
 
+            if(gunShot)
+            {
+                e.Graphics.FillRectangle(Brushes.Orange, gun);
+            }
+                 
             // Draws blocks
             foreach (Block b in Form1.blocks)
             {
+                blockBrush.Color = b.outlineColor;
+                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
                 //change colour of brush depending on block
                 blockBrush.Color = b.colour;
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                e.Graphics.FillRectangle(blockBrush, b.x+5, b.y+5, b.width-10, b.height-10);            
             }
 
-            foreach (Region capRegion in capRegions)
+            foreach(Rectangle beam in lasers)
             {
-                e.Graphics.FillRegion(capBrush, capRegion);
+                e.Graphics.FillRectangle(capBrush, beam);
+                e.Graphics.DrawRectangle(Pens.Red, beam);
             }
 
-            foreach (Region outlineRegion in capOutlines)
+            foreach (Powerups p in powerUps)
             {
-                e.Graphics.FillRegion(capOutlineBrush, outlineRegion);
+                e.Graphics.DrawString(p.capType, new Font("Calibri", 12), capBrush, p.x, p.y - 15);
+                e.Graphics.FillEllipse(new SolidBrush(p.drawColor), p.x, p.y, p.CAP_SIZE, p.CAP_SIZE);
             }
 
             // Draws balls
@@ -436,18 +521,25 @@ namespace BrickBreaker
 
                         Form1.blocks.Add(b);
                     }
+                    else if (reader.NodeType == XmlNodeType.EndElement)
+                    {
+                        if (reader.Name == "level")
+                        {
+                            reader.Close();
+                        }
+                    }
                 }
             }
         }
 
-        public void UpdateBlockColors()
+        public void UpdateBlockColors(Block b)
         {
-            foreach (Block b in Form1.blocks)
+            int index = Convert.ToInt32(b.hp);
+
+            if (b.hp > 0 && b.hp != 100)
             {
-                if(b.hp != 0 && b.hp != 100)
-                {
-                    b.colour = blockColors[b.hp - 1];
-                }
+                b.colour = blockColors[index - 1];
+                b.outlineColor = blockBoarders[index - 1];
             }
         }
 
@@ -460,11 +552,12 @@ namespace BrickBreaker
                     if (b.hp > 0 && b.hp != 100)
                     {
                         b.hp--;
-                        UpdateBlockColors();
+                        UpdateBlockColors(b);
                     }
-                    else if (b.hp == 0)
+                    if (b.hp <= 0)
                     {
                         Form1.blocks.Remove(b);
+                        score += 100 * bonus;
                         break;
                     }
 
@@ -473,7 +566,6 @@ namespace BrickBreaker
                         gameTimer.Enabled = false;
                         OnEnd();
                     }
-
                     break;
                 }
             }

@@ -9,14 +9,14 @@ namespace BrickBreaker
 {
     public class Powerups
     {
-        //Constants
-        Random randGen = new Random();
+        //Constants        
         const int LONG_PADDLE_GAIN = 40, CAP_SPEED = 1;
-        public int CAP_HEIGHT = 30, CAP_WIDTH = 60;
+        public int CAP_SIZE = 30;
 
         //Varriables
         public string capType;
         public int x = 0, y = 0;
+        public Color drawColor;
 
         //Paddle sent from the game screen
         Paddle paddle;
@@ -27,11 +27,13 @@ namespace BrickBreaker
         /// <param name="brickPosition">Spawns the capsule at the position of the brick</param>
         public Powerups(Rectangle brickPosition)
         {
-            //capType = GameScreen.powerupNames[randGen.Next(0, 9)];
-            capType = "Catch";
+            int rand = GameScreen.randGen.Next(0, 9);
+            //capType = GameScreen.powerupNames[rand];
+            capType = "Gun";
 
+            drawColor = GameScreen.powerupColors[rand];
             x = brickPosition.X;
-            y = brickPosition.Y;        
+            y = brickPosition.Y;
         }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace BrickBreaker
         /// </summary>
         public void checkCapOffScreen()
         {
-            if(y + CAP_HEIGHT == GameScreen.screenHeight)
+            if(y + CAP_SIZE == GameScreen.screenHeight)
             {
                 resetPowerupsList();
             }
@@ -61,12 +63,20 @@ namespace BrickBreaker
         {
             paddle = currentPad;
 
-            if(y + CAP_HEIGHT >= paddle.y &&
+            if(y + CAP_SIZE >= paddle.y &&
                 y <= paddle.y + paddle.height &&
-                x + CAP_WIDTH >= paddle.x &&
+                x + CAP_SIZE >= paddle.x &&
                 x <= paddle.x + paddle.width)
             {
                 GameScreen.removePastPowerups();
+                GameScreen.score += 200;
+                if (GameScreen.catchBallShoot)
+                {
+                    GameScreen.ball.angle = GameScreen.catchDegree;
+                    GameScreen.ball.setAngle(GameScreen.catchDegree);
+                    GameScreen.catchBall = false;
+                    GameScreen.catchBallShoot = false;
+                }
                 paddle.width = GameScreen.paddleStartWidth;
 
                 usePowerUp(ref currentPad);
@@ -196,12 +206,12 @@ namespace BrickBreaker
 
         public void Laser()
         {
-
+            GameScreen.laser = true;
         }
 
         public void Gun()
         {
-
+            GameScreen.gunPaddle = true;
         }
 
         public void Multi()
