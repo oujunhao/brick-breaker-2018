@@ -118,14 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Ball" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bounce-SoundBible.com-12678623.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="BBLevels" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BBLevels.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="BBLevels1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BBLevels.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="Ball" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bounce-SoundBible.com-12678623.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Bomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Laser_Cannon-Mike_Koenig-797224747.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -145,8 +145,14 @@
   <data name="Gunshot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Silencer-SoundBible.com-1632156458.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Highscore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ta Da-SoundBible.com-1884170640 (1).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Laser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Laser-SoundBible.com-602495617.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Level" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Car Stereo-SoundBible.com-1140618938.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Paddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stephan_schutze-anvil_impact_1x-894647867.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

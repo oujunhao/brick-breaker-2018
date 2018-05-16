@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Xml;
+using System.Media;
 
 namespace BrickBreaker
 {
@@ -168,6 +169,11 @@ namespace BrickBreaker
         {
             // End scoring
             //            Form1.service.endGame(score);
+
+            //Game end sound
+            var endPlayer = new System.Windows.Media.MediaPlayer();
+            endPlayer.Open(new Uri(Application.StartupPath + "/Resources/End.wav"));
+            endPlayer.Play();
 
             // Goes to the game over screen
             Form form = this.FindForm();
