@@ -40,7 +40,7 @@ namespace BrickBreaker
 
         public void setAngle(int catchAngle)
         {
-            vector = new Vector(Math.Cos(DegtoRad(angle)), -Math.Sin(DegtoRad(angle)));
+            vector = new Vector(Math.Cos(DegtoRad(catchAngle)), -Math.Sin(DegtoRad(catchAngle)));
         }
 
         public void Update(Paddle paddle, UserControl UC)
@@ -126,9 +126,11 @@ namespace BrickBreaker
                 {
                     vector.x = 0;
                     vector.y = 0;
+                    GameScreen.balls[0].y = paddle.y - GameScreen.balls[0].size;
                     GameScreen.catchBallShoot = true;
                     GameScreen.catchPaddlePoint.X = x + size / 2;
                     GameScreen.catchPaddlePoint.Y = y + size / 2;
+                    
                     paddle.velocity = 0;
                 }
                 else

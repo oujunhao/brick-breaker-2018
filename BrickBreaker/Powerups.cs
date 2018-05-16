@@ -10,7 +10,7 @@ namespace BrickBreaker
     public class Powerups
     {
         //Constants        
-        const int LONG_PADDLE_GAIN = 40, CAP_SPEED = 1;
+        const int LONG_PADDLE_GAIN = 50, CAP_SPEED = 1;
         public int CAP_SIZE = 30;
 
         //Varriables
@@ -28,8 +28,8 @@ namespace BrickBreaker
         public Powerups(Rectangle brickPosition)
         {
             int rand = GameScreen.randGen.Next(0, 9);
-            //capType = GameScreen.powerupNames[rand];
-            capType = "Gun";
+            capType = GameScreen.powerupNames[rand];
+            //capType = "Multi";
 
             drawColor = GameScreen.powerupColors[rand];
             x = brickPosition.X;
@@ -72,8 +72,8 @@ namespace BrickBreaker
                 GameScreen.score += 200;
                 if (GameScreen.catchBallShoot)
                 {
-                    GameScreen.ball.angle = GameScreen.catchDegree;
-                    GameScreen.ball.setAngle(GameScreen.catchDegree);
+                    GameScreen.balls[0].angle = GameScreen.catchDegree;
+                    GameScreen.balls[0].setAngle(GameScreen.catchDegree);
                     GameScreen.catchBall = false;
                     GameScreen.catchBallShoot = false;
                 }
@@ -216,7 +216,18 @@ namespace BrickBreaker
 
         public void Multi()
         {
+            Ball b1 = new Ball(GameScreen.balls[0].x, GameScreen.balls[0].y, GameScreen.balls[0].velocity, GameScreen.balls[0].size);
+            Ball b2 = new Ball(GameScreen.balls[0].x, GameScreen.balls[0].y, GameScreen.balls[0].velocity, GameScreen.balls[0].size);
+            Ball b3 = new Ball(GameScreen.balls[0].x, GameScreen.balls[0].y, GameScreen.balls[0].velocity, GameScreen.balls[0].size);
 
+            b1.vector.x *= -1;
+            b2.vector.y *= -1;
+            b3.vector.x *= -1;
+            b3.vector.y *= -1;
+
+            GameScreen.balls.Add(b1);
+            GameScreen.balls.Add(b2);
+            GameScreen.balls.Add(b3);
         }
     }
 }
