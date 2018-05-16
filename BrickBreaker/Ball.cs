@@ -64,6 +64,9 @@ namespace BrickBreaker
 
             if (blockRec.IntersectsWith(ballRec))
             {
+
+                // scoring 
+                GameScreen.score += 10;
                 //int randCheck = rand.Next(1, 11);
                 //if (randCheck == 1)
                 //{

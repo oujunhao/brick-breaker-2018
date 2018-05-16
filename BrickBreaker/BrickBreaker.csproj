@@ -76,6 +76,12 @@
     <Compile Include="Powerups.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\HighscoreScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Screens\HighscoreScreen.Designer.cs">
+      <DependentUpon>HighscoreScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\MenuScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,6 +108,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Screens\HighscoreScreen.resx">
+      <DependentUpon>HighscoreScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,11 +144,19 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\HighScores3.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BBLevels.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backbroundHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HighScoresfinal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

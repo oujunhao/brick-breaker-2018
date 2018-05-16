@@ -46,6 +46,7 @@ namespace BrickBreaker
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
         }
 
+
         #region on_enter
         private void onePlayerButton_Enter(object sender, EventArgs e)
         {
@@ -119,6 +120,13 @@ namespace BrickBreaker
         private void highscoresButton_Click(object sender, EventArgs e)
         {
             //load highscore screen
+            Form form = this.FindForm();
+            Screens.HighscoreScreen hs = new Screens.HighscoreScreen();
+
+            hs.Location = new Point((form.Width - hs.Width) / 2, (form.Height - hs.Height) / 2);
+
+            form.Controls.Add(hs);
+            form.Controls.Remove(this);
         }
         private void exitGameButton_Click(object sender, EventArgs e)
         {
