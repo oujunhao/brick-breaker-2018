@@ -73,6 +73,7 @@ namespace BrickBreaker
 
                 if (GameScreen.bomb)
                 {
+                    /*
                     foreach (Block block in GameScreen.blocks)
                     {
                         if(block.x == b.x + b.width + GameScreen.blockSpacing && block.y == b.y || //Block to the right
@@ -83,6 +84,7 @@ namespace BrickBreaker
                             block.hp--;
                         }
                     }
+                    */
                     GameScreen.bomb = false;
                     GameScreen.ballBrush.Color = Color.White;
                 }

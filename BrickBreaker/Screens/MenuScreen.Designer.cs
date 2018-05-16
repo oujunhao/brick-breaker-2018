@@ -51,10 +51,9 @@
             this.onePlayerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.onePlayerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.onePlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.onePlayerButton.Location = new System.Drawing.Point(526, 518);
-            this.onePlayerButton.Margin = new System.Windows.Forms.Padding(6);
+            this.onePlayerButton.Location = new System.Drawing.Point(263, 269);
             this.onePlayerButton.Name = "onePlayerButton";
-            this.onePlayerButton.Size = new System.Drawing.Size(465, 98);
+            this.onePlayerButton.Size = new System.Drawing.Size(246, 51);
             this.onePlayerButton.TabIndex = 0;
             this.onePlayerButton.Text = "1  P L A Y E R";
             this.onePlayerButton.UseVisualStyleBackColor = false;
@@ -72,10 +71,9 @@
             this.twoPlayerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.twoPlayerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.twoPlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.twoPlayerButton.Location = new System.Drawing.Point(526, 646);
-            this.twoPlayerButton.Margin = new System.Windows.Forms.Padding(6);
+            this.twoPlayerButton.Location = new System.Drawing.Point(261, 326);
             this.twoPlayerButton.Name = "twoPlayerButton";
-            this.twoPlayerButton.Size = new System.Drawing.Size(465, 92);
+            this.twoPlayerButton.Size = new System.Drawing.Size(248, 48);
             this.twoPlayerButton.TabIndex = 1;
             this.twoPlayerButton.Text = "2  P L A Y E R";
             this.twoPlayerButton.UseVisualStyleBackColor = false;
@@ -88,10 +86,9 @@
             this.brickBreakerTitleLable.BackColor = System.Drawing.Color.Transparent;
             this.brickBreakerTitleLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brickBreakerTitleLable.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.brickBreakerTitleLable.Location = new System.Drawing.Point(458, 244);
-            this.brickBreakerTitleLable.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.brickBreakerTitleLable.Location = new System.Drawing.Point(229, 127);
             this.brickBreakerTitleLable.Name = "brickBreakerTitleLable";
-            this.brickBreakerTitleLable.Size = new System.Drawing.Size(0, 108);
+            this.brickBreakerTitleLable.Size = new System.Drawing.Size(0, 55);
             this.brickBreakerTitleLable.TabIndex = 2;
             // 
             // highscoresButton
@@ -105,10 +102,9 @@
             this.highscoresButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.highscoresButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highscoresButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.highscoresButton.Location = new System.Drawing.Point(446, 762);
-            this.highscoresButton.Margin = new System.Windows.Forms.Padding(6);
+            this.highscoresButton.Location = new System.Drawing.Point(223, 380);
             this.highscoresButton.Name = "highscoresButton";
-            this.highscoresButton.Size = new System.Drawing.Size(645, 92);
+            this.highscoresButton.Size = new System.Drawing.Size(339, 48);
             this.highscoresButton.TabIndex = 3;
             this.highscoresButton.Text = "H I G H S C O R E S";
             this.highscoresButton.UseVisualStyleBackColor = false;
@@ -126,10 +122,9 @@
             this.exitGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitGameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(102)))));
-            this.exitGameButton.Location = new System.Drawing.Point(426, 866);
-            this.exitGameButton.Margin = new System.Windows.Forms.Padding(6);
+            this.exitGameButton.Location = new System.Drawing.Point(223, 434);
             this.exitGameButton.Name = "exitGameButton";
-            this.exitGameButton.Size = new System.Drawing.Size(645, 92);
+            this.exitGameButton.Size = new System.Drawing.Size(322, 48);
             this.exitGameButton.TabIndex = 4;
             this.exitGameButton.Text = "E X I T";
             this.exitGameButton.UseVisualStyleBackColor = false;
@@ -147,17 +142,16 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(6, 77);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 40);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1594, 429);
+            this.pictureBox1.Size = new System.Drawing.Size(797, 223);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
             // MenuScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(63)))), ((int)(((byte)(105)))));
             this.Controls.Add(this.pictureBox1);
@@ -166,9 +160,8 @@
             this.Controls.Add(this.brickBreakerTitleLable);
             this.Controls.Add(this.twoPlayerButton);
             this.Controls.Add(this.onePlayerButton);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MenuScreen";
-            this.Size = new System.Drawing.Size(1600, 1058);
+            this.Size = new System.Drawing.Size(800, 550);
             this.Load += new System.EventHandler(this.MenuScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

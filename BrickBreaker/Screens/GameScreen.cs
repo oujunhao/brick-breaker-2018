@@ -93,6 +93,7 @@ namespace BrickBreaker
             int paddleX = ((this.Width / 2) - (paddleStartWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleMaxSpeed = 10;
+            int paddleWidth = 10;
             int paddleAccel = 3;
             double paddleFriction = 1.2;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
@@ -389,7 +390,7 @@ namespace BrickBreaker
 
         public void GetLevels()
         {
-            using (XmlReader reader = XmlReader.Create("BBLevels.xml"))
+            using (XmlReader reader = XmlReader.Create("../../../BBLevels.xml"))
             {
                 while (reader.Read())
                 {
@@ -401,9 +402,11 @@ namespace BrickBreaker
 
                         reader.ReadToNextSibling("y");
                         b.y = Convert.ToInt16(reader.ReadString());
-
+                        /*
                         reader.ReadToNextSibling("hp");
                         b.hp = Convert.ToInt16(reader.ReadString());
+                        */
+                        b.hp = 1;
 
                         reader.ReadToNextSibling("colour");
                         b.colour = Color.FromName(reader.ReadString());
