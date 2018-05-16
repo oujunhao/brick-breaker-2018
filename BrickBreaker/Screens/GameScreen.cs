@@ -377,7 +377,7 @@ namespace BrickBreaker
             foreach (Block b in Form1.blocks)
             {
                 //change colour of brush depending on block
-                blockBrush.Color = Color.FromArgb(255, b.colour.R, b.colour.G, b.colour.B);
+                blockBrush.Color = getBrickColour(b.hp);
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
@@ -397,6 +397,25 @@ namespace BrickBreaker
             e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
         }
 
+
+        public Color getBrickColour(int hp)
+        {
+            switch (hp)
+            {
+                case 1:
+                    return Color.FromArgb(255, 43, 134, 194);
+                case 2:
+                    return Color.FromArgb(255, 37, 117, 170);
+                case 3:
+                    return Color.FromArgb(255, 31, 96, 139);
+                case 4:
+                    return Color.FromArgb(255, 31, 96, 139);
+                case 5:
+                    return Color.FromArgb(255, 31, 96, 139);
+                default:
+                    return Color.FromArgb(255, 255, 255, 255);
+            }
+        }
         public void GetLevels()
         {
             using (XmlReader reader = XmlReader.Create("../../../BBLevels.xml"))
