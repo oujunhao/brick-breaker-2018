@@ -76,7 +76,7 @@ namespace BrickBreaker
             score = 0;
 
             //set life counter
-            lives = 30;
+            lives = 3;
 
             removePastPowerups();
             powerUps.Clear();
@@ -93,6 +93,7 @@ namespace BrickBreaker
             int paddleX = ((this.Width / 2) - (paddleStartWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleMaxSpeed = 10;
+            int paddleWidth = 10;
             int paddleAccel = 3;
             double paddleFriction = 1.2;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
@@ -110,6 +111,15 @@ namespace BrickBreaker
 
             // start the game engine loop
             gameTimer.Enabled = true;
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            Rectangle rc = new Rectangle(0, 0, this.ClientSize.Width, this.ClientSize.Height);
+            using (LinearGradientBrush brush = new LinearGradientBrush(rc, Color.FromArgb(255, 55, 64, 105), Color.FromArgb(255, 32, 14, 48), 90F))
+            {
+                e.Graphics.FillRectangle(brush, rc);
+            }
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -341,7 +351,8 @@ namespace BrickBreaker
         public void OnEnd()
         {
             // End scoring
-            Form1.service.endGame(score);
+           //Form1.service.endGame(score);
+
 
             // Goes to the game over screen
             Form form = this.FindForm();
@@ -367,7 +378,7 @@ namespace BrickBreaker
             foreach (Block b in Form1.blocks)
             {
                 //change colour of brush depending on block
-                blockBrush.Color = b.colour;
+                blockBrush.Color = getBrickColour(b.hp);
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
@@ -387,9 +398,28 @@ namespace BrickBreaker
             e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
         }
 
+
+        public Color getBrickColour(int hp)
+        {
+            switch (hp)
+            {
+                case 1:
+                    return Color.FromArgb(255, 43, 134, 194);
+                case 2:
+                    return Color.FromArgb(255, 37, 117, 170);
+                case 3:
+                    return Color.FromArgb(255, 31, 96, 139);
+                case 4:
+                    return Color.FromArgb(255, 31, 96, 139);
+                case 5:
+                    return Color.FromArgb(255, 31, 96, 139);
+                default:
+                    return Color.FromArgb(255, 255, 255, 255);
+            }
+        }
         public void GetLevels()
         {
-            using (XmlReader reader = XmlReader.Create("BBLevels.xml"))
+            using (XmlReader reader = XmlReader.Create("../../../BBLevels.xml"))
             {
                 while (reader.Read())
                 {
@@ -401,9 +431,11 @@ namespace BrickBreaker
 
                         reader.ReadToNextSibling("y");
                         b.y = Convert.ToInt16(reader.ReadString());
-
+                        /*
                         reader.ReadToNextSibling("hp");
                         b.hp = Convert.ToInt16(reader.ReadString());
+                        */
+                        b.hp = 1;
 
                         reader.ReadToNextSibling("colour");
                         b.colour = Color.FromName(reader.ReadString());
