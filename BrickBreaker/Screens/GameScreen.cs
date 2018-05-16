@@ -76,7 +76,7 @@ namespace BrickBreaker
             score = 0;
 
             //set life counter
-            lives = 30;
+            lives = 3;
 
             removePastPowerups();
             powerUps.Clear();
@@ -111,6 +111,15 @@ namespace BrickBreaker
 
             // start the game engine loop
             gameTimer.Enabled = true;
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            Rectangle rc = new Rectangle(0, 0, this.ClientSize.Width, this.ClientSize.Height);
+            using (LinearGradientBrush brush = new LinearGradientBrush(rc, Color.FromArgb(255, 55, 64, 105), Color.FromArgb(255, 32, 14, 48), 90F))
+            {
+                e.Graphics.FillRectangle(brush, rc);
+            }
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -342,7 +351,7 @@ namespace BrickBreaker
         public void OnEnd()
         {
             // End scoring
-            //            Form1.service.endGame(score);
+           //Form1.service.endGame(score);
 
             // Goes to the game over screen
             Form form = this.FindForm();
@@ -368,7 +377,7 @@ namespace BrickBreaker
             foreach (Block b in Form1.blocks)
             {
                 //change colour of brush depending on block
-                blockBrush.Color = b.colour;
+                blockBrush.Color = Color.FromArgb(255, b.colour.R, b.colour.G, b.colour.B);
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
