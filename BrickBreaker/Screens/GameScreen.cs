@@ -22,7 +22,7 @@ namespace BrickBreaker
         public static bool flipControls, catchBall, bomb;
 
         // Scoring
-        int score;
+        public static int score;
         // Game values
         public static int lives, screenWidth, screenHeight, blockSpacing = 3, bonus = 1;
         public static int paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20;
@@ -72,7 +72,7 @@ namespace BrickBreaker
             // Load level
             GetLevels();
             //Scoring
-            //Form1.service.startGame();
+            Form1.service.startGame();
             score = 0;
 
             //set life counter
@@ -352,6 +352,7 @@ namespace BrickBreaker
         {
             // End scoring
            //Form1.service.endGame(score);
+
 
             // Goes to the game over screen
             Form form = this.FindForm();

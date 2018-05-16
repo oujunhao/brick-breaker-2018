@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.onePlayerButton = new System.Windows.Forms.Button();
@@ -149,9 +150,24 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // highscoreButton
+            // 
+            this.highscoreButton.BackColor = System.Drawing.Color.White;
+            this.highscoreButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.highscoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.highscoreButton.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highscoreButton.Location = new System.Drawing.Point(207, 363);
+            this.highscoreButton.Name = "highscoreButton";
+            this.highscoreButton.Size = new System.Drawing.Size(181, 78);
+            this.highscoreButton.TabIndex = 2;
+            this.highscoreButton.Text = "Highscores";
+            this.highscoreButton.UseVisualStyleBackColor = false;
+            this.highscoreButton.Click += new System.EventHandler(this.highscoreButton_Click);
+            // 
             // MenuScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(63)))), ((int)(((byte)(105)))));
             this.Controls.Add(this.pictureBox1);
@@ -170,6 +186,7 @@
         }
 
         #endregion
+
 
         private System.Windows.Forms.Button onePlayerButton;
         private System.Windows.Forms.Button twoPlayerButton;
