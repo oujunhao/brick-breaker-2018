@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using System.Xml;
 using GameSystemServices;
 
-// cam - levels //
-
 namespace BrickBreaker
 {
     public partial class Form1 : Form
