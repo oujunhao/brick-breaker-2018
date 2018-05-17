@@ -68,31 +68,34 @@ namespace BrickBreaker
             Rectangle blockRec = new Rectangle(block.x, block.y, block.width, block.height);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
+                //make a boolean and nmake it track directions
+
             if (blockRec.IntersectsWith(ballRec))
             {
-                if (x <= block.right)
-                  // vector.x = Math.Abs(vector.x);
+                bool comingFromBelow = vector.y < 0;
+                bool comingFromRight = vector.x < 0;
 
-                if (this.right > block.x)
-                   //vector.x = -Math.Abs(vector.x);
-
-                if (y < block.bottom)
+                if (x <= block.right && comingFromRight)
                 {
-                    vector.y *= -1;
-                   // vector.x *=  1;
+                    vector.x = Math.Abs(vector.x);
                 }
-                
-
-                // Test which vector(s) we need to flip
-                //bool flipX = (this.right >= block.x || this.x <= block.right);
-                //bool flipY = (this.y <= block.bottom || this.bottom >= block.y);
-
-                //if (flipX)
-                //    vector.x *= -1;
-                //else if (flipY)
-                //    vector.y *= -1;
+                else if (this.right >= block.x && !comingFromRight)
+                {
+                    vector.x = -Math.Abs(vector.x);    
+                }
+                if (y <= block.bottom && comingFromBelow)
+                { 
+                    vector.y *= -1;
+                    vector.x *= -1;
+                }
+                if (y >= block.y && !comingFromBelow)
+                {
+                    vector.y = Math.Abs(vector.y);
+                    vector.x *= -1;
+                }
+                return true;
             }
-            return blockRec.IntersectsWith(ballRec);
+            return false;
         }
 
         public void PaddleCollision(Paddle paddle)

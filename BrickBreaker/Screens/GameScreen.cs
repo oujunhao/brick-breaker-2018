@@ -141,7 +141,7 @@ namespace BrickBreaker
 
             // Check if ball has collided with any blocks
             BlockCollision();
-
+          
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
             {
@@ -197,7 +197,7 @@ namespace BrickBreaker
 
         public void GetLevels()
         {
-            using (XmlReader reader = XmlReader.Create("BBLevels.xml"))
+            using (XmlReader reader = XmlReader.Create("Resources/BBLevels.xml"))
             {
                 while (reader.Read())
                 {
@@ -246,8 +246,7 @@ namespace BrickBreaker
                         gameTimer.Enabled = false;
                         OnEnd();
                     }
-
-                    break;
+                    return;
                 }
             }
         }
