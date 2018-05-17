@@ -24,6 +24,12 @@ namespace BrickBreaker
 
         }
 
+        public void setAngle(int newAngle)
+        {
+            vector = new Vector(Math.Cos(DegtoRad(newAngle)), -Math.Sin(DegtoRad(newAngle)));
+
+        }
+
         public int right
         {
             get
@@ -62,9 +68,10 @@ namespace BrickBreaker
             Rectangle blockRec = new Rectangle(block.x, block.y, block.width, block.height);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
+                //make a boolean and nmake it track directions
+
             if (blockRec.IntersectsWith(ballRec))
             {
-
                 // scoring
                 GameScreen.score += 10;
                 //int randCheck = rand.Next(1, 11);
@@ -90,24 +97,30 @@ namespace BrickBreaker
                     GameScreen.ballBrush.Color = Color.White;
                 }
 
-                if (x <= block.right)
+                bool comingFromBelow = vector.y < 0;
+                bool comingFromRight = vector.x < 0;
+
+                if (x <= block.right && comingFromRight)
+                {
                     vector.x = Math.Abs(vector.x);
-
-                if (this.right >= block.x)
+                }
+                else if (this.right >= block.x && !comingFromRight)
+                {
                     vector.x = -Math.Abs(vector.x);
-
-                if (y <= block.bottom)
+                }
+                if (y <= block.bottom && comingFromBelow)
+                {
                     vector.y *= -1;
-                // Test which vector(s) we need to flip
-                bool flipX = (this.right >= block.x || this.x <= block.right);
-                bool flipY = (this.y <= block.bottom || this.bottom >= block.y);
-
-                //if (flipX)
-                //    vector.x *= -1;
-                //else if (flipY)
-                //    vector.y *= -1;
+                    vector.x *= -1;
+                }
+                if (y >= block.y && !comingFromBelow)
+                {
+                    vector.y = Math.Abs(vector.y);
+                    vector.x *= -1;
+                }
+                return true;
             }
-            return blockRec.IntersectsWith(ballRec);
+            return false;
         }
 
         public void PaddleCollision(Paddle paddle)
@@ -135,7 +148,7 @@ namespace BrickBreaker
                     {
                         int offset = (x - (size / 2)) - paddle.x;
                         int angle = Map(offset, 110, 30, paddle.width);
-                        vector = new Vector(Math.Cos(DegtoRad(angle)), -Math.Sin(DegtoRad(angle)));
+                        setAngle(angle);
                     }
                 }
             }

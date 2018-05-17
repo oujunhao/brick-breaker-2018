@@ -20,6 +20,7 @@ namespace BrickBreaker
         public Form1()
         {
             InitializeComponent();
+            Cursor.Hide();
 
             //start the program centred on the Menu Screen
             MenuScreen ms = new MenuScreen();
