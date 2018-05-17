@@ -6,78 +6,56 @@
       <x>10</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>124</x>
+      <x>156</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>238</x>
+      <x>229</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>295</x>
+      <x>302</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>352</x>
+      <x>375</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>409</x>
+      <x>448</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>523</x>
+      <x>521</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
   </level>
   <!-- LEVEL TWO -->
@@ -86,155 +64,111 @@
       <x>10</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>124</x>
+      <x>156</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>238</x>
+      <x>229</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>295</x>
+      <x>302</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>352</x>
+      <x>375</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>409</x>
+      <x>448</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>523</x>
+      <x>521</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
       <x>10</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>124</x>
+      <x>156</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>238</x>
+      <x>229</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>295</x>
+      <x>302</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>352</x>
+      <x>375</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>409</x>
+      <x>448</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>523</x>
+      <x>521</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
   </level>
   <!-- LEVEL THREE -->
@@ -243,185 +177,133 @@
       <x>10</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>124</x>
+      <x>156</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
       <x>10</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>124</x>
+      <x>156</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
       <x>10</x>
       <y>90</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>90</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>124</x>
+      <x>156</x>
       <y>90</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <!-- invulnerable bricks -->
     <brick>
-      <x>295</x>
+      <x>302</x>
       <y>10</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>295</x>
+      <x>302</x>
       <y>35</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>295</x>
+      <x>302</x>
       <y>60</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>295</x>
+      <x>302</x>
       <y>85</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>352</x>
+      <x>448</x>
       <y>10</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>352</x>
+      <x>448</x>
       <y>35</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>352</x>
+      <x>448</x>
       <y>60</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>352</x>
+      <x>448</x>
       <y>85</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <!-- invulnerable bricks -->
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>90</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>90</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>90</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
   </level>
   <!-- LEVEL FOUR -->
@@ -430,276 +312,267 @@
       <x>10</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
       <x>10</x>
       <y>50</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
       <x>10</x>
       <y>90</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>10</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>90</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>10</x>
+      <x>156</x>
       <y>10</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>156</x>
       <y>50</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>124</x>
+      <x>156</x>
       <y>90</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>181</x>
+      <x>229</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>181</x>
+      <x>229</x>
       <y>50</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>181</x>
+      <x>229</x>
       <y>90</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <!-- invulnerable bricks START -->
     <brick>
-      <x>10</x>
-      <y>105</y>
+      <x>0</x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>40</x>
-      <y>105</y>
+      <x></x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>70</x>
-      <y>105</y>
+      <x>90</x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
-    </brick>
-    <brick>
-      <x>100</x>
-      <y>105</y>
-      <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
-    </brick>
-    <brick>
-      <x>130</x>
-      <y>105</y>
-      <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
       <x>160</x>
-      <y>105</y>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>190</x>
-      <y>105</y>
+      <x>230</x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
-    </brick>
-
-    <brick>
-      <x>523</x>
-      <y>105</y>
-      <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>553</x>
-      <y>105</y>
+      <x>521</x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>583</x>
-      <y>105</y>
+      <x>591</x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>613</x>
-      <y>105</y>
+      <x>661</x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>643</x>
-      <y>105</y>
+      <x>731</x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>673</x>
-      <y>105</y>
+      <x>801</x>
+      <y>120</y>
       <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
-    </brick>
-    <brick>
-      <x>703</x>
-      <y>105</y>
-      <hp>100</hp>
-      <colour>Grey</colour>
-      <power>false</power>
     </brick>
     <!-- invulnerable bricks END-->
     <brick>
-      <x>523</x>
+      <x>521</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>523</x>
+      <x>521</x>
       <y>50</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>523</x>
+      <x>521</x>
       <y>90</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>10</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>50</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>594</x>
       <y>90</y>
       <hp>2</hp>
-      <colour>37,117,170</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>10</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>50</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>667</x>
       <y>90</y>
       <hp>3</hp>
-      <colour>31,96,139</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>10</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>50</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>740</x>
       <y>90</y>
       <hp>1</hp>
-      <colour>43,134,194</colour>
-      <power>false</power>
     </brick>
   </level>
- <!-- LEVEL FIVE -->
-   <level>
-    
+  <!-- LEVEL FIVE -->
+  <level>
+    <brick>
+      <x>10</x>
+      <y>10</y>
+      <hp>1</hp>
+    </brick>
+    <brick>
+      <x>83</x>
+      <y>10</y>
+      <hp>1</hp>
+    </brick>
+    <brick>
+      <x>156</x>
+      <y>10</y>
+      <hp>1</hp>
+    </brick>
+    <brick>
+      <x>594</x>
+      <y>10</y>
+      <hp>1</hp>
+    </brick>
+    <brick>
+      <x>667</x>
+      <y>10</y>
+      <hp>1</hp>
+    </brick>
+    <brick>
+      <x>740</x>
+      <y>10</y>
+      <hp>1</hp>
+    </brick>
+    <!-- Thicc Boys-->
+    <brick>
+      <x>302</x>
+      <y>10</y>
+      <hp>4</hp>
+    </brick>
+    <brick>
+      <x>375</x>
+      <y>10</y>
+      <hp>4</hp>
+    </brick>
+    <brick>
+      <x>448</x>
+      <y>10</y>
+      <hp>4</hp>
+    </brick>
+    <brick>
+      <x>302</x>
+      <y>50</y>
+      <hp>3</hp>
+    </brick>
+    <brick>
+      <x>375</x>
+      <y>50</y>
+      <hp>3</hp>
+    </brick>
+    <brick>
+      <x>448</x>
+      <y>50</y>
+      <hp>3</hp>
+    </brick>
+    <brick>
+      <x>302</x>
+      <y>90</y>
+      <hp>2</hp>
+    </brick>
+    <brick>
+      <x>375</x>
+      <y>90</y>
+      <hp>3</hp>
+    </brick>
+    <brick>
+      <x>448</x>
+      <y>90</y>
+      <hp>2</hp>
+    </brick>
+    <brick>
+      <x>302</x>
+      <y>130</y>
+      <hp>1</hp>
+    </brick>
+    <brick>
+      <x>375</x>
+      <y>130</y>
+      <hp>1</hp>
+    </brick>
+    <brick>
+      <x>448</x>
+      <y>130</y>
+      <hp>1</hp>
+    </brick>
   </level>
 </game>
-
-
