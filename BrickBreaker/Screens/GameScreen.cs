@@ -23,8 +23,8 @@ namespace BrickBreaker
 
         // Game values
         public static int score, lives, screenWidth, screenHeight, blockSpacing = 3, bonus = 1,
-            paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20, gunHeight = 10,
-            gunWidth = 2, gunCount = 0, catchRadious = 100, catchDegree = 30, sizeBall = 20;
+            paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20, gunHeight = 50,
+            gunWidth = 20, gunCount = 0, catchRadious = 100, catchDegree = 30, sizeBall = 20;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -104,7 +104,7 @@ namespace BrickBreaker
             //set life counter
             lives = 30;
 
-            removePastPowerups();
+            gameResetPowerup();
             powerUps.Clear();
 
             screenWidth = this.Width;
@@ -229,14 +229,14 @@ namespace BrickBreaker
         {
             if (lasers.Count < 3)
             {
-                lasers.Add(new Rectangle(paddle.x + paddle.width * 1 / 4, paddle.y, 5, paddle.height * 2));
-                lasers.Add(new Rectangle(paddle.x + paddle.width * 3 / 4, paddle.y, 5, paddle.height * 2));
+                lasers.Add(new Rectangle(paddle.x + paddle.width * 1 / 4, paddle.y, 4, paddle.height * 2));
+                lasers.Add(new Rectangle(paddle.x + paddle.width * 3 / 4, paddle.y, 4, paddle.height * 2));
             }
         }
 
         public void setGun()
         {
-            gun = new Rectangle(paddle.x + paddle.width / 2, paddle.y, gunWidth, gunHeight);
+            gun = new Rectangle(paddle.x + paddle.width / 2 - gunWidth/2, paddle.y, gunWidth, gunHeight);
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
@@ -311,7 +311,7 @@ namespace BrickBreaker
                 if (balls[i].BottomCollision(this) && balls.Count() == 1)
                 {
                     lives--;
-                    removePastPowerups();
+                    gameResetPowerup();
                     paddle.width = paddleStartWidth;
 
                     balls.RemoveAt(i);
@@ -408,7 +408,8 @@ namespace BrickBreaker
 
                 if (powerUps.Count > 0)
                 {
-                    powerUps[i].checkCapOffScreen();
+                    try { powerUps[i].checkCapOffScreen(); }
+                    catch { powerUps[0].checkCapOffScreen(); }
                 }
             }
 
@@ -416,7 +417,20 @@ namespace BrickBreaker
             Refresh();
         }
 
-        public static void removePastPowerups()
+        public static void capResetPowerup()
+        {
+            catchBall = false;
+            catchBallShoot = false;
+            balls[0].velocity = 7;
+            flipControls = false;
+            ballBrush.Color = Color.White;
+            laser = false;
+            bonus = 1;
+            gunCount = 0;
+            gunPaddle = false;           
+        }
+
+        public static void gameResetPowerup()
         {
             catchBall = false;
             flipControls = false;
@@ -425,6 +439,7 @@ namespace BrickBreaker
             bonus = 1;
             gunCount = 0;
             gunPaddle = false;
+            bomb = false;
         }
 
         public void LaserBlockCheck(Rectangle laser, int index)
@@ -474,12 +489,13 @@ namespace BrickBreaker
 
             if (gunShot)
             {
-                e.Graphics.FillRectangle(Brushes.Orange, gun);
+                e.Graphics.FillRectangle(capBrush, gun);
+                e.Graphics.DrawRectangle(Pens.Red, gun);
             }
 
             if (gunPaddle)
             {
-                e.Graphics.FillRectangle(Brushes.Orange, paddle.x + paddle.width / 2 - 2, paddle.y, 4, paddle.height);
+                e.Graphics.FillRectangle(capBrush, paddle.x + paddle.width / 2 - gunWidth/2, paddle.y, gunWidth, paddle.height);
             }
 
             if (laser)

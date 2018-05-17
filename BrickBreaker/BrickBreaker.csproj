@@ -135,7 +135,7 @@
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\BBLevels.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

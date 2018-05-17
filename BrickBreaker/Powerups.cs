@@ -29,7 +29,7 @@ namespace BrickBreaker
         {
             int rand = GameScreen.randGen.Next(0, 9);
             capType = GameScreen.powerupNames[rand];
-            //capType = "Multi";
+            //capType = "Gun";
 
             drawColor = GameScreen.powerupColors[rand];
             x = brickPosition.X;
@@ -67,16 +67,15 @@ namespace BrickBreaker
                 y <= paddle.y + paddle.height &&
                 x + CAP_SIZE >= paddle.x &&
                 x <= paddle.x + paddle.width)
-            {
-                GameScreen.removePastPowerups();
-                GameScreen.score += 200;
+            {               
                 if (GameScreen.catchBallShoot)
                 {
                     GameScreen.balls[0].angle = GameScreen.catchDegree;
                     GameScreen.balls[0].setAngle(GameScreen.catchDegree);
-                    GameScreen.catchBall = false;
-                    GameScreen.catchBallShoot = false;
                 }
+
+                GameScreen.capResetPowerup();
+                GameScreen.score += 200 * GameScreen.bonus;
                 paddle.width = GameScreen.paddleStartWidth;
 
                 usePowerUp(ref currentPad);
