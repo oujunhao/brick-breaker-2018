@@ -7,6 +7,8 @@ namespace BrickBreaker
 {
     public class Ball
     {
+        private SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
+
         public int x, y, size;
         public double velocity;
         public Vector vector;
@@ -52,10 +54,9 @@ namespace BrickBreaker
             {
                 if (blockRec.IntersectsWith(ballRec))
                 {
-                    //Ball hits Brick
-                    var brickPlayer = new System.Windows.Media.MediaPlayer();
-                    brickPlayer.Open(new Uri(Application.StartupPath + "/Resources/brick.wav"));
-                    brickPlayer.Play();
+                    //Sound for ballhits Brick
+                    using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall)) ;
+                    BallPlayer.Play();
 
                     if (x <= (block.x + block.width))
                         vector.x = Math.Abs(vector.x);
@@ -82,9 +83,8 @@ namespace BrickBreaker
                 if ((y + size) > paddle.y) //Is the ball below the level of the paddle
                 {
                     //Ball hits paddle
-                    var paddlePlayer = new System.Windows.Media.MediaPlayer();
-                    paddlePlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Paddle.wav"));
-                    paddlePlayer.Play();
+                    using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Paddle));
+                    BallPlayer.Play();
 
                     bool tooMuchRight = true;
                     bool tooMuchLeft = true;
@@ -116,10 +116,8 @@ namespace BrickBreaker
                 vector.Multiply(new Vector(-1, 1));
 
                 //Ball hits wall
-                var wallPlayer = new System.Windows.Media.MediaPlayer();
-                wallPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
-                wallPlayer.Play();
-                wallPlayer.Stop();
+                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall));
+                BallPlayer.Play();
                
             }
 
@@ -131,10 +129,9 @@ namespace BrickBreaker
                 vector.Multiply(new Vector(-1, 1));
 
                 //Ball hits wall
-                var wallPlayer = new System.Windows.Media.MediaPlayer();
-                wallPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
-                wallPlayer.Play();
-               
+                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall));
+                BallPlayer.Play();
+
             }
 
             // Collision with top wall
@@ -144,9 +141,8 @@ namespace BrickBreaker
                 vector.Multiply(new Vector(1, -1));
 
                 //Ball hits wall
-                var wallPlayer = new System.Windows.Media.MediaPlayer();
-                wallPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Wall.wav"));
-                wallPlayer.Play();
+                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall)) ;
+                BallPlayer.Play();
                 
             }
         }

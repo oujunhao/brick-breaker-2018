@@ -13,7 +13,7 @@ namespace BrickBreaker
 {
     public partial class MenuScreen : UserControl
     {
-        private SoundPlayer Player = new SoundPlayer();
+        private SoundPlayer Player = new SoundPlayer(BrickBreaker.Properties.Resources.Level);
 
         public MenuScreen()
         {
@@ -33,15 +33,9 @@ namespace BrickBreaker
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            //Click when player hits play
-            using (SoundPlayer player = new SoundPlayer("C:\\Play.wav"))
+            //Click sound when player hits play
+            using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Play))
             player.Play();
-            //var dingPlayer = new System.Windows.Media.MediaPlayer();
-            //dingPlayer.Open(new Uri(Application.StartupPath + "/Resources.resx/Play.wav"));
-            //dingPlayer.Play();
-
-            //SoundPlayer player = new SoundPlayer(Properties.Resources.Play);
-
 
             // Goes to the game screen
             GameScreen gs = new GameScreen();
@@ -50,7 +44,6 @@ namespace BrickBreaker
             //Background music
             try
             {
-                this.Player.SoundLocation = @"C:\Windows\Media\Level.wav";
                 this.Player.PlayLooping();
             }
             catch (Exception ex)
