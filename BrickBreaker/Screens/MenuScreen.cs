@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using BrickBreaker.Screens;
 
 namespace BrickBreaker
 {
@@ -49,7 +50,7 @@ namespace BrickBreaker
         private void showHighscoreMenu()
         {
             // Goes to the highscores menu
-            Form1 hs = new Form1();
+            HighscoreScreen hs = new HighscoreScreen();
             Form form = this.FindForm();
 
             form.Controls.Add(hs);

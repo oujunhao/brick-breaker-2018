@@ -72,7 +72,8 @@ namespace BrickBreaker
             // Load level
             GetLevels();
             //Scoring
-            Form1.service.startGame();
+             // SERVICE IS THROWING JSON ERROR 
+            //Form1.service.startGame();
             score = 0;
 
             //set life counter
@@ -93,7 +94,7 @@ namespace BrickBreaker
             int paddleX = ((this.Width / 2) - (paddleStartWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleMaxSpeed = 10;
-            int paddleWidth = 10;
+            int paddleWidth = 80;
             int paddleAccel = 3;
             double paddleFriction = 1.2;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
