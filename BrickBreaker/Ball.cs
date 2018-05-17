@@ -65,7 +65,7 @@ namespace BrickBreaker
             if (blockRec.IntersectsWith(ballRec))
             {
 
-                // scoring 
+                // scoring
                 GameScreen.score += 10;
                 //int randCheck = rand.Next(1, 11);
                 //if (randCheck == 1)
@@ -76,22 +76,20 @@ namespace BrickBreaker
 
                 if (GameScreen.bomb)
                 {
-                    /*
-                    foreach (Block block in GameScreen.blocks)
+                    foreach (Block b in GameScreen.levels[GameScreen.currentLevel].blocks)
                     {
-                        if(block.x == b.x + b.width + GameScreen.blockSpacing && block.y == b.y || //Block to the right
-                           block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y || //Block to the left
-                           block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
-                           block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
+                        if(b.x == block.right + GameScreen.blockSpacing && b.y == block.y || //Block to the right
+                           b.x == block.x - block.width - GameScreen.blockSpacing && block.y == b.y || //Block to the left
+                           b.y == block.bottom + GameScreen.blockSpacing && b.x == block.x || //Block below
+                           b.y == block.y - block.height - GameScreen.blockSpacing && b.x == block.x)//Block above
                         {
-                            block.hp--;
+                            b.hp--;
                         }
                     }
-                    */
                     GameScreen.bomb = false;
                     GameScreen.ballBrush.Color = Color.White;
                 }
-              
+
                 if (x <= block.right)
                     vector.x = Math.Abs(vector.x);
 

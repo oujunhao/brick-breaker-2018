@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Xml;
+using System.Threading;
 
 namespace BrickBreaker
 {
@@ -31,10 +32,10 @@ namespace BrickBreaker
         Paddle paddle;
         Ball ball;
         List<Region> capRegions = new List<Region>();
-       // GraphicsPath capShape;
+        // GraphicsPath capShape;
 
-        // list of all blocks
-        public static List<Block> blocks = new List<Block>();
+        public static List<Level> levels = new List<Level>();
+        public static int currentLevel = 0;
 
         //list of all capsules on screen
         public static List<Powerups> powerUps = new List<Powerups>();
@@ -72,7 +73,7 @@ namespace BrickBreaker
             // Load level
             GetLevels();
             //Scoring
-             // SERVICE IS THROWING JSON ERROR 
+             // SERVICE IS THROWING JSON ERROR
             //Form1.service.startGame();
             score = 0;
 
@@ -89,7 +90,6 @@ namespace BrickBreaker
             leftArrowDown = downArrowDown = rightArrowDown = upArrowDown = false;
 
             // setup starting paddle values and create paddle object
-  
             int paddleHeight = 20;
             int paddleX = ((this.Width / 2) - (paddleStartWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
@@ -131,8 +131,8 @@ namespace BrickBreaker
                 case Keys.Left:
                     if (catchBall)
                     {
-                        if(catchDegree < 150)
-                        catchDegree +=5;
+                        if (catchDegree < 150)
+                            catchDegree += 5;
                     }
                     else
                     {
@@ -152,8 +152,8 @@ namespace BrickBreaker
                 case Keys.Right:
                     if (catchBall)
                     {
-                        if(catchDegree > 30)
-                        catchDegree -=5;
+                        if (catchDegree > 30)
+                            catchDegree -= 5;
                     }
                     else
                     {
@@ -168,11 +168,11 @@ namespace BrickBreaker
                     }
                     break;
                 case Keys.Up:
-                    upArrowDown = true;                  
+                    upArrowDown = true;
                     break;
                 case Keys.Space:
                     spaceDown = true;
-                    if(catchBall)
+                    if (catchBall)
                     {
                         //shoot
                         //use deflection physics with current catchDegree
@@ -197,14 +197,14 @@ namespace BrickBreaker
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    if(flipControls)
+                    if (flipControls)
                     {
                         rightArrowDown = false;
                     }
                     else
                     {
                         leftArrowDown = false;
-                    }                   
+                    }
                     break;
                 case Keys.Down:
                     downArrowDown = false;
@@ -283,12 +283,12 @@ namespace BrickBreaker
                 findCatchPoints();
             }
 
-            if(bomb)
+            if (bomb)
             {
-                if(bombFlipCounter == bombFlipFrequency)
+                if (bombFlipCounter == bombFlipFrequency)
                 {
                     bombFlipCounter = 0;
-                    if(ballBrush.Color == Color.White)
+                    if (ballBrush.Color == Color.White)
                     {
                         ballBrush.Color = Color.FromArgb(255, 0, 102);
                     }
@@ -303,8 +303,8 @@ namespace BrickBreaker
                 }
             }
 
-            //Move each capsule and 
-            for(int i = 0; i < powerUps.Count; i++)
+            //Move each capsule and
+            for (int i = 0; i < powerUps.Count; i++)
             {
                 powerUps[i].moveCapsule();
                 powerUps[i].checkCapCollision(ref paddle);
@@ -376,7 +376,7 @@ namespace BrickBreaker
             }
 
             // Draws blocks
-            foreach (Block b in Form1.blocks)
+            foreach (Block b in levels[currentLevel].blocks)
             {
                 //change colour of brush depending on block
                 blockBrush.Color = getBrickColour(b.hp);
@@ -422,29 +422,37 @@ namespace BrickBreaker
         {
             using (XmlReader reader = XmlReader.Create("../../../BBLevels.xml"))
             {
+                int levelIndex = 0;
+                levels.Add(new Level());
+                reader.ReadToFollowing("level");
+
                 while (reader.Read())
                 {
-                    if (reader.NodeType == XmlNodeType.Text)
+                    if (reader.Name != "level")
                     {
-                        Block b = new Block();
+                        if (reader.NodeType == XmlNodeType.Text)
+                        {
+                            Block b = new Block();
 
-                        b.x = Convert.ToInt16(reader.ReadString());
+                            b.x = Convert.ToInt16(reader.ReadString());
 
-                        reader.ReadToNextSibling("y");
-                        b.y = Convert.ToInt16(reader.ReadString());
-                        /*
-                        reader.ReadToNextSibling("hp");
-                        b.hp = Convert.ToInt16(reader.ReadString());
-                        */
-                        b.hp = 1;
+                            reader.ReadToNextSibling("y");
+                            b.y = Convert.ToInt16(reader.ReadString());
 
-                        reader.ReadToNextSibling("colour");
-                        b.colour = Color.FromName(reader.ReadString());
+                            reader.ReadToNextSibling("hp");
+                            b.hp = Convert.ToInt32(reader.ReadString());
 
-                        reader.ReadToNextSibling("power");
-                        b.power = reader.ReadString();
+                            reader.ReadToNextSibling("power");
+                            b.power = reader.ReadString();
 
-                        Form1.blocks.Add(b);
+                            levels[levelIndex].blocks.Add(b);
+                        }
+                    }
+                    else
+                    {
+                        levelIndex++;
+                        levels.Add(new Level());
+                        reader.ReadToFollowing("level");
                     }
                 }
             }
@@ -452,7 +460,7 @@ namespace BrickBreaker
 
         public void BlockCollision()
         {
-            foreach (Block b in Form1.blocks)
+            foreach (Block b in levels[currentLevel].blocks)
             {
                 if (ball.BlockCollision(b))
                 {
@@ -462,17 +470,33 @@ namespace BrickBreaker
                     }
                     else if (b.hp == 0)
                     {
-                        Form1.blocks.Remove(b);
+                        levels[currentLevel].blocks.Remove(b);
+
+                        if (levels[currentLevel].blocks.Count < 1)
+                        {
+                            currentLevel++;
+                            //reset positions of ball and paddle
+                            ball.x = ((this.Width / 2) - 10);
+                            ball.y = (this.Height - paddle.height) - 80;
+                            paddle.x = ((this.Width / 2) - (paddleStartWidth / 2));
+                            paddle.y = (this.Height - 20) - 60;
+                            this.Refresh();
+                            //display new level message
+                            Font f = new Font("Arial", 40, FontStyle.Bold);
+                            SolidBrush p = new SolidBrush(Color.DeepPink);
+                            Graphics a = this.CreateGraphics();
+                            a.DrawString("Level " + (currentLevel + 1), f, p, 300, 240);
+                            Thread.Sleep(2000);
+                            this.Refresh();
+
+                            if (currentLevel == levels.Count - 1)
+                            {
+                                gameTimer.Enabled = false;
+                                OnEnd();
+                            }
+                        }
                         break;
                     }
-
-                    if (Form1.blocks.Count == 0)
-                    {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                    }
-
-                    break;
                 }
             }
         }
