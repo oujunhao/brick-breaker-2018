@@ -15,23 +15,17 @@ namespace BrickBreaker
 {
     public partial class MenuScreen : UserControl
     {
+        //player1 button control keys - DO NOT CHANGE
+        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
+
+        int buttonSelected = 0;
+
         private SoundPlayer Player = new SoundPlayer(BrickBreaker.Properties.Resources.Level);
 
         public MenuScreen()
         {
             InitializeComponent();
             onePlayerButton.ForeColor = Color.White;
-        }
-
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            //Click when player hits exit
-            SoundPlayer player = new SoundPlayer(Properties.Resources.Exit);
-            player.Play();
-            System.Threading.Thread.Sleep(500);
-            this.Player.Stop();
-
-            Application.Exit();
         }
 
         private void playOnePlayerGame()
@@ -88,8 +82,6 @@ namespace BrickBreaker
             setFocusedButton(2);
         }
 
-
-
         private void exitGameButton_Enter(object sender, EventArgs e)
         {
             setFocusedButton(3);
@@ -99,22 +91,19 @@ namespace BrickBreaker
         private void setFocusedButton(int buttonIndex)
         {
             buttonSelected = buttonIndex;
+            resetAllLabelColours();
             switch (buttonIndex)
             {
                 case 0:
-                    resetAllLabelColours();
                     onePlayerButton.ForeColor = Color.White;
                     break;
                 case 1:
-                    resetAllLabelColours();
                     twoPlayerButton.ForeColor = Color.White;
                     break;
                 case 2:
-                    resetAllLabelColours();
                     highscoresButton.ForeColor = Color.White;
                     break;
                 case 3:
-                    resetAllLabelColours();
                     exitGameButton.ForeColor = Color.White;
                     break;
             }

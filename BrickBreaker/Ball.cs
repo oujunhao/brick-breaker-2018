@@ -7,8 +7,8 @@ namespace BrickBreaker
 {
     public class Ball
     {
-        private SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
-
+        SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
+        SoundPlayer WallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Wall);
         public int x, y, size;
         public double velocity;
         public Vector vector;
@@ -71,7 +71,7 @@ namespace BrickBreaker
             Rectangle blockRec = new Rectangle(block.x, block.y, block.width, block.height);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
-                //make a boolean and nmake it track directions
+            //make a boolean and nmake it track directions
 
             if (blockRec.IntersectsWith(ballRec))
             {
@@ -88,7 +88,7 @@ namespace BrickBreaker
                 {
                     foreach (Block b in GameScreen.levels[GameScreen.currentLevel].blocks)
                     {
-                        if(b.x == block.right + GameScreen.blockSpacing && b.y == block.y || //Block to the right
+                        if (b.x == block.right + GameScreen.blockSpacing && b.y == block.y || //Block to the right
                            b.x == block.x - block.width - GameScreen.blockSpacing && block.y == b.y || //Block to the left
                            b.y == block.bottom + GameScreen.blockSpacing && b.x == block.x || //Block below
                            b.y == block.y - block.height - GameScreen.blockSpacing && b.x == block.x)//Block above
@@ -99,8 +99,8 @@ namespace BrickBreaker
                     GameScreen.bomb = false;
                     GameScreen.ballBrush.Color = Color.White;
                 }
-                    //Sound for ballhits Brick
-                    BallPlayer.Play();
+                //Sound for ballhits Brick
+                BallPlayer.Play();
 
                 bool comingFromBelow = vector.y < 0;
                 bool comingFromRight = vector.x < 0;
@@ -135,7 +135,7 @@ namespace BrickBreaker
 
             if (ballRec.IntersectsWith(paddleRec))
             {
-                if(GameScreen.catchBall)
+                if (GameScreen.catchBall)
                 {
                     //ball x vector = 0
                     //ball y vector = 0
@@ -148,17 +148,18 @@ namespace BrickBreaker
                     //Ball hits paddle
                     BallPlayer.Play();
 
-                if (this.bottom >= paddle.y) //Is the ball below the level of the paddle
+                    if (this.bottom >= paddle.y) //Is the ball below the level of the paddle
 
-                {
-                    bool tooMuchRight = x > paddle.right;
-                    bool tooMuchLeft = this.right < paddle.x;
-
-                    if (!tooMuchLeft && !tooMuchRight)
                     {
-                        int offset = (x - (size / 2)) - paddle.x;
-                        int angle = Map(offset, 110, 30, paddle.width);
-                        setAngle(angle);
+                        bool tooMuchRight = x > paddle.right;
+                        bool tooMuchLeft = this.right < paddle.x;
+
+                        if (!tooMuchLeft && !tooMuchRight)
+                        {
+                            int offset = (x - (size / 2)) - paddle.x;
+                            int angle = Map(offset, 110, 30, paddle.width);
+                            setAngle(angle);
+                        }
                     }
                 }
             }
@@ -171,11 +172,10 @@ namespace BrickBreaker
             if (x <= 0)
             {
                 x = Math.Abs(0 - x);
-                vector.Multiply(new Vector(-1, 1));
+                vector.x *= -1;
 
                 //Ball hits wall
-                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall));
-                BallPlayer.Play();
+                WallPlayer.Play();
 
             }
 
@@ -184,11 +184,10 @@ namespace BrickBreaker
             if (x >= rightBound)
             {
                 x = Math.Abs(rightBound - (x - rightBound));
-                vector.Multiply(new Vector(-1, 1));
+                vector.x *= -1;
 
                 //Ball hits wall
-                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall));
-                BallPlayer.Play();
+                WallPlayer.Play();
 
             }
 
@@ -199,8 +198,7 @@ namespace BrickBreaker
                 vector.Multiply(new Vector(1, -1));
 
                 //Ball hits wall
-                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall)) ;
-                BallPlayer.Play();
+                WallPlayer.Play();
 
             }
         }

@@ -23,6 +23,9 @@ namespace BrickBreaker
         public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
         public static bool flipControls, catchBall, bomb;
 
+        //sounds
+        SoundPlayer BlockPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Brick);
+
         // Scoring
         public static int score;
         // Game values
@@ -469,6 +472,7 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
+                    BlockPlayer.Play();
                     if (b.hp > 0)
                     {
                         b.hp--;
