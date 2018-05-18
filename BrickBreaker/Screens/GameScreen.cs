@@ -497,7 +497,7 @@ namespace BrickBreaker
                         break;
                     }
 
-                    if (Form1.blocks.Count == 0)
+                    if (levels[currentLevel].blocks.Count == 0)
                     {
                         gameTimer.Enabled = false;
                         OnEnd();
