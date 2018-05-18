@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Media;
 
 namespace BrickBreaker
 {
     public class Ball
     {
-        public int x, y, size;
+        SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
+        SoundPlayer WallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Wall);
+        public int x, y, size, angle;
         public double velocity;
         public Vector vector;
         public Color colour;
         public int bound = 60;
 
-        public const int angleMultiplier = 5;
+        const int angleMultiplier = 5;
 
         public Ball(int _x, int _y, double _velocity, int _ballSize)
         {
@@ -21,7 +24,6 @@ namespace BrickBreaker
             velocity = _velocity;
             size = _ballSize;
             vector = new Vector(Math.Cos(DegtoRad(30)), -Math.Sin(DegtoRad(30)));
-
         }
 
         public int right
@@ -37,6 +39,11 @@ namespace BrickBreaker
             {
                 return y + size;
             }
+        }
+
+        public void setAngle(int catchAngle)
+        {
+            vector = new Vector(Math.Cos(DegtoRad(catchAngle)), -Math.Sin(DegtoRad(catchAngle)));
         }
 
         public void Update(Paddle paddle, UserControl UC)
@@ -64,47 +71,59 @@ namespace BrickBreaker
 
             if (blockRec.IntersectsWith(ballRec))
             {
+                // scoring
+                GameScreen.score += 10;
+                Random rand = new Random();
                 //int randCheck = rand.Next(1, 11);
-                //if (randCheck == 1)
+                //if (randCheck == 1 && block.hp != 100)
                 //{
-                Powerups newPowerUp = new Powerups(ballRec);
-                GameScreen.powerUps.Add(newPowerUp);
-                //}
+                    Powerups newPowerUp = new Powerups(ballRec);
+                    GameScreen.powerUps.Add(newPowerUp);
+               // }
 
                 if (GameScreen.bomb)
                 {
-                    foreach (Block b in GameScreen.blocks)
+                    foreach (Block b in GameScreen.levels[GameScreen.currentLevel].blocks)
                     {
-                        if(b.x == block.x + block.width + GameScreen.blockSpacing && b.y == block.y || //Block to the right
-                           b.x == block.x - block.width - GameScreen.blockSpacing && b.y == block.y || //Block to the left
-                           b.y == block.y + block.height + GameScreen.blockSpacing && b.x == block.x || //Block below
-                           b.y == block.y - block.height - GameScreen.blockSpacing && b.x == block.x)//Block above
+                        if (block.x == b.x + b.width + GameScreen.blockSpacing && block.y == b.y || //Block to the right
+                           block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y)// || //Block to the left
+                           //block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
+                           //block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
                         {
                             b.hp--;
                         }
                     }
+                    block.hp = 0;
                     GameScreen.bomb = false;
                     GameScreen.ballBrush.Color = Color.White;
                 }
-              
-                if (x <= block.right)
+                //Sound for ballhits Brick
+                BallPlayer.Play();
+
+                bool comingFromBelow = vector.y < 0;
+                bool comingFromRight = vector.x < 0;
+
+                if (x <= block.right && comingFromRight)
+                {
                     vector.x = Math.Abs(vector.x);
-
-                if (this.right >= block.x)
+                }
+                else if (this.right >= block.x && !comingFromRight)
+                {
                     vector.x = -Math.Abs(vector.x);
-
-                if (y <= block.bottom)
+                }
+                if (y <= block.bottom && comingFromBelow)
+                {
                     vector.y *= -1;
-                // Test which vector(s) we need to flip
-                bool flipX = (this.right >= block.x || this.x <= block.right);
-                bool flipY = (this.y <= block.bottom || this.bottom >= block.y);
-
-                //if (flipX)
-                //    vector.x *= -1;
-                //else if (flipY)
-                //    vector.y *= -1;
+                    vector.x *= -1;
+                }
+                if (this.y >= block.y && !comingFromBelow)
+                {
+                    vector.y = Math.Abs(vector.y);
+                    vector.x *= -1;
+                }
+                return true;
             }
-            return blockRec.IntersectsWith(ballRec);
+            return false;
         }
 
         public void PaddleCollision(Paddle paddle)
@@ -114,25 +133,35 @@ namespace BrickBreaker
 
             if (ballRec.IntersectsWith(paddleRec))
             {
-                if(GameScreen.catchBall)
+                if (GameScreen.catchBall)
                 {
-                    //ball x vector = 0
-                    //ball y vector = 0
-                    //GameScreen.catchPaddlePoint.X = x + size / 2;
-                    //GameScreen.catchPaddlePoint.Y = y + size / 2;
+                    vector.x = 0;
+                    vector.y = 0;
+                    GameScreen.balls[0].y = paddle.y - GameScreen.balls[0].size;
+                    GameScreen.catchBallShoot = true;
+                    GameScreen.catchPaddlePoint.X = x + size / 2;
+                    GameScreen.catchPaddlePoint.Y = y + size / 2;
+
+                    paddle.velocity = 0;
                 }
 
-                if (this.bottom >= paddle.y) //Is the ball below the level of the paddle
-
+                if (this.bottom > paddle.y) //Is the ball below the level of the paddle
                 {
-                    bool tooMuchRight = (x > paddle.right);
-                    bool tooMuchLeft = (this.right < paddle.x);
+                    //Ball hits paddle
+                    BallPlayer.Play();
 
-                    if (!tooMuchLeft && !tooMuchRight)
+                    if (this.bottom >= paddle.y) //Is the ball below the level of the paddle
+
                     {
-                        int offset = (x - (size / 2)) - paddle.x;
-                        int angle = Map(offset, 110, 30, paddle.width);
-                        vector = new Vector(Math.Cos(DegtoRad(angle)), -Math.Sin(DegtoRad(angle)));
+                        bool tooMuchRight = x > paddle.right;
+                        bool tooMuchLeft = this.right < paddle.x;
+
+                        if (!tooMuchLeft && !tooMuchRight)
+                        {
+                            int offset = (x - (size / 2)) - paddle.x;
+                            angle = Map(offset, 110, 30, paddle.width);
+                            setAngle(angle);
+                        }
                     }
                 }
             }
@@ -140,11 +169,16 @@ namespace BrickBreaker
 
         public void WallCollision(UserControl UC)
         {
+
             // Collision with left wall
             if (x <= 0)
             {
                 x = Math.Abs(0 - x);
-                vector.Multiply(new Vector(-1, 1));
+                vector.x *= -1;
+
+                //Ball hits wall
+                WallPlayer.Play();
+
             }
 
             // Collision with right wall
@@ -152,7 +186,11 @@ namespace BrickBreaker
             if (x >= rightBound)
             {
                 x = Math.Abs(rightBound - (x - rightBound));
-                vector.Multiply(new Vector(-1, 1));
+                vector.x *= -1;
+
+                //Ball hits wall
+                WallPlayer.Play();
+
             }
 
             // Collision with top wall
@@ -160,6 +198,10 @@ namespace BrickBreaker
             {
                 y = Math.Abs(0 - y);
                 vector.Multiply(new Vector(1, -1));
+
+                //Ball hits wall
+                WallPlayer.Play();
+
             }
         }
 

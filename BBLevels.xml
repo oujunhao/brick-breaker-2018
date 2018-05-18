@@ -10,70 +10,70 @@
       <power>false</power>
     </brick>
     <brick>
-      <x>67</x>
+      <x>83</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>124</x>
+      <x>156</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>238</x>
+      <x>229</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>295</x>
+      <x>302</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>352</x>
+      <x>375</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>409</x>
+      <x>448</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>523</x>
+      <x>521</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>580</x>
+      <x>592</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>637</x>
+      <x>665</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
       <power>false</power>
     </brick>
     <brick>
-      <x>694</x>
+      <x>738</x>
       <y>10</y>
       <hp>1</hp>
       <colour>43,134,194</colour>
@@ -698,7 +698,7 @@
   </level>
  <!-- LEVEL FIVE -->
    <level>
-    
+
   </level>
 </game>
 
