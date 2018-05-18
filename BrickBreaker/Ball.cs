@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Media;
 
 namespace BrickBreaker
 {
     public class Ball
     {
+        private SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
+
         public int x, y, size;
         public double velocity;
         public Vector vector;
@@ -96,6 +99,8 @@ namespace BrickBreaker
                     GameScreen.bomb = false;
                     GameScreen.ballBrush.Color = Color.White;
                 }
+                    //Sound for ballhits Brick
+                    BallPlayer.Play();
 
                 bool comingFromBelow = vector.y < 0;
                 bool comingFromRight = vector.x < 0;
@@ -138,11 +143,16 @@ namespace BrickBreaker
                     //GameScreen.catchPaddlePoint.Y = y + size / 2;
                 }
 
+                if (this.bottom > paddle.y) //Is the ball below the level of the paddle
+                {
+                    //Ball hits paddle
+                    BallPlayer.Play();
+
                 if (this.bottom >= paddle.y) //Is the ball below the level of the paddle
 
                 {
-                    bool tooMuchRight = (x > paddle.right);
-                    bool tooMuchLeft = (this.right < paddle.x);
+                    bool tooMuchRight = x > paddle.right;
+                    bool tooMuchLeft = this.right < paddle.x;
 
                     if (!tooMuchLeft && !tooMuchRight)
                     {
@@ -156,11 +166,17 @@ namespace BrickBreaker
 
         public void WallCollision(UserControl UC)
         {
+
             // Collision with left wall
             if (x <= 0)
             {
                 x = Math.Abs(0 - x);
                 vector.Multiply(new Vector(-1, 1));
+
+                //Ball hits wall
+                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall));
+                BallPlayer.Play();
+
             }
 
             // Collision with right wall
@@ -169,6 +185,11 @@ namespace BrickBreaker
             {
                 x = Math.Abs(rightBound - (x - rightBound));
                 vector.Multiply(new Vector(-1, 1));
+
+                //Ball hits wall
+                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall));
+                BallPlayer.Play();
+
             }
 
             // Collision with top wall
@@ -176,6 +197,11 @@ namespace BrickBreaker
             {
                 y = Math.Abs(0 - y);
                 vector.Multiply(new Vector(1, -1));
+
+                //Ball hits wall
+                using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Wall)) ;
+                BallPlayer.Play();
+
             }
         }
 

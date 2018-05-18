@@ -12,6 +12,7 @@ using System.Media;
 using System.Xml;
 using System.Threading;
 
+
 namespace BrickBreaker
 {
     public partial class GameScreen : UserControl
@@ -353,6 +354,11 @@ namespace BrickBreaker
             // End scoring
            //Form1.service.endGame(score);
 
+
+            //Game end sound
+            var endPlayer = new System.Windows.Media.MediaPlayer();
+            endPlayer.Open(new Uri(Application.StartupPath + "/Resources/End.wav"));
+            endPlayer.Play();
 
             // Goes to the game over screen
             Form form = this.FindForm();

@@ -9,16 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using BrickBreaker.Screens;
+using System.Media;
 
 namespace BrickBreaker
 {
     public partial class MenuScreen : UserControl
     {
-
-        //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
-
-        int buttonSelected = 0;
+        private SoundPlayer Player = new SoundPlayer(BrickBreaker.Properties.Resources.Level);
 
         public MenuScreen()
         {
@@ -28,18 +25,34 @@ namespace BrickBreaker
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            Rectangle rc = new Rectangle(0, 0, this.ClientSize.Width, this.ClientSize.Height);
-            using (LinearGradientBrush brush = new LinearGradientBrush(rc, Color.FromArgb(255, 55, 64, 105), Color.FromArgb(255, 32, 14, 48), 90F))
-            {
-                e.Graphics.FillRectangle(brush, rc);
-            }
+            //Click when player hits exit
+            SoundPlayer player = new SoundPlayer(Properties.Resources.Exit);
+            player.Play();
+            System.Threading.Thread.Sleep(500);
+            this.Player.Stop();
+
+            Application.Exit();
         }
 
         private void playOnePlayerGame()
         {
+            //Click sound when player hits play
+            using (SoundPlayer player = new SoundPlayer(BrickBreaker.Properties.Resources.Play))
+            player.Play();
+
             // Goes to the game screen
             GameScreen gs = new GameScreen();
             Form form = this.FindForm();
+
+            //Background music
+            try
+            {
+                this.Player.PlayLooping();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error playing sound");
+            }
 
             form.Controls.Add(gs);
             form.Controls.Remove(this);
