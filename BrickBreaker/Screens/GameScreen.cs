@@ -105,7 +105,7 @@ namespace BrickBreaker
             // Load level
             GetLevels();
             //Scoring
-             // SERVICE IS THROWING JSON ERROR
+            // SERVICE IS THROWING JSON ERROR
             //Form1.service.startGame();
             score = 0;
 
@@ -171,7 +171,7 @@ namespace BrickBreaker
                     if (catchBallShoot)
                     {
                         if (catchDegree < 150)
-                            catchDegree += 24;
+                            catchDegree += 10;
                     }
                     else
                     {
@@ -192,7 +192,7 @@ namespace BrickBreaker
                     if (catchBallShoot)
                     {
                         if (catchDegree > 30)
-                            catchDegree -= 24;
+                            catchDegree -= 10;
                     }
                     else
                     {
@@ -252,7 +252,7 @@ namespace BrickBreaker
 
         public void setGun()
         {
-            gun = new Rectangle(paddle.x + paddle.width / 2 - gunWidth/2, paddle.y, gunWidth, gunHeight);
+            gun = new Rectangle(paddle.x + paddle.width / 2 - gunWidth / 2, paddle.y, gunWidth, gunHeight);
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
@@ -315,7 +315,7 @@ namespace BrickBreaker
                 paddle.WallCollision(this);
             }
 
-            for(int i = 0; i < balls.Count(); i++)
+            for (int i = 0; i < balls.Count(); i++)
             {
                 // Moves ball
                 balls[i].Update(paddle, this);
@@ -368,14 +368,13 @@ namespace BrickBreaker
 
             if (gunShot)
             {
-                for (int i = 0; i < levels[currentLevel].blocks.Count(); i++)
+                foreach (Block b in levels[currentLevel].blocks.Reverse<Block>())
                 {
-                    Rectangle block = new Rectangle(levels[currentLevel].blocks[i].x, levels[currentLevel].blocks[i].y,
-                        levels[currentLevel].blocks[i].width, levels[currentLevel].blocks[i].height);
+                    Rectangle block = new Rectangle(b.x, b.y, b.width, b.height);
 
                     if (gun.IntersectsWith(block))
                     {
-                        levels[currentLevel].blocks.RemoveAt(i);
+                        DestroyBlock(b);
                         setGun();
                         gunShot = false;
                     }
@@ -392,9 +391,6 @@ namespace BrickBreaker
                     gun = new Rectangle(gun.X, gun.Y - 8, gunWidth, gunHeight);
                 }
             }
-
-            //Removes all blocks from the block list with an hp of 0 after laser
-            levels[currentLevel].blocks.RemoveAll(b => b.hp == 0);
 
             if (bomb)
             {
@@ -433,6 +429,11 @@ namespace BrickBreaker
             Refresh();
         }
 
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public static void capResetPowerup()
         {
             catchBall = false;
@@ -460,12 +461,14 @@ namespace BrickBreaker
 
         public void LaserBlockCheck(Rectangle laser, int index)
         {
-            foreach (Block b in levels[currentLevel].blocks)
+            foreach (Block b in levels[currentLevel].blocks.Reverse<Block>())
             {
                 if (laser.X >= b.x && laser.X <= b.x + b.width
                     && laser.Y <= b.y + b.height && b.hp != 100)
                 {
                     b.hp -= 1;
+                    UpdateBlockColors(b);
+                    if (b.hp <= 0) DestroyBlock(b);
                     score += 50 * bonus;
                     lasers.RemoveAt(index);
                     break;
@@ -478,7 +481,7 @@ namespace BrickBreaker
         public void OnEnd()
         {
             // End scoring
-           //Form1.service.endGame(score);
+            //Form1.service.endGame(score);
 
 
             //Game end sound
@@ -517,7 +520,7 @@ namespace BrickBreaker
 
             if (gunPaddle)
             {
-                e.Graphics.FillRectangle(capBrush, paddle.x + paddle.width / 2 - gunWidth/2, paddle.y, gunWidth, paddle.height);
+                e.Graphics.FillRectangle(capBrush, paddle.x + paddle.width / 2 - gunWidth / 2, paddle.y, gunWidth, paddle.height);
             }
 
             if (laser)
@@ -574,6 +577,7 @@ namespace BrickBreaker
                     return Color.FromArgb(255, 255, 255, 255);
             }
         }
+
         public void GetLevels()
         {
             using (XmlReader reader = XmlReader.Create("Resources/BBLevels.xml"))
@@ -603,12 +607,6 @@ namespace BrickBreaker
 
                             levels[levelIndex].blocks.Add(b);
                         }
-                    else if (reader.NodeType == XmlNodeType.EndElement)
-                    {
-                        if (reader.Name == "level")
-                        {
-                            reader.Close();
-                        }
                     }
                     else
                     {
@@ -633,7 +631,7 @@ namespace BrickBreaker
 
         public void BlockCollision(Ball ball)
         {
-            foreach (Block b in levels[currentLevel].blocks)
+            foreach (Block b in levels[currentLevel].blocks.Reverse<Block>())
             {
                 if (ball.BlockCollision(b))
                 {
@@ -645,41 +643,40 @@ namespace BrickBreaker
                     }
                     if (b.hp <= 0)
                     {
-                        levels[currentLevel].blocks.Remove(b);
-
-                        if (levels[currentLevel].blocks.Count < 1)
-                        {
-                            currentLevel++;
-                            //reset positions of ball and paddle
-                            ball.x = ((this.Width / 2) - 10);
-                            ball.y = (this.Height - paddle.height) - 80;
-                            paddle.x = ((this.Width / 2) - (paddleStartWidth / 2));
-                            paddle.y = (this.Height - 20) - 60;
-                            this.Refresh();
-                            //display new level message
-                            Font f = new Font("Arial", 40, FontStyle.Bold);
-                            SolidBrush p = new SolidBrush(Color.DeepPink);
-                            Graphics a = this.CreateGraphics();
-                            a.DrawString("Level " + (currentLevel + 1), f, p, 300, 240);
-                            Thread.Sleep(2000);
-                            this.Refresh();
-
-                            if (currentLevel == levels.Count - 1)
-                            {
-                                gameTimer.Enabled = false;
-                                OnEnd();
-                            }
-                        }
+                        DestroyBlock(b);
                         score += 100 * bonus;
-                        break;
                     }
+                }
+            }
+        }
+        public void DestroyBlock(Block block)
+        {
+            levels[currentLevel].blocks.Remove(block);
+            if (levels[currentLevel].blocks.Count < 1)
+            {
+                currentLevel++;
+                //reset positions of ball and paddle
+                balls[0].x = ((this.Width / 2) - 10);
+                balls[0].y = (this.Height - paddle.height) - 80;
+                paddle.x = ((this.Width / 2) - (paddleStartWidth / 2));
+                paddle.y = (this.Height - 20) - 60;
+                this.Refresh();
+                //display new level message
+                Font f = new Font("Arial", 40, FontStyle.Bold);
+                SolidBrush p = new SolidBrush(Color.DeepPink);
+                Graphics a = this.CreateGraphics();
+                a.DrawString("Level " + (currentLevel + 1), f, p, 300, 240);
+                Thread.Sleep(2000);
+                balls[0].velocity = 0;
+                catchPaddlePoint = new PointF(balls[0].x + balls[0].size / 2, balls[0].y + balls[0].size / 2);
+                catchBallShoot = true;
+                startShoot = true;
+                this.Refresh();
 
-                    if (levels[currentLevel].blocks.Count == 0)
-                    {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                    }
-                    break;
+                if (currentLevel == levels.Count - 1)
+                {
+                    gameTimer.Enabled = false;
+                    OnEnd();
                 }
             }
         }

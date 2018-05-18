@@ -39,7 +39,7 @@
             // 
             this.titleBox.BackColor = System.Drawing.Color.Transparent;
             this.titleBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titleBox.Image = global::BrickBreaker.Properties.Resources.HighScoresfinal;
+            //this.titleBox.Image = global::BrickBreaker.Properties.Resources.HighScoresfinal;
             this.titleBox.Location = new System.Drawing.Point(0, 0);
             this.titleBox.Name = "titleBox";
             this.titleBox.Size = new System.Drawing.Size(798, 110);

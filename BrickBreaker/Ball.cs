@@ -15,7 +15,7 @@ namespace BrickBreaker
         public Color colour;
         public int bound = 60;
 
-        public const int angleMultiplier = 5;
+        const int angleMultiplier = 5;
 
         public Ball(int _x, int _y, double _velocity, int _ballSize)
         {
@@ -69,8 +69,6 @@ namespace BrickBreaker
             Rectangle blockRec = new Rectangle(block.x, block.y, block.width, block.height);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
-            //make a boolean and nmake it track directions
-
             if (blockRec.IntersectsWith(ballRec))
             {
                 // scoring
@@ -118,7 +116,7 @@ namespace BrickBreaker
                     vector.y *= -1;
                     vector.x *= -1;
                 }
-                if (y >= block.y && !comingFromBelow)
+                if (this.y >= block.y && !comingFromBelow)
                 {
                     vector.y = Math.Abs(vector.y);
                     vector.x *= -1;
