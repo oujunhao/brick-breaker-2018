@@ -128,6 +128,7 @@ namespace BrickBreaker
             int paddleMaxSpeed = 10;
             int paddleWidth = 80;
             int paddleAccel = 3;
+            int paddleWidth = 80;
             double paddleFriction = 1.2;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
 
