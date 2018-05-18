@@ -9,14 +9,14 @@ namespace BrickBreaker
 {
     public class Powerups
     {
-        //Constants
-        Random randGen = new Random();
-        const int LONG_PADDLE_GAIN = 20, CAP_SPEED = 1;
-        public int CAP_HEIGHT = 30, CAP_WIDTH = 60;
+        //Constants        
+        const int LONG_PADDLE_GAIN = 50, CAP_SPEED = 1;
+        public int CAP_SIZE = 30;
 
         //Varriables
         public string capType;
         public int x = 0, y = 0;
+        public Color drawColor;
 
         //Paddle sent from the game screen
         Paddle paddle;
@@ -27,11 +27,13 @@ namespace BrickBreaker
         /// <param name="brickPosition">Spawns the capsule at the position of the brick</param>
         public Powerups(Rectangle brickPosition)
         {
-            capType = GameScreen.powerupNames[randGen.Next(0, 9)];
-            //capType = "Bomb";
+            int rand = GameScreen.randGen.Next(0, 9);
+            capType = GameScreen.powerupNames[rand];
+            //capType = "Gun";
 
+            drawColor = GameScreen.powerupColors[rand];
             x = brickPosition.X;
-            y = brickPosition.Y;        
+            y = brickPosition.Y;
         }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace BrickBreaker
         /// </summary>
         public void checkCapOffScreen()
         {
-            if(y + CAP_HEIGHT == GameScreen.screenHeight)
+            if(y + CAP_SIZE == GameScreen.screenHeight)
             {
                 resetPowerupsList();
             }
@@ -61,12 +63,19 @@ namespace BrickBreaker
         {
             paddle = currentPad;
 
-            if(y + CAP_HEIGHT >= paddle.y &&
+            if(y + CAP_SIZE >= paddle.y &&
                 y <= paddle.y + paddle.height &&
-                x + CAP_WIDTH >= paddle.x &&
+                x + CAP_SIZE >= paddle.x &&
                 x <= paddle.x + paddle.width)
-            {
-                GameScreen.removePastPowerups();
+            {               
+                if (GameScreen.catchBallShoot)
+                {
+                    GameScreen.balls[0].angle = GameScreen.catchDegree;
+                    GameScreen.balls[0].setAngle(GameScreen.catchDegree);
+                }
+
+                GameScreen.capResetPowerup();
+                GameScreen.score += 200 * GameScreen.bonus;
                 paddle.width = GameScreen.paddleStartWidth;
 
                 usePowerUp(ref currentPad);
@@ -130,7 +139,7 @@ namespace BrickBreaker
                     Laser();
                     break;
                 case "Gun":
-                    Laser();
+                    Gun();
                     break;
                 case "Multi":
                     Multi();
@@ -196,17 +205,28 @@ namespace BrickBreaker
 
         public void Laser()
         {
-
+            GameScreen.laser = true;
         }
 
         public void Gun()
         {
-
+            GameScreen.gunPaddle = true;
         }
 
         public void Multi()
         {
+            Ball b1 = new Ball(GameScreen.balls[0].x, GameScreen.balls[0].y, GameScreen.balls[0].velocity, GameScreen.balls[0].size);
+            Ball b2 = new Ball(GameScreen.balls[0].x, GameScreen.balls[0].y, GameScreen.balls[0].velocity, GameScreen.balls[0].size);
+            Ball b3 = new Ball(GameScreen.balls[0].x, GameScreen.balls[0].y, GameScreen.balls[0].velocity, GameScreen.balls[0].size);
 
+            b1.vector.x *= -1;
+            b2.vector.y *= -1;
+            b3.vector.x *= -1;
+            b3.vector.y *= -1;
+
+            GameScreen.balls.Add(b1);
+            GameScreen.balls.Add(b2);
+            GameScreen.balls.Add(b3);
         }
     }
 }
