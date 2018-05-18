@@ -42,7 +42,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(13)))), ((int)(((byte)(48)))));
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "GameScreen";

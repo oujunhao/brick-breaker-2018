@@ -9,7 +9,7 @@ namespace BrickBreaker
     {
         SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
         SoundPlayer WallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Wall);
-        public int x, y, size;
+        public int x, y, size, angle;
         public double velocity;
         public Vector vector;
         public Color colour;
@@ -24,13 +24,6 @@ namespace BrickBreaker
             velocity = _velocity;
             size = _ballSize;
             vector = new Vector(Math.Cos(DegtoRad(30)), -Math.Sin(DegtoRad(30)));
-
-        }
-
-        public void setAngle(int newAngle)
-        {
-            vector = new Vector(Math.Cos(DegtoRad(newAngle)), -Math.Sin(DegtoRad(newAngle)));
-
         }
 
         public int right
@@ -46,6 +39,11 @@ namespace BrickBreaker
             {
                 return y + size;
             }
+        }
+
+        public void setAngle(int catchAngle)
+        {
+            vector = new Vector(Math.Cos(DegtoRad(catchAngle)), -Math.Sin(DegtoRad(catchAngle)));
         }
 
         public void Update(Paddle paddle, UserControl UC)
@@ -77,25 +75,27 @@ namespace BrickBreaker
             {
                 // scoring
                 GameScreen.score += 10;
+                Random rand = new Random();
                 //int randCheck = rand.Next(1, 11);
-                //if (randCheck == 1)
+                //if (randCheck == 1 && block.hp != 100)
                 //{
-                Powerups newPowerUp = new Powerups(ballRec);
-                GameScreen.powerUps.Add(newPowerUp);
-                //}
+                    Powerups newPowerUp = new Powerups(ballRec);
+                    GameScreen.powerUps.Add(newPowerUp);
+               // }
 
                 if (GameScreen.bomb)
                 {
                     foreach (Block b in GameScreen.levels[GameScreen.currentLevel].blocks)
                     {
-                        if (b.x == block.right + GameScreen.blockSpacing && b.y == block.y || //Block to the right
-                           b.x == block.x - block.width - GameScreen.blockSpacing && block.y == b.y || //Block to the left
-                           b.y == block.bottom + GameScreen.blockSpacing && b.x == block.x || //Block below
-                           b.y == block.y - block.height - GameScreen.blockSpacing && b.x == block.x)//Block above
+                        if (block.x == b.x + b.width + GameScreen.blockSpacing && block.y == b.y || //Block to the right
+                           block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y)// || //Block to the left
+                           //block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
+                           //block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
                         {
                             b.hp--;
                         }
                     }
+                    block.hp = 0;
                     GameScreen.bomb = false;
                     GameScreen.ballBrush.Color = Color.White;
                 }
@@ -137,10 +137,14 @@ namespace BrickBreaker
             {
                 if (GameScreen.catchBall)
                 {
-                    //ball x vector = 0
-                    //ball y vector = 0
-                    //GameScreen.catchPaddlePoint.X = x + size / 2;
-                    //GameScreen.catchPaddlePoint.Y = y + size / 2;
+                    vector.x = 0;
+                    vector.y = 0;
+                    GameScreen.balls[0].y = paddle.y - GameScreen.balls[0].size;
+                    GameScreen.catchBallShoot = true;
+                    GameScreen.catchPaddlePoint.X = x + size / 2;
+                    GameScreen.catchPaddlePoint.Y = y + size / 2;
+
+                    paddle.velocity = 0;
                 }
 
                 if (this.bottom > paddle.y) //Is the ball below the level of the paddle
@@ -157,7 +161,7 @@ namespace BrickBreaker
                         if (!tooMuchLeft && !tooMuchRight)
                         {
                             int offset = (x - (size / 2)) - paddle.x;
-                            int angle = Map(offset, 110, 30, paddle.width);
+                            angle = Map(offset, 110, 30, paddle.width);
                             setAngle(angle);
                         }
                     }

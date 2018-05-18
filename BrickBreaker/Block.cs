@@ -12,9 +12,10 @@ namespace BrickBreaker
         public int width = 70;
         public int height = 25;
 
-        public Color colour;
+        public Color colour, outlineColor;
 
-        public int x, y, hp;
+        public int x, y;
+        public double hp;
         public string power;
 
         public Block()
