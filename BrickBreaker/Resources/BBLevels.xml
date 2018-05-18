@@ -222,7 +222,7 @@
     <brick>
       <x>302</x>
       <y>10</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>302</x>
@@ -232,32 +232,32 @@
     <brick>
       <x>302</x>
       <y>60</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>302</x>
       <y>85</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>448</x>
       <y>10</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>448</x>
       <y>35</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>448</x>
       <y>60</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>448</x>
       <y>85</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <!-- invulnerable bricks -->
     <brick>
@@ -372,52 +372,52 @@
     <brick>
       <x>0</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x></x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>90</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>160</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>230</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>521</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>591</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>661</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>731</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <brick>
       <x>801</x>
       <y>120</y>
-      <hp>100</hp>
+      <hp>5</hp>
     </brick>
     <!-- invulnerable bricks END-->
     <brick>
