@@ -9,6 +9,8 @@ namespace BrickBreaker
     {
         SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
         SoundPlayer WallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Wall);
+        SoundPlayer PaddlePlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Paddle);
+
         public int x, y, size, angle;
         public double velocity;
         public Vector vector;
@@ -135,6 +137,9 @@ namespace BrickBreaker
             {
                 if (GameScreen.catchBall)
                 {
+                    //Ball hits paddle
+                    PaddlePlayer.Play();
+
                     vector.x = 0;
                     vector.y = 0;
                     GameScreen.balls[0].y = paddle.y - GameScreen.balls[0].size;
@@ -148,7 +153,7 @@ namespace BrickBreaker
                 if (this.bottom > paddle.y) //Is the ball below the level of the paddle
                 {
                     //Ball hits paddle
-                    BallPlayer.Play();
+                    PaddlePlayer.Play();
 
                     if (this.bottom >= paddle.y) //Is the ball below the level of the paddle
 

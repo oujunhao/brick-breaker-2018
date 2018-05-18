@@ -17,6 +17,7 @@ namespace BrickBreaker
 {
     public partial class GameScreen : UserControl
     {
+        SoundPlayer LaserPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Laser);
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
@@ -128,7 +129,6 @@ namespace BrickBreaker
             int paddleMaxSpeed = 10;
             int paddleWidth = 80;
             int paddleAccel = 3;
-            int paddleWidth = 80;
             double paddleFriction = 1.2;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleAccel, paddleFriction, paddleMaxSpeed, Color.White);
 
@@ -247,7 +247,9 @@ namespace BrickBreaker
             if (lasers.Count < 3)
             {
                 lasers.Add(new Rectangle(paddle.x + paddle.width * 1 / 4, paddle.y, 4, paddle.height * 2));
+                LaserPlayer.Play();
                 lasers.Add(new Rectangle(paddle.x + paddle.width * 3 / 4, paddle.y, 4, paddle.height * 2));
+                LaserPlayer.Play();
             }
         }
 
