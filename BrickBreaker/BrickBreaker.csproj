@@ -51,6 +51,7 @@
     <Reference Include="GameSystemServices">
       <HintPath>Resources\GameSystemServices.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +63,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
@@ -81,11 +83,6 @@
     </Compile>
     <Compile Include="Screens\HighscoreScreen.Designer.cs">
       <DependentUpon>HighscoreScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Level.cs" />
     <Compile Include="Screens\MenuScreen.cs">
@@ -152,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HighScores3.png" />
+    <None Include="Resources\Blop-Mark_DiAngelo-79054334.wav" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BBLevels.xml">
@@ -164,6 +162,49 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HighScoresfinal.png" />
+    <None Include="Resources\Win.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ball_Bounce-Popup_Pixels-172648817.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Basketball Buzzer-SoundBible.com-1863250611.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Beep Ping-SoundBible.com-217088958.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bounce-SoundBible.com-12678623.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fuzzy Beep-SoundBible.com-1580329899.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laser_Cannon-Mike_Koenig-797224747.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laser-SoundBible.com-602495617.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mario_Jumping-Mike_Koenig-989896458.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Metroid_Door-Brandino480-995195341.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Silencer-SoundBible.com-1632156458.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sword Swing-SoundBible.com-639083727.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stephan_schutze-anvil_impact_1x-894647867.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ta Da-SoundBible.com-1884170640 %281%29.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Car Stereo-SoundBible.com-1140618938.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
