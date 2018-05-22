@@ -72,7 +72,7 @@ namespace BrickBreaker
             if (blockRec.IntersectsWith(ballRec))
             {
                 Random rand = new Random();
-                int randCheck = rand.Next(1, 11);
+                int randCheck = rand.Next(1, 5);
                 if (randCheck == 1 && block.hp != 100)
                 {
                     Powerups newPowerUp = new Powerups(ballRec);
@@ -84,9 +84,9 @@ namespace BrickBreaker
                     foreach (Block b in GameScreen.levels[GameScreen.currentLevel].blocks)
                     {
                         if (block.x == b.x + b.width + GameScreen.blockSpacing && block.y == b.y || //Block to the right
-                           block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y)// || //Block to the left
-                           //block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
-                           //block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
+                           block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y ||// || //Block to the left
+                           block.y == b.y + b.height + GameScreen.blockHeightSpacing && block.x == b.x || //Block below
+                           block.y == b.y - b.height - GameScreen.blockHeightSpacing && block.x == b.x)//Block above
                         {
                             b.hp--;
                         }

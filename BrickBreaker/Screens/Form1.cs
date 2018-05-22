@@ -31,29 +31,5 @@ namespace BrickBreaker
 
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
         }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            int barHeight = 50, barGap = 10, lifeSpacing = 10, lifeDiameter = 30;
-
-            string drawScore = GameScreen.score.ToString();
-
-            float scoreWordLength = e.Graphics.MeasureString("SCORE: ", GameScreen.scoreFont).Width;
-            float scoreNumberLength = e.Graphics.MeasureString(drawScore, GameScreen.scoreFont).Width;
-
-            Rectangle backRect2 = new Rectangle((this.Width - ms.Width)/2, (this.Height - ms.Height) / 2 - barHeight, ms.Width, barHeight);
-            e.Graphics.FillRectangle(Brushes.Black, backRect2);
-
-            e.Graphics.DrawString("SCORE:", GameScreen.scoreFont, Brushes.White,
-                (this.Width - ms.Width) / 2 + ms.Width - scoreWordLength - scoreNumberLength - 10, (this.Height - ms.Height) / 2 - barHeight);
-            e.Graphics.DrawString(drawScore, GameScreen.scoreFont, GameScreen.capBrush,
-                (this.Width - ms.Width) / 2 + ms.Width - scoreNumberLength - 10, ms.Location.Y - barHeight);
-
-            for (int i = 0; i < GameScreen.lives; i++)
-            {
-                e.Graphics.FillEllipse(GameScreen.capBrush, (this.Width - ms.Width)/2 + (i*lifeDiameter) + (i*lifeSpacing) + lifeSpacing,
-                    (this.Height-ms.Height)/2 -barHeight / 2 - lifeDiameter / 2, lifeDiameter, lifeDiameter);
-            }
-        }
     }
 }

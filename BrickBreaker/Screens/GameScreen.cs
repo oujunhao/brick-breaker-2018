@@ -21,7 +21,7 @@ namespace BrickBreaker
 
         //player1 button control keys - DO NOT CHANGE
         public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
-        public static bool flipControls, catchBall, catchBallShoot, bomb, startShoot, laser, gunShot, gunPaddle;
+        public static bool flipControls, catchBall, catchBallShoot, bomb, startShoot, laser, gunShot, gunPaddle, updateChange;
 
         //sounds
         SoundPlayer BlockPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Brick);
@@ -29,7 +29,7 @@ namespace BrickBreaker
         // Scoring
         public static int score;
         // Game values
-        public static int lives, screenWidth, screenHeight, screenX, screenY, blockSpacing = 3, bonus = 1,
+        public static int lives, screenWidth, screenHeight, screenX, screenY, blockSpacing = 3, blockHeightSpacing = 15, bonus = 1,
             paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20, gunHeight = 50,
             gunWidth = 20, gunCount = 0, catchRadious = 100, catchDegree = 30, catchTimer = 200, sizeBall = 20;
 
@@ -68,6 +68,19 @@ namespace BrickBreaker
         SolidBrush blockBrush = new SolidBrush(Color.Red);
         public static SolidBrush capBrush = new SolidBrush(Color.FromArgb(255, 0, 102));
 
+        public static Image[] powerImages = new[]
+        {
+        Properties.Resources.Long,
+        Properties.Resources.bomb1,
+        Properties.Resources._catch,
+        Properties.Resources.Flip,
+        Properties.Resources.health,
+        Properties.Resources.laser1,
+        Properties.Resources.Gun,
+        Properties.Resources.Multi,
+        Properties.Resources.Bonus
+        };
+
         Color[] blockColors = new[] {
             Color.FromArgb(43, 134, 194),//1 HP
             Color.FromArgb(37, 117, 170),//2 HP
@@ -81,17 +94,6 @@ namespace BrickBreaker
             Color.FromArgb(26, 80, 116),//3 HP
             Color.FromArgb(23, 71, 102),//4 HP
             Color.FromArgb(17, 54, 78)//5 HP
-            };
-        public static Color[] powerupColors = new[] {
-            Color.Aqua,
-            Color.Crimson,
-            Color.ForestGreen,
-            Color.Navy,
-            Color.Gold,
-            Color.Pink,
-            Color.DarkOrchid,
-            Color.OrangeRed,
-            Color.SteelBlue
             };
         #endregion
 
@@ -391,9 +393,12 @@ namespace BrickBreaker
 
                     if (gun.IntersectsWith(block))
                     {
+                        b.hp = 0;
                         DestroyBlock(b);
+                        score += 50 * bonus;
                         setGun();
                         gunShot = false;
+                        UpdateFormImage();
                     }
                 }
 
@@ -441,6 +446,13 @@ namespace BrickBreaker
                     catch { powerUps[0].checkCapOffScreen(); }
                 }
             }
+
+            if(updateChange)
+            {
+                UpdateFormImage();
+                updateChange = false;
+            }
+
             //redraw the screen
             Refresh();
         }
@@ -563,8 +575,9 @@ namespace BrickBreaker
 
             foreach (Powerups p in powerUps)
             {
+                e.Graphics.DrawImage(p.drawIcon, p.x, p.y, p.CAP_SIZE, p.CAP_SIZE);
                 //e.Graphics.DrawString(p.capType, new Font("Calibri", 12), capBrush, p.x, p.y - 15);
-                e.Graphics.FillEllipse(new SolidBrush(p.drawColor), p.x, p.y, p.CAP_SIZE, p.CAP_SIZE);
+                //e.Graphics.FillEllipse(new SolidBrush(p.drawColor), p.x, p.y, p.CAP_SIZE, p.CAP_SIZE);
             }
 
             foreach (Ball ball in balls)
@@ -639,17 +652,13 @@ namespace BrickBreaker
         {
             Form f = FindForm();
             Graphics g = f.CreateGraphics();
-            int barHeight = 50, barGap = 10, lifeSpacing = 10, lifeDiameter = 30,
-                powerWidth = 100, powerHeight = this.Height;
+            int barHeight = 50, lifeSpacing = 10, lifeDiameter = 30;
 
             string drawScore = score.ToString();
-
             float scoreWordLength = g.MeasureString("SCORE: ", scoreFont).Width;
             float scoreNumberLength = g.MeasureString(drawScore, scoreFont).Width;
 
-            Rectangle backRect = new Rectangle(this.Location.X, this.Location.Y - barHeight - barGap, this.Width, barHeight);
             Rectangle backRect2 = new Rectangle(this.Location.X, this.Location.Y - barHeight, this.Width, barHeight);
-            Rectangle sideRect = new Rectangle(this.Location.X - barGap - powerWidth, this.Location.Y, powerWidth, powerHeight);
 
             g.FillRectangle(Brushes.Black, backRect2);
             g.DrawString("SCORE:", scoreFont, Brushes.White, this.Location.X + this.Width - scoreWordLength - scoreNumberLength - 10, this.Location.Y - barHeight);
