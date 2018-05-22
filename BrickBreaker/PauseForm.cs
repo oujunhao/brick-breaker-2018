@@ -12,49 +12,49 @@ namespace BrickBreaker
 {
     public partial class PauseForm : Form
     {
-        Timer timer;
+        private static PauseForm pauseForm;
+        private static DialogResult buttonResult = new DialogResult();
 
-        public PauseForm(Timer _timer)
+        public PauseForm()
         {
             InitializeComponent();
-            timer = _timer;
         }
 
-        private void PauseForm_KeyUp(object sender, KeyEventArgs e)
+        public static DialogResult Show()
         {
-            switch (e.KeyCode)
-            {
-                case Keys.Escape:
-                    Application.Exit();
-                    break;
-            }
+            pauseForm = new PauseForm();
+            pauseForm.ShowDialog();
+            return buttonResult; 
         }
 
         private void PauseForm_Load(object sender, EventArgs e)
         {
-            // instance of game over
-            MenuScreen ms = new MenuScreen();
-
-            //close game screen
-            Form f = this.FindForm();
-            f.Controls.Remove(this);
-
-
             this.WindowState = FormWindowState.Normal;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            //exit the game
-            Application.Exit();
-        }
-
         private void continueButton_Click(object sender, EventArgs e)
         {
-                timer.Start();
-            //Form f = this.FindForm();
-            //f.Controls.Remove(this);
-        } 
+            buttonResult = DialogResult.Cancel;
+            pauseForm.Close();
+        }
+
+        private void continueButton_Enter(object sender, EventArgs e)
+        {
+            continueButton.BackColor = Color.Green;
+            exitButton.BackColor = Color.Transparent;
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            buttonResult = DialogResult.Abort;
+            pauseForm.Close();
+        }
+
+        private void exitButton_Enter(object sender, EventArgs e)
+        {
+            exitButton.BackColor = Color.Red;
+            continueButton.BackColor = Color.Transparent;
+        }
     }
 }

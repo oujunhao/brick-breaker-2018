@@ -20,7 +20,7 @@ namespace BrickBreaker
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown, escDown;
+       public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown, escDown;
 
         // Game values
         int lives;
@@ -109,7 +109,24 @@ namespace BrickBreaker
                     break;
                 case Keys.Escape:
                     escDown = true;
+
+                    if (gameTimer.Enabled)
+                    {
+                        gameTimer.Stop();
+                        rightArrowDown = leftArrowDown = false;
+                        DialogResult result = PauseForm.Show();
+                        if (result == DialogResult.Cancel)
+                        {
+                            gameTimer.Enabled = true;
+                        }
+
+                        else if (result == DialogResult.Abort)
+                        {
+                            Application.Exit();
+                        }
+                    }
                     break;
+
                 default:
                     break;
             }
@@ -198,18 +215,7 @@ namespace BrickBreaker
                     OnEnd();
                 }
             }
-            if (escDown == true)
-            {
-                gameTimer.Stop();
-                Form f = this.FindForm();
-                PauseForm pf = new PauseForm(gameTimer);
-                pf.TopLevel = false;
-                f.Controls.Add(pf);
-                pf.Location = new Point((this.Width - pf.Width) / 2, (this.Height - pf.Height) / 2);
-                pf.Show();
-                //escDown = false;
-                return;
-            }
+
             //redraw the screen
             Refresh();
         }
@@ -244,6 +250,10 @@ namespace BrickBreaker
 
             // Draws balls
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
+            //set focus 
+            this.Focus();
+
         }
     }
 }

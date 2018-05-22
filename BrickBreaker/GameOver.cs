@@ -43,27 +43,27 @@ namespace BrickBreaker
             f.Controls.Add(ms);
         }
 
-        private void quitGameButton_Enter(object sender, EventArgs e)
-        {
-            //makes quit button red and return button white
-            quitGameButton.BackColor = Color.Red;
-            returnbutton.BackColor = Color.White;
-            highScoreButton.BackColor = Color.White;
-        }
-
         private void returnbutton_Enter(object sender, EventArgs e)
         {
             //makes quit button white and return button green
-            quitGameButton.BackColor = Color.White;
             returnbutton.BackColor = Color.Green;
-            highScoreButton.BackColor = Color.White;
+            quitGameButton.BackColor = Color.Transparent;
+            highScoreButton.BackColor = Color.Transparent;
         }
 
         private void highScoreButton_Enter(object sender, EventArgs e)
         {
             highScoreButton.BackColor = Color.Blue;
-            quitGameButton.BackColor = Color.White;
-            returnbutton.BackColor = Color.White;
+            quitGameButton.BackColor = Color.Transparent;
+            returnbutton.BackColor = Color.Transparent;
+        }
+
+        private void quitGameButton_Enter(object sender, EventArgs e)
+        {
+            //makes quit button red and return button white
+            quitGameButton.BackColor = Color.Red;
+            returnbutton.BackColor = Color.Transparent;
+            highScoreButton.BackColor = Color.Transparent;
         }
 
         private void highScoreButton_Click(object sender, EventArgs e)
