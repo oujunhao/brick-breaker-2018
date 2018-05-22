@@ -71,15 +71,13 @@ namespace BrickBreaker
 
             if (blockRec.IntersectsWith(ballRec))
             {
-                // scoring
-                GameScreen.score += 10;
                 Random rand = new Random();
-                //int randCheck = rand.Next(1, 11);
-                //if (randCheck == 1 && block.hp != 100)
-                //{
+                int randCheck = rand.Next(1, 11);
+                if (randCheck == 1 && block.hp != 100)
+                {
                     Powerups newPowerUp = new Powerups(ballRec);
                     GameScreen.powerUps.Add(newPowerUp);
-               // }
+                }
 
                 if (GameScreen.bomb)
                 {

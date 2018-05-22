@@ -43,7 +43,7 @@
       <hp>1</hp>
     </brick>
     <brick>
-      <x>592</x>
+      <x>594</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
@@ -376,7 +376,7 @@
       <hp>100</hp>
     </brick>
     <brick>
-      <x></x>
+      <x>0</x>
       <y>120</y>
       <hp>100</hp>
     </brick>

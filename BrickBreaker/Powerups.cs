@@ -29,7 +29,7 @@ namespace BrickBreaker
         {
             int rand = GameScreen.randGen.Next(0, 9);
             capType = GameScreen.powerupNames[rand];
-            //capType = "Gun";
+            //capType = "Life";
 
             drawColor = GameScreen.powerupColors[rand];
             x = brickPosition.X;
