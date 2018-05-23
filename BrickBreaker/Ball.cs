@@ -2,17 +2,18 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
-
+using System.Windows.Media;
 namespace BrickBreaker
 {
     public class Ball
     {
-        SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
-        SoundPlayer WallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Wall);
+        SoundPlayer BallPlayer = new SoundPlayer(Properties.Resources.Ball);
+        //BallPlayer.Open(Properties.Resources.Ball);
+        SoundPlayer WallPlayer = new SoundPlayer(Properties.Resources.Wall);
         public int x, y, size, angle;
         public double velocity;
         public Vector vector;
-        public Color colour;
+        public System.Drawing.Color colour;
         public int bound = 60;
 
         const int angleMultiplier = 5;
@@ -95,7 +96,7 @@ namespace BrickBreaker
                     }
                     block.hp = 0;
                     GameScreen.bomb = false;
-                    GameScreen.ballBrush.Color = Color.White;
+                    GameScreen.ballBrush.Color = System.Drawing.Color.White;
                 }
                 //Sound for ballhits Brick
                 BallPlayer.Play();
