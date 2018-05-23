@@ -11,12 +11,12 @@ namespace BrickBreaker
     {
         //Constants        
         const int LONG_PADDLE_GAIN = 50, CAP_SPEED = 1;
-        public int CAP_SIZE = 30;
+        public int CAP_SIZE = 33;
 
         //Varriables
         public string capType;
         public int x = 0, y = 0;
-        public Color drawColor;
+        public Image drawIcon;
 
         //Paddle sent from the game screen
         Paddle paddle;
@@ -29,9 +29,10 @@ namespace BrickBreaker
         {
             int rand = GameScreen.randGen.Next(0, 9);
             capType = GameScreen.powerupNames[rand];
-            //capType = "Gun";
+            //capType = "Bomb";
+            //int rand = 6;
 
-            drawColor = GameScreen.powerupColors[rand];
+            drawIcon = GameScreen.powerImages[rand];
             x = brickPosition.X;
             y = brickPosition.Y;
         }
@@ -77,6 +78,7 @@ namespace BrickBreaker
                 GameScreen.capResetPowerup();
                 GameScreen.score += 200 * GameScreen.bonus;
                 paddle.width = GameScreen.paddleStartWidth;
+                GameScreen.updateChange = true;
 
                 usePowerUp(ref currentPad);
                 resetPowerupsList();
@@ -201,6 +203,7 @@ namespace BrickBreaker
         public void Life()
         {
             GameScreen.lives++;
+            GameScreen.updateChange = true;
         }
 
         public void Laser()
