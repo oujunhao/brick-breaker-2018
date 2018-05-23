@@ -22,7 +22,7 @@ namespace BrickBreaker
         // Scoring
         int score;
         // Game values
-        int lives;
+        public static int lives;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -146,6 +146,7 @@ namespace BrickBreaker
             if (ball.BottomCollision(this))
             {
                 lives--;
+                RefreshForm();
 
                 // Moves the ball back to middle of paddle
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
@@ -248,6 +249,25 @@ namespace BrickBreaker
                     }
                     return;
                 }
+            }
+        }
+
+        public void RefreshForm()
+        {
+            Form f = this.FindForm();
+
+            Graphics g = f.CreateGraphics();
+
+            SolidBrush brush = new SolidBrush(Color.Purple);
+
+            int lifeSize = 35;
+            int ballSpace = 15;
+
+            g.Clear(SystemColors.ControlDarkDark);
+
+            for (int i = 0; i < lives; i++)
+            {
+                g.FillEllipse(brush, (f.Width - this.Width) / 2 + (i * lifeSize) + (i * ballSpace), ((f.Height - this.Height) / 2) - 40, lifeSize, lifeSize);
             }
         }
     }
