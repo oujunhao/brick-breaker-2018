@@ -29,7 +29,7 @@ namespace BrickBreaker
         // Scoring
         public static int score;
         // Game values
-        public static int lives, screenWidth, screenHeight, screenX, screenY, blockSpacing = 3, blockHeightSpacing = 15, bonus = 1,
+        public static int lives, screenWidth, screenHeight, blockSpacing = 3, blockHeightSpacing = 15, bonus = 1,
             paddleStartWidth = 80, bombFlipCounter = 0, bombFlipFrequency = 20, gunHeight = 50,
             gunWidth = 20, gunCount = 0, catchRadious = 100, catchDegree = 30, catchTimer = 200, sizeBall = 20;
 
@@ -120,8 +120,6 @@ namespace BrickBreaker
 
             screenWidth = this.Width;
             screenHeight = this.Height;
-            screenX = this.Location.X;
-            screenY = this.Location.Y;
 
             //set all button presses to false.
             leftArrowDown = downArrowDown = rightArrowDown = upArrowDown = false;
@@ -727,9 +725,8 @@ namespace BrickBreaker
                 this.Refresh();
                 //display new level message
                 Font f = new Font("Arial", 40, FontStyle.Bold);
-                SolidBrush p = new SolidBrush(Color.DeepPink);
                 Graphics a = this.CreateGraphics();
-                a.DrawString("Level " + (currentLevel + 1), f, p, 300, 240);
+                a.DrawString("Level " + (currentLevel + 1), f, capBrush, 300, 240);
                 Thread.Sleep(2000);
                 balls[0].velocity = 0;
                 catchPaddlePoint = new PointF(balls[0].x + balls[0].size / 2, balls[0].y + balls[0].size / 2);

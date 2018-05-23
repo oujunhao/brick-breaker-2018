@@ -27,10 +27,10 @@ namespace BrickBreaker
         /// <param name="brickPosition">Spawns the capsule at the position of the brick</param>
         public Powerups(Rectangle brickPosition)
         {
-            //int rand = GameScreen.randGen.Next(0, 9);
-            //capType = GameScreen.powerupNames[rand];
-            capType = "Bomb";
-            int rand = 6;
+            int rand = GameScreen.randGen.Next(0, 9);
+            capType = GameScreen.powerupNames[rand];
+            //capType = "Bomb";
+            //int rand = 6;
 
             drawIcon = GameScreen.powerImages[rand];
             x = brickPosition.X;

@@ -25,6 +25,7 @@ namespace BrickBreaker
         public MenuScreen()
         {
             InitializeComponent();
+            this.Location = new Point(140, 70);
             onePlayerButton.ForeColor = Color.White;
         }
 
