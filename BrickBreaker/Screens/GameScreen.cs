@@ -252,23 +252,5 @@ namespace BrickBreaker
             }
         }
 
-        public void RefreshForm()
-        {
-            Form f = this.FindForm();
-
-            Graphics g = f.CreateGraphics();
-
-            SolidBrush brush = new SolidBrush(Color.Purple);
-
-            int lifeSize = 35;
-            int ballSpace = 15;
-
-            g.Clear(SystemColors.ControlDarkDark);
-
-            for (int i = 0; i < lives; i++)
-            {
-                g.FillEllipse(brush, (f.Width - this.Width) / 2 + (i * lifeSize) + (i * ballSpace), ((f.Height - this.Height) / 2) - 40, lifeSize, lifeSize);
-            }
-        }
     }
 }

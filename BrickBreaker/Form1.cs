@@ -36,15 +36,5 @@ namespace BrickBreaker
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs g)
-        {
-            SolidBrush brush = new SolidBrush(Color.Purple);
-
-            for (int i = 0; i < GameScreen.lives; i++)
-            {
-                g.Graphics.FillEllipse(brush, (this.Width - ms.Width) / 2 + (i * lifeSize) + (i * ballSpace), 
-                    ((this.Height - ms.Height) / 2) - 40, lifeSize, lifeSize);
-            }
-        }
     }
 }
