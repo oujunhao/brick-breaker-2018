@@ -11,6 +11,8 @@ using System.Xml;
 using GameSystemServices;
 using System.Media;
 
+// sahil-pause
+
 namespace BrickBreaker
 {
     public partial class Form1 : Form
@@ -31,6 +33,20 @@ namespace BrickBreaker
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
 
         }
-
+        // Go full screen to be optimized for arcade
+        void GoFullScreen(bool fullscreen)
+        {
+            if (fullscreen)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                this.Bounds = Screen.PrimaryScreen.Bounds;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            }
+        }
     }
 }
