@@ -18,6 +18,8 @@ namespace BrickBreaker
     public partial class GameScreen : UserControl
     {
         SoundPlayer LaserPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Laser);
+        SoundPlayer BreakPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Exit);
+        SoundPlayer WinPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Win);
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
@@ -663,6 +665,7 @@ namespace BrickBreaker
                 balls[0].y = (this.Height - paddle.height) - 80;
                 paddle.x = ((this.Width / 2) - (paddleStartWidth / 2));
                 paddle.y = (this.Height - 20) - 60;
+                BreakPlayer.Play();
                 this.Refresh();
                 //display new level message
                 Font f = new Font("Arial", 40, FontStyle.Bold);
@@ -674,6 +677,8 @@ namespace BrickBreaker
                 catchPaddlePoint = new PointF(balls[0].x + balls[0].size / 2, balls[0].y + balls[0].size / 2);
                 catchBallShoot = true;
                 startShoot = true;
+                WinPlayer.Play();
+
                 this.Refresh();
 
                 if (currentLevel == levels.Count - 1)

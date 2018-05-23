@@ -10,6 +10,7 @@ namespace BrickBreaker
         SoundPlayer BallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Ball);
         SoundPlayer WallPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Wall);
         SoundPlayer PaddlePlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Paddle);
+        SoundPlayer BombPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Bomb);
 
         public int x, y, size, angle;
         public double velocity;
@@ -91,7 +92,9 @@ namespace BrickBreaker
                            block.x == b.x - b.width - GameScreen.blockSpacing && block.y == b.y)// || //Block to the left
                            //block.y == b.y + b.height + GameScreen.blockSpacing && block.x == b.x || //Block below
                            //block.y == b.y - b.height - GameScreen.blockSpacing && block.x == b.x)//Block above
+
                         {
+                            BombPlayer.Play();
                             b.hp--;
                         }
                     }
