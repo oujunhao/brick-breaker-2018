@@ -25,6 +25,7 @@ namespace BrickBreaker
         public MenuScreen()
         {
             InitializeComponent();
+            this.Location = new Point(140, 70);
             onePlayerButton.ForeColor = Color.White;
         }
 
@@ -52,6 +53,25 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             gs.Location = new Point((form.Width - gs.Width) / 2, (form.Height - gs.Height) / 2);
+
+            Graphics g = form.CreateGraphics();
+            int barHeight = 50, lifeSpacing = 10, lifeDiameter = 30;
+
+            string drawScore = GameScreen.score.ToString();
+
+            float scoreWordLength = g.MeasureString("SCORE: ", GameScreen.scoreFont).Width;
+            float scoreNumberLength = g.MeasureString(drawScore, GameScreen.scoreFont).Width;
+
+            Rectangle menuRect = new Rectangle(gs.Location.X, gs.Location.Y - barHeight, gs.Width, barHeight);
+
+            g.FillRectangle(Brushes.Black, menuRect);
+            g.DrawString("SCORE:", GameScreen.scoreFont, Brushes.White, gs.Location.X + gs.Width - scoreWordLength - scoreNumberLength - 10, gs.Location.Y - barHeight);
+            g.DrawString(drawScore, GameScreen.scoreFont, GameScreen.capBrush, gs.Location.X + gs.Width - scoreNumberLength - 10, gs.Location.Y - barHeight);
+
+            for (int i = 0; i < GameScreen.lives; i++)
+            {
+                g.FillEllipse(GameScreen.capBrush, gs.Location.X + (i * lifeDiameter) + (i * lifeSpacing) + lifeSpacing, gs.Location.Y - barHeight / 2 - lifeDiameter / 2, lifeDiameter, lifeDiameter);
+            }
         }
 
         private void showHighscoreMenu()
