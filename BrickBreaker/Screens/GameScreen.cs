@@ -20,7 +20,7 @@ namespace BrickBreaker
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown;
+       public static Boolean leftArrowDown, downArrowDown, rightArrowDown, upArrowDown, spaceDown, escDown;
         public static bool flipControls, catchBall, catchBallShoot, bomb, startShoot, laser, gunShot, gunPaddle;
 
         //sounds
@@ -234,8 +234,25 @@ namespace BrickBreaker
                     }
                     break;
                 case Keys.Escape:
-                    Application.Exit();
+                    escDown = true;
+
+                    if (gameTimer.Enabled)
+                    {
+                        gameTimer.Stop();
+                        rightArrowDown = leftArrowDown = false;
+                        DialogResult result = PauseForm.Show();
+                        if (result == DialogResult.Cancel)
+                        {
+                            gameTimer.Enabled = true;
+                        }
+
+                        else if (result == DialogResult.Abort)
+                        {
+                            Application.Exit();
+                        }
+                    }
                     break;
+
                 default:
                     break;
             }
@@ -288,6 +305,9 @@ namespace BrickBreaker
                     break;
                 case Keys.Space:
                     spaceDown = false;
+                    break;
+                case Keys.Escape:
+                    escDown = false;
                     break;
                 default:
                     break;
@@ -489,14 +509,18 @@ namespace BrickBreaker
             endPlayer.Open(new Uri(Application.StartupPath + "/Resources/End.wav"));
             endPlayer.Play();
 
-            // Goes to the game over screen
-            Form form = this.FindForm();
-            MenuScreen ps = new MenuScreen();
+            // instance of game over
+            GameOver go = new GameOver();
 
-            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+            //close game screen
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
 
-            form.Controls.Add(ps);
-            form.Controls.Remove(this);
+            // centre screen
+            go.Location = new Point((f.Width - go.Width) / 2, (f.Height - go.Height) / 2);
+
+            //open game over
+            f.Controls.Add(go);
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -679,6 +703,9 @@ namespace BrickBreaker
                     OnEnd();
                 }
             }
+
+            //set focus
+            this.Focus();
         }
     }
 }
