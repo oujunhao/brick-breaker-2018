@@ -45,7 +45,8 @@ namespace BrickBreaker
         {
             // Load level
             GetLevels();
-            //Scoring
+            //Scoring 
+            // THIS DOESN"T WORK AND I DON"T KNOW WHY
             //Form1.service.startGame();
             score = 0;
 
@@ -101,6 +102,11 @@ namespace BrickBreaker
                 default:
                     break;
             }
+        }
+
+        private void GameScreen_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
@@ -168,6 +174,7 @@ namespace BrickBreaker
         {
             // End scoring
             //            Form1.service.endGame(score);
+
 
             // Goes to the game over screen
             Form form = this.FindForm();
