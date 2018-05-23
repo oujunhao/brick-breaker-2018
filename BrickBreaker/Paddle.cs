@@ -25,6 +25,21 @@ namespace BrickBreaker
             velocity = 0;
         }
 
+        public int right
+        {
+            get
+            {
+                return x + width;
+            }
+        }
+        public int bottom
+        {
+            get
+            {
+                return y + height;
+            }
+        }
+
         public void Accel(string axis, int direction)
         {
             if (axis == "x")
@@ -52,6 +67,7 @@ namespace BrickBreaker
             // Apply friction
             if (velocity > 0) velocity -= friction;
             if (velocity < 0) velocity += friction;
+            if (Math.Abs(velocity) < 1) velocity = 0;
         }
 
         public void WallCollision(UserControl UC)
