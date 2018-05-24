@@ -7,11 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace BrickBreaker
 {
     public partial class PauseForm : Form
     {
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            Rectangle rc = new Rectangle(0, 0, this.ClientSize.Width, this.ClientSize.Height);
+            using (LinearGradientBrush brush = new LinearGradientBrush(rc, Color.FromArgb(255, 55, 64, 105), Color.FromArgb(255, 32, 14, 48), 90F))
+            {
+                e.Graphics.FillRectangle(brush, rc);
+            }
+        }
         private static PauseForm pauseForm;
         private static DialogResult buttonResult = new DialogResult();
 
@@ -41,7 +50,7 @@ namespace BrickBreaker
 
         private void continueButton_Enter(object sender, EventArgs e)
         {
-            continueButton.BackColor = Color.Green;
+            continueButton.BackColor = Color.Transparent;
             exitButton.BackColor = Color.Transparent;
         }
 

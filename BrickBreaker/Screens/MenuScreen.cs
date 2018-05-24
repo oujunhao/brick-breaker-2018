@@ -29,6 +29,15 @@ namespace BrickBreaker
             onePlayerButton.ForeColor = Color.White;
         }
 
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            Rectangle rc = new Rectangle(0, 0, this.ClientSize.Width, this.ClientSize.Height);
+            using (LinearGradientBrush brush = new LinearGradientBrush(rc, Color.FromArgb(255, 55, 64, 105), Color.FromArgb(255, 32, 14, 48), 90F))
+            {
+                e.Graphics.FillRectangle(brush, rc);
+            }
+        }
+
         private void playOnePlayerGame()
         {
             //Click sound when player hits play
@@ -147,6 +156,12 @@ namespace BrickBreaker
             // play one player game
             playOnePlayerGame();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void twoPlayerButton_Click(object sender, EventArgs e)
         {
             //play two player game
