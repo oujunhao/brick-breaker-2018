@@ -17,6 +17,9 @@ namespace BrickBreaker
 {
     public partial class GameScreen : UserControl
     {
+        SoundPlayer LaserPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Laser);
+        SoundPlayer BreakPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Exit);
+        SoundPlayer WinPlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Win);
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
@@ -265,7 +268,9 @@ namespace BrickBreaker
             if (lasers.Count < 3)
             {
                 lasers.Add(new Rectangle(paddle.x + paddle.width * 1 / 4, paddle.y, 4, paddle.height * 2));
+                LaserPlayer.Play();
                 lasers.Add(new Rectangle(paddle.x + paddle.width * 3 / 4, paddle.y, 4, paddle.height * 2));
+                LaserPlayer.Play();
             }
         }
 
@@ -745,6 +750,7 @@ namespace BrickBreaker
                 balls[0].y = (this.Height - paddle.height) - 80;
                 paddle.x = ((this.Width / 2) - (paddleStartWidth / 2));
                 paddle.y = (this.Height - 20) - 60;
+                BreakPlayer.Play();
                 UpdateBlockColors();
                 this.Refresh();
                 //display new level message
@@ -756,6 +762,7 @@ namespace BrickBreaker
                 catchPaddlePoint = new PointF(balls[0].x + balls[0].size / 2, balls[0].y + balls[0].size / 2);
                 catchBallShoot = true;
                 startShoot = true;
+                WinPlayer.Play();
 
                 this.Refresh();
 

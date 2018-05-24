@@ -21,6 +21,8 @@ namespace BrickBreaker
         int buttonSelected = 0;
 
         private SoundPlayer Player = new SoundPlayer(BrickBreaker.Properties.Resources.Level);
+        private SoundPlayer HighscorePlayer = new SoundPlayer(BrickBreaker.Properties.Resources.Highscore);
+
 
         public MenuScreen()
         {
@@ -76,6 +78,7 @@ namespace BrickBreaker
 
         private void showHighscoreMenu()
         {
+            HighscorePlayer.Play();
             // Goes to the highscores menu
             HighscoreScreen hs = new HighscoreScreen();
             Form form = this.FindForm();
