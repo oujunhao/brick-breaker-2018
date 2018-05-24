@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
-
+using System.Windows.Media;
 namespace BrickBreaker
 {
     public class Ball
@@ -15,7 +15,7 @@ namespace BrickBreaker
         public int x, y, size, angle;
         public double velocity;
         public Vector vector;
-        public Color colour;
+        public System.Drawing.Color colour;
         public int bound = 60;
 
         const int angleMultiplier = 5;
@@ -74,15 +74,13 @@ namespace BrickBreaker
 
             if (blockRec.IntersectsWith(ballRec))
             {
-                // scoring
-                GameScreen.score += 10;
                 Random rand = new Random();
-                //int randCheck = rand.Next(1, 11);
-                //if (randCheck == 1 && block.hp != 100)
-                //{
+                int randCheck = rand.Next(1, 5);
+                if (randCheck == 1 && block.hp != 100)
+                {
                     Powerups newPowerUp = new Powerups(ballRec);
                     GameScreen.powerUps.Add(newPowerUp);
-               // }
+                }
 
                 if (GameScreen.bomb)
                 {
@@ -100,7 +98,7 @@ namespace BrickBreaker
                     }
                     block.hp = 0;
                     GameScreen.bomb = false;
-                    GameScreen.ballBrush.Color = Color.White;
+                    GameScreen.ballBrush.Color = System.Drawing.Color.White;
                 }
                 //Sound for ballhits Brick
                 BallPlayer.Play();

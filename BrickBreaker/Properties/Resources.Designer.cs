@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BrickBreaker.Properties
-{
+namespace BrickBreaker.Properties {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,75 +22,63 @@ namespace BrickBreaker.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BrickBreaker.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap backbroundHS
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("backbroundHS", resourceCulture);
+        internal static System.Drawing.Bitmap _catch {
+            get {
+                object obj = ResourceManager.GetObject("_catch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Ball
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Ball {
+            get {
                 return ResourceManager.GetStream("Ball", resourceCulture);
             }
         }
+        
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;game&gt;
@@ -101,56 +88,37 @@ namespace BrickBreaker.Properties
         ///      &lt;x&gt;10&lt;/x&gt;
         ///      &lt;y&gt;10&lt;/y&gt;
         ///      &lt;hp&gt;1&lt;/hp&gt;
-        ///      &lt;colour&gt;Red&lt;/colour&gt;
-        ///      &lt;power&gt;false&lt;/power&gt;
         ///    &lt;/brick&gt;
         ///    &lt;brick&gt;
-        ///      &lt;x&gt;67&lt;/x&gt;
+        ///      &lt;x&gt;83&lt;/x&gt;
         ///      &lt;y&gt;10&lt;/y&gt;
         ///      &lt;hp&gt;1&lt;/hp&gt;
-        ///      &lt;colour&gt;Red&lt;/colour&gt;
-        ///      &lt;power&gt;false&lt;/power&gt;
         ///    &lt;/brick&gt;
         ///    &lt;brick&gt;
-        ///      &lt;x&gt;124&lt;/x&gt;
+        ///      &lt;x&gt;156&lt;/x&gt;
         ///      &lt;y&gt;10&lt;/y&gt;
         ///      &lt;hp&gt;1&lt;/hp&gt;
-        ///      &lt;colour&gt;Red&lt;/colour&gt;
-        ///      &lt;power&gt;false&lt;/power&gt;
         ///    &lt;/brick&gt;
         ///    &lt;brick&gt;
-        ///      &lt;x&gt;238 [rest of string was truncated]&quot;;.
+        ///      &lt;x&gt;229&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;302&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;375&lt;/x&gt;
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string BBLevels {
             get {
                 return ResourceManager.GetString("BBLevels", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap HighScores3
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("HighScores3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap HighScoresfinal
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("HighScoresfinal", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;game&gt;
@@ -160,196 +128,289 @@ namespace BrickBreaker.Properties
         ///      &lt;x&gt;10&lt;/x&gt;
         ///      &lt;y&gt;10&lt;/y&gt;
         ///      &lt;hp&gt;1&lt;/hp&gt;
-        ///      &lt;colour&gt;Red&lt;/colour&gt;
-        ///      &lt;power&gt;false&lt;/power&gt;
         ///    &lt;/brick&gt;
         ///    &lt;brick&gt;
-        ///      &lt;x&gt;67&lt;/x&gt;
+        ///      &lt;x&gt;83&lt;/x&gt;
         ///      &lt;y&gt;10&lt;/y&gt;
         ///      &lt;hp&gt;1&lt;/hp&gt;
-        ///      &lt;colour&gt;Red&lt;/colour&gt;
-        ///      &lt;power&gt;false&lt;/power&gt;
         ///    &lt;/brick&gt;
         ///    &lt;brick&gt;
-        ///      &lt;x&gt;124&lt;/x&gt;
+        ///      &lt;x&gt;156&lt;/x&gt;
         ///      &lt;y&gt;10&lt;/y&gt;
         ///      &lt;hp&gt;1&lt;/hp&gt;
-        ///      &lt;colour&gt;Red&lt;/colour&gt;
-        ///      &lt;power&gt;false&lt;/power&gt;
         ///    &lt;/brick&gt;
         ///    &lt;brick&gt;
-        ///      &lt;x&gt;238 [rest of string was truncated]&quot;;.
+        ///      &lt;x&gt;229&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;302&lt;/x&gt;
+        ///      &lt;y&gt;10&lt;/y&gt;
+        ///      &lt;hp&gt;1&lt;/hp&gt;
+        ///    &lt;/brick&gt;
+        ///    &lt;brick&gt;
+        ///      &lt;x&gt;375&lt;/x&gt;
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string BBLevels1
-        {
-            get
-            {
+        internal static string BBLevels1 {
+            get {
                 return ResourceManager.GetString("BBLevels1", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Bomb
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Bomb {
+            get {
                 return ResourceManager.GetStream("Bomb", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bomb1 {
+            get {
+                object obj = ResourceManager.GetObject("bomb1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Bonus {
+            get {
+                object obj = ResourceManager.GetObject("Bonus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Brick
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Brick {
+            get {
                 return ResourceManager.GetStream("Brick", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream End
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream End {
+            get {
                 return ResourceManager.GetStream("End", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Exit
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Exit {
+            get {
                 return ResourceManager.GetStream("Exit", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Expand
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Expand {
+            get {
                 return ResourceManager.GetStream("Expand", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Flip {
+            get {
+                object obj = ResourceManager.GetObject("Flip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gun {
+            get {
+                object obj = ResourceManager.GetObject("Gun", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Gunshot
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Gunshot {
+            get {
                 return ResourceManager.GetStream("Gunshot", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap health {
+            get {
+                object obj = ResourceManager.GetObject("health", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Highscore
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Highscore {
+            get {
                 return ResourceManager.GetStream("Highscore", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Laser
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Laser {
+            get {
                 return ResourceManager.GetStream("Laser", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap laser1 {
+            get {
+                object obj = ResourceManager.GetObject("laser1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Level
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Level {
+            get {
                 return ResourceManager.GetStream("Level", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Long {
+            get {
+                object obj = ResourceManager.GetObject("Long", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Multi {
+            get {
+                object obj = ResourceManager.GetObject("Multi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Paddle
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Paddle {
+            get {
                 return ResourceManager.GetStream("Paddle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Pause
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Pause {
+            get {
                 return ResourceManager.GetStream("Pause", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Play
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Play {
+            get {
                 return ResourceManager.GetStream("Play", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Powerup
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Powerup {
+            get {
                 return ResourceManager.GetStream("Powerup", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Wall
-        {
-            get
-            {
+        internal static System.IO.UnmanagedMemoryStream Wall {
+            get {
                 return ResourceManager.GetStream("Wall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Win {
+            get {
+                return ResourceManager.GetStream("Win", resourceCulture);
             }
         }
 
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Win
-        {
-            get
-            {
-                return ResourceManager.GetStream("Win", resourceCulture);
+        internal static System.Drawing.Bitmap gameover {
+            get {
+                object obj = ResourceManager.GetObject("gameover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap got {
+            get {
+                object obj = ResourceManager.GetObject("got", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pause {
+            get {
+                object obj = ResourceManager.GetObject("pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pauseScreen {
+            get {
+                object obj = ResourceManager.GetObject("pauseScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
