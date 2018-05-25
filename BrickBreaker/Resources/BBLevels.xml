@@ -3,58 +3,57 @@
   <!-- LEVEL ONE -->
   <level>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>229</x>
+      <x>219</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>375</x>
+      <x>365</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>521</x>
+      <x>511</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>740</x>
-      <x>738</x>
+      <x>730</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
@@ -62,112 +61,112 @@
   <!-- LEVEL TWO -->
   <level>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>229</x>
+      <x>219</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>375</x>
+      <x>365</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>521</x>
+      <x>511</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>229</x>
+      <x>219</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>375</x>
+      <x>365</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>521</x>
+      <x>511</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
@@ -175,134 +174,134 @@
   <!-- LEVEL THREE -->
   <level>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
     <!-- invulnerable bricks -->
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>10</y>
       <hp>5</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>35</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>60</y>
       <hp>5</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>85</y>
       <hp>5</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>10</y>
       <hp>5</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>35</y>
       <hp>5</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>60</y>
       <hp>5</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>85</y>
       <hp>5</hp>
     </brick>
     <!-- invulnerable bricks -->
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
@@ -310,62 +309,62 @@
   <!-- LEVEL FOUR -->
   <level>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>50</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>90</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>10</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>90</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>10</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>50</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>229</x>
+      <x>219</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>229</x>
+      <x>219</x>
       <y>50</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>229</x>
+      <x>219</x>
       <y>90</y>
       <hp>1</hp>
     </brick>
@@ -396,12 +395,12 @@
       <hp>5</hp>
     </brick>
     <brick>
-      <x>521</x>
+      <x>511</x>
       <y>120</y>
       <hp>5</hp>
     </brick>
     <brick>
-      <x>591</x>
+      <x>584</x>
       <y>120</y>
       <hp>5</hp>
     </brick>
@@ -422,62 +421,62 @@
     </brick>
     <!-- invulnerable bricks END-->
     <brick>
-      <x>521</x>
+      <x>511</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>521</x>
+      <x>511</x>
       <y>50</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>521</x>
+      <x>511</x>
       <y>90</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>10</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>50</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>90</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>10</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>50</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>50</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>90</y>
       <hp>1</hp>
     </brick>
@@ -485,93 +484,93 @@
   <!-- LEVEL FIVE -->
   <level>
     <brick>
-      <x>10</x>
+      <x>0</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>83</x>
+      <x>73</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>156</x>
+      <x>146</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>594</x>
+      <x>584</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>667</x>
+      <x>657</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>740</x>
+      <x>730</x>
       <y>10</y>
       <hp>1</hp>
     </brick>
     <!-- Thicc Boys-->
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>10</y>
       <hp>4</hp>
     </brick>
     <brick>
-      <x>375</x>
+      <x>365</x>
       <y>10</y>
       <hp>4</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>10</y>
       <hp>4</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>50</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>375</x>
+      <x>365</x>
       <y>50</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>50</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>90</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>375</x>
+      <x>365</x>
       <y>90</y>
       <hp>3</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>90</y>
       <hp>2</hp>
     </brick>
     <brick>
-      <x>302</x>
+      <x>292</x>
       <y>130</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>375</x>
+      <x>365</x>
       <y>130</y>
       <hp>1</hp>
     </brick>
     <brick>
-      <x>448</x>
+      <x>438</x>
       <y>130</y>
       <hp>1</hp>
     </brick>
