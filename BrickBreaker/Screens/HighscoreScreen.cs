@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
+
 
 namespace BrickBreaker.Screens
 {
     public partial class HighscoreScreen : UserControl
     {
+
+
+
         public HighscoreScreen()
         {
             InitializeComponent();
@@ -48,5 +53,10 @@ namespace BrickBreaker.Screens
             form.Controls.Remove(this);
         }
         #endregion
+
+        private void hsLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -67,10 +67,10 @@ namespace BrickBreaker
 
         // Brushes
         SolidBrush paddleBrush = new SolidBrush(Color.White);
-        public static SolidBrush ballBrush = new SolidBrush(Color.White);
-        SolidBrush blockBrush = new SolidBrush(Color.Red);
-        public static SolidBrush capBrush = new SolidBrush(Color.FromArgb(255, 0, 102));
 
+        public static SolidBrush ballBrush = new SolidBrush(Color.FromArgb(255, 255, 0, 102));
+        SolidBrush blockBrush = new SolidBrush(Color.Red);
+        public static SolidBrush capBrush = new SolidBrush(Color.FromArgb(255, 255, 0, 102));
         public static Image[] powerImages = new[]
         {
         Properties.Resources.Long,
@@ -103,6 +103,7 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
+            
             OnStart();
         }
 
@@ -145,6 +146,9 @@ namespace BrickBreaker
             double ballVelocity = 0;
             int ballSize = sizeBall;
             balls.Add(new Ball(ballX, ballY, ballVelocity, ballSize));
+
+            Color ballColor1 = Color.FromArgb(255, 255, 0, 102);
+            Color ballColor2 = Color.White;
 
             UpdateBlockColors();
 
@@ -490,7 +494,7 @@ namespace BrickBreaker
             catchBallShoot = false;
             balls[0].velocity = 7;
             flipControls = false;
-            ballBrush.Color = Color.White;
+            ballBrush.Color = Color.FromArgb(255, 255, 0, 102);
             laser = false;
             bonus = 1;
             gunCount = 0;
@@ -501,7 +505,7 @@ namespace BrickBreaker
         {
             catchBall = false;
             flipControls = false;
-            ballBrush.Color = Color.White;
+            ballBrush.Color = Color.FromArgb(255, 255, 0, 102);
             laser = false;
             bonus = 1;
             gunCount = 0;
