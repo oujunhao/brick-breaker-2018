@@ -116,12 +116,12 @@ namespace BrickBreaker
                 }
                 if (y <= block.bottom && comingFromBelow)
                 {
-                    vector.y *= -1;
+                    vector.y = Math.Abs(vector.y);
                     vector.x *= -1;
                 }
                 if (this.y >= block.y && !comingFromBelow)
                 {
-                    vector.y = Math.Abs(vector.y);
+                    vector.y = -Math.Abs(vector.y);
                     vector.x *= -1;
                 }
                 return true;
