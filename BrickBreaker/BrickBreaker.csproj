@@ -76,18 +76,18 @@
     <Compile Include="Screens\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameOver.cs">
+    <Compile Include="Screens\GameOver.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GameOver.Designer.cs">
+    <Compile Include="Screens\GameOver.Designer.cs">
       <DependentUpon>GameOver.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
     <Compile Include="Powerups.cs" />
-    <Compile Include="PauseForm.cs">
+    <Compile Include="Screens\PauseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PauseForm.Designer.cs">
+    <Compile Include="Screens\PauseForm.Designer.cs">
       <DependentUpon>PauseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -115,10 +115,10 @@
     <EmbeddedResource Include="Screens\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GameOver.resx">
+    <EmbeddedResource Include="Screens\GameOver.resx">
       <DependentUpon>GameOver.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PauseForm.resx">
+    <EmbeddedResource Include="Screens\PauseForm.resx">
       <DependentUpon>PauseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -225,19 +225,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Car Stereo-SoundBible.com-1140618938.wav" />
-    <None Include="Resources\gameovertitle.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gameover.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\got.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pause.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pauseScreen.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bomb.png" />
@@ -265,6 +258,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Multi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameovertitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pauseScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameoverScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\got.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="All .cs that aren%27t screens\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
