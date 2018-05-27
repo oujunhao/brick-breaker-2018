@@ -773,8 +773,7 @@ namespace BrickBreaker
 
                 if (currentLevel == levels.Count - 1)
                 {
-                    gameTimer.Enabled = false;
-                    OnEnd();
+                    currentLevel = 0;
                 }
             }
 

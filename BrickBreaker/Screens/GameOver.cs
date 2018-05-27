@@ -25,19 +25,23 @@ namespace BrickBreaker
         {
             // f is the form that this control is on - ("this" is the current User Control)
             Form f = this.FindForm();
-            f.Controls.Remove(this);
+            if (f != null)
+                f.Controls.Remove(this);
 
             //created instance of main screen
             MenuScreen ms = new MenuScreen();
 
             //close mainscreen
             Form x = this.FindForm();
+            if (f != null)
             f.Controls.Remove(this);
 
             // centre screen
+            if (f != null)
             ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
 
             //add menu screen
+            if (f != null)
             f.Controls.Add(ms);
         }
 
@@ -63,7 +67,7 @@ namespace BrickBreaker
         //set focus on quitgame button
         private void quitGameButton_Enter(object sender, EventArgs e)
         {
-            setFocusedButton(2); 
+            setFocusedButton(2);
         }
 
         // Open the highscore sreen 
@@ -84,13 +88,13 @@ namespace BrickBreaker
             switch (buttonIndex)
             {
                 case 0:
-                   returnbutton.ForeColor = Color.White;
+                    returnbutton.ForeColor = Color.White;
                     break;
                 case 1:
                     highScoreButton.ForeColor = Color.White;
                     break;
                 case 2:
-                     quitGameButton.ForeColor = Color.White;
+                    quitGameButton.ForeColor = Color.White;
                     break;
             }
         }
