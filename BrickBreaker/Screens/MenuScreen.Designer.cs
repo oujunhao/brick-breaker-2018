@@ -41,9 +41,9 @@
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // onePlayerButton
-            // 
+            //
             this.onePlayerButton.AutoSize = true;
             this.onePlayerButton.BackColor = System.Drawing.Color.Transparent;
             this.onePlayerButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -62,9 +62,9 @@
             this.onePlayerButton.UseVisualStyleBackColor = false;
             this.onePlayerButton.Click += new System.EventHandler(this.onePlayerButton_Click);
             this.onePlayerButton.Enter += new System.EventHandler(this.onePlayerButton_Enter);
-            // 
+            //
             // twoPlayerButton
-            // 
+            //
             this.twoPlayerButton.AutoSize = true;
             this.twoPlayerButton.BackColor = System.Drawing.Color.Transparent;
             this.twoPlayerButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -83,9 +83,9 @@
             this.twoPlayerButton.UseVisualStyleBackColor = false;
             this.twoPlayerButton.Click += new System.EventHandler(this.twoPlayerButton_Click);
             this.twoPlayerButton.Enter += new System.EventHandler(this.twoPlayerButton_Enter);
-            // 
+            //
             // brickBreakerTitleLable
-            // 
+            //
             this.brickBreakerTitleLable.AutoSize = true;
             this.brickBreakerTitleLable.BackColor = System.Drawing.Color.Transparent;
             this.brickBreakerTitleLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -95,9 +95,9 @@
             this.brickBreakerTitleLable.Name = "brickBreakerTitleLable";
             this.brickBreakerTitleLable.Size = new System.Drawing.Size(0, 108);
             this.brickBreakerTitleLable.TabIndex = 2;
-            // 
+            //
             // highscoresButton
-            // 
+            //
             this.highscoresButton.AutoSize = true;
             this.highscoresButton.BackColor = System.Drawing.Color.Transparent;
             this.highscoresButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -116,9 +116,9 @@
             this.highscoresButton.UseVisualStyleBackColor = false;
             this.highscoresButton.Click += new System.EventHandler(this.highscoresButton_Click);
             this.highscoresButton.Enter += new System.EventHandler(this.highScoresButton_Enter);
-            // 
+            //
             // exitGameButton
-            // 
+            //
             this.exitGameButton.AutoSize = true;
             this.exitGameButton.BackColor = System.Drawing.Color.Transparent;
             this.exitGameButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -137,15 +137,15 @@
             this.exitGameButton.UseVisualStyleBackColor = false;
             this.exitGameButton.Click += new System.EventHandler(this.exitGameButton_Click);
             this.exitGameButton.Enter += new System.EventHandler(this.exitGameButton_Enter);
-            // 
+            //
             // imageList1
-            // 
+            //
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // pictureBox1
-            // 
+            //
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -157,9 +157,9 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
+            //
             // exitButton
-            // 
+            //
             this.exitButton.BackColor = System.Drawing.Color.White;
             this.exitButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -170,9 +170,9 @@
             this.exitButton.TabIndex = 1;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = false;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
@@ -182,9 +182,9 @@
             this.label1.Size = new System.Drawing.Size(841, 147);
             this.label1.TabIndex = 2;
             this.label1.Text = "Brick Breaker";
-            // 
+            //
             // MenuScreen
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;

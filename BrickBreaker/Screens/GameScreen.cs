@@ -103,7 +103,7 @@ namespace BrickBreaker
         public GameScreen()
         {
             InitializeComponent();
-            
+
             OnStart();
         }
 
@@ -780,5 +780,6 @@ namespace BrickBreaker
             //set focus
             this.Focus();
         }
+
     }
 }
